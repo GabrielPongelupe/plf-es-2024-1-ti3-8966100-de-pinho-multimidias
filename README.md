@@ -1,18 +1,20 @@
-# [Nome do projeto]
+# De Pinho Multimídias
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+Será desenvolvido um site para facilitar a compra de novas multimídias para os clientes do De Pinho. O site apresentará a opção de filtragem dos produtos por meio do carro do cliente, mostrando apenas os modelos de multimídia compatíveis com o modelo do veículo.
 
 ## Alunos integrantes da equipe
 
-* [Nome completo do aluno 1]
-* [Nome completo do aluno 2]
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+* Arthur Ferreira Costa
+* Gabriel Ferreira Amaral
+* Gabriel Pongelupe de Carvalho
+* Pedro Henrique Braga de Castro
+* Renato Cazzoletti
+
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+* Eveline Alonso Veloso
+* Juliana Amaral Baroni de Carvalho
 
 ## Instruções de utilização
 
