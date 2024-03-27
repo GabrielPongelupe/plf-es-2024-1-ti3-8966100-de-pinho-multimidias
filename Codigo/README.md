@@ -1,4 +1,5 @@
 # Código do Projeto
 
-Mantenha neste diretório todo o código do projeto. Se necessário, descreva neste arquivo aspectos relevantes da estrutura de diretórios criada para organização do código.
 [Código do back-end](../Codigo/back-end)  -- repositório do código do back-end  
+
+[Código do front-end](../Codigo/front-end)  -- repositório do código do front-end 
