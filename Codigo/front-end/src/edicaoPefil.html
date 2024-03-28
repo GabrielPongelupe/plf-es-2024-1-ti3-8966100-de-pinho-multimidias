@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+  
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        function handleFileInput() {
+            document.getElementById('fileInput').click();
+        }
+    </script>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-lg rounded-lg text-center">
+                <!-- Foto de perfil -->
+                <img src="#" alt="" id='profilePic' class='rounded-circle mb-3' width='100'>
+                <!-- Botão para upload -->
+                <input type='file' id='fileInput' style='display:none;'>
+                <button onclick="handleFileInput()" class='btn btn-primary mb-3'>Incluir Foto</button>
+                <!-- Formulário para editar perfil -->
+                <form action="#">
+                    <!-- Título -->
+                    <h2>Editar Perfil</h2>
+                    <!-- Campo do primeiro nome -->
+                    <div class="form-group text-left mt-4">
+                        <label for="">Primeiro nome</label>
+                        <input type="text" value="" placeholder="José" class='form-control'>
+                    </div>
+                    <!-- Campo do último nome -->
+                    <div class="form-group text-left mt-4">
+                        <label for="">Último nome</label>
+                        <input type="text" value="" placeholder="Costa" class='form-control'>
+                    </div>
+                    <!-- Campo do email -->
+                    <div class="form-group text-left mt-4">
+                        <label for="">E-mail</label>
+                        <input type="email" value="" placeholder="seuemail@gmail.com" class='form-control'>
+                    </div>
+                    <!-- Campo do contato -->
+                    <div class="form-group text-left mt-4">
+                        <label for="">Contato</label>
+                        <input type="text" value="" placeholder="(99)99999-9999" class='form-control'>
+                    </div>
+                    <!-- Botões para cancelar e salvar -->
+                    <div class="form-group row mt-4">
+                        <div class="col">
+                            <button type="button" class="btn btn-outline-primary w-100">Cancelar</button>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary w-100">Salvar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
