@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Signup Page</title>
+    <title>Cadastro - De Pinho Multimídias</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <!-- Início do Teste do Login pelo Google e Gmail-->
+    <div class="data">
+        <p>Name</p>
+        <p id="name" class="alert alert-success"></p>
+        <p>Profile Pic</p>
+        <img id="image" class="rounded-circle" width="100" height="100">
+        <p>Email</p>
+        <p id="email"></p>
+        <button type="button" class="btn btn-danger" onclick="signOut();">Sair</button>
+
+    </div>
+    <div class="data-gmail">
+        <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
+        <pre id="content" style="white-space: pre-wrap;"></pre>
+    </div>
+    <!-- Fim do Teste do Login pelo Google e Gmail-->
+
+
     <div class="container">
         <h1 class="text-center mt-5">Crie sua conta</h1>
         <div class="row justify-content-center mt-5">
@@ -16,14 +37,14 @@
         <div class="container mt-3">
             <div class="row justify-content-center">
                 <div class="col-auto">
-                    <button class="btn btn-primary">
-                        <img src="./images/facebook-logo-facebook-icon-transparent-free-png.webp" alt="Facebook" width="20"> Entre com o Facebook
-                    </button>
+                    <button class="gmail-btn"id="authorize_button" onclick="handleAuthClick()"> Fazer login com o Gmail</button>
                 </div>
                 <div class="col-auto">
-                    <button class="btn btn-danger">
-                        <img src="./images/Google__G__logo.svg.png" alt="Google" width="20"> Entre com o Google
-                    </button>
+                    <div id="g_id_onload"
+                        data-client_id="4702882738-dfpp9qr71nbf9jbog01pql775ou3c7sj.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse">
+                    </div>
+                    <div class="g_id_signin" data-type="standard"></div>
                 </div>
             </div>
         </div>
@@ -48,7 +69,8 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input type="checkbox" class="form-check-input" id="subscribe">
-                                        <label class="form-check-label" for="subscribe">Lembre-me neste navegador</label>
+                                        <label class="form-check-label" for="subscribe">Lembre-me neste
+                                            navegador</label>
                                     </div>
                                 </div>
                             </div>
@@ -60,5 +82,10 @@
             </div>
         </div>
     </div>
+    <script src="js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
 </body>
+
 </html>

@@ -13,3 +13,23 @@
   color: #015EEA !important;
 }
 
+/* Teste do login */
+
+.data, .data-gmail {
+  display: none;
+  width: 70%;
+  position: fixed;
+  top:10%;
+  left: 15%;
+}
+
+
+.gmail-btn{
+  background-color: #ea0101;
+  color: white;
+  padding: 6px;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
