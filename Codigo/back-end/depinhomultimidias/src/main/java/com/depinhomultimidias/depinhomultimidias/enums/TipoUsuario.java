@@ -4,18 +4,18 @@ package com.depinhomultimidias.depinhomultimidias.enums;
 public enum TipoUsuario {
 
     
-    ADMINISTRADOR(0),
-    CLIENTE(1);
+    ADMINISTRADOR("ADMINISTRADOR"),
+    CLIENTE("CLIENTE");
 
 
 
-    private int value;
+    private String value;
 
-    TipoUsuario(int value){
+    TipoUsuario(String value){
         this.value = value;
      }
 
-     public int getValue() {
+     public String getRole() {
          return value;
      }
 }
