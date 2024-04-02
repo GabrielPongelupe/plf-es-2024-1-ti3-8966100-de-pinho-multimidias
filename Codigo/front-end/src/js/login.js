@@ -14,8 +14,8 @@ var emailLogin = document.getElementById("email-login");
 var senhaLogin = document.getElementById("password-login");
 
 // endpoints 
-var urlCadastro = "http://localhost:5500/register";
-var urlLogin = "https://localhost:5500/login";
+var urlCadastro = "http://localhost:8080/register";
+var urlLogin = "https://localhost:8080/login";
 
 // enviar dados do cadastro
 btnCadastro.addEventListener("click", function (e) {
@@ -27,7 +27,7 @@ btnCadastro.addEventListener("click", function (e) {
         primeiroNome: primeiroNome.value,
         ultimoNome: ultimoNome.value,
         contato: contato.value,
-        tipoUsuario: "cliente"
+        tipoUsuario: "CLIENTE"
     }
 
     axios.post(urlCadastro, data)
