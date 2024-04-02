@@ -1,3 +1,56 @@
+// varíaveis do cadastro
+var formCadastro = document.getElementById("forms-cadastro");
+var btnCadastro = document.getElementById("btn-cadastro");
+var emailCadastro = document.getElementById("email-cadastro");
+var senhaCadastro = document.getElementById("password-cadastro");
+var ultimoNome = document.getElementById('ultimo_nome');
+var primeiroNome = document.getElementById('primeiro_nome');
+var contato = document.getElementById('contato');
+
+// variáveis do login
+var formLogin = document.getElementById("forms-login");
+var btnLogin = document.getElementById("btn-login");
+var emailLogin = document.getElementById("email-login");
+var senhaLogin = document.getElementById("password-login");
+
+// endpoints 
+var urlCadastro = "http://localhost:5500/register";
+var urlLogin = "https://localhost:5500/login";
+
+// enviar dados do cadastro
+btnCadastro.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    var data = {
+        email: emailCadastro.value,
+        senha: senhaCadastro.value,
+        primeiroNome: primeiroNome.value,
+        ultimoNome: ultimoNome.value,
+        contato: contato.value,
+        tipoUsuario: "cliente"
+    }
+
+    axios.post(urlCadastro, data)
+        .then(response => {
+            console.log('Cadastro realizado com sucesso', response.data);
+        })
+        .catch(error => {
+            if (error.response) {
+                console.log("Data:", error.response.data);
+                console.log("Status:", error.response.status);
+                console.log("Headers:", error.response.headers);
+            } else if (error.request) {
+                console.log("Request:", error.request);
+            } else {
+                console.log("Error:", error.message);
+            }
+            console.log("Config:", error.config);
+        })
+
+})
+
+
+
 /* Início de Teste de login pelo Google */
 
 function decodeJwtResponse(token) {

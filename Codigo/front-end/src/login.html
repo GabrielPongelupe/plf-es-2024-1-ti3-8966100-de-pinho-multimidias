@@ -32,7 +32,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-auto">
-                 <button class="gmail-btn"id="authorize_button" onclick="handleAuthClick()"> Fazer login com o Gmail</button>
+                    <button class="gmail-btn" id="authorize_button" onclick="handleAuthClick()"> Fazer login com o
+                        Gmail</button>
                 </div>
                 <div class="col-auto">
                     <div id="g_id_onload"
@@ -45,23 +46,22 @@
         </div>
 
 
-
         <div id="form" class="row justify-content-center mt-5">
             <div class="col-md-6">
-                <form>
+                <form method="POST" action="/login" id="forms-login">
                     <div class="form-group">
                         <label for="email">Seu e-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="seuemail@gmail.com">
+                        <input type="email" class="form-control" id="email-login" placeholder="seuemail@gmail.com">
                     </div>
                     <div class="form-group">
                         <label for="password">Sua senha</label>
-                        <input type="password" class="form-control" id="password" placeholder="********">
+                        <input type="password" class="form-control" id="password-login" placeholder="********">
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" id="remember">
                         <label class="form-check-label" for="remember">Lembrar de mim</label>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block mdb-primary">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-block mdb-primary" id="btn-login">Entrar</button>
                     <p class="text-center mt-5">Esqueci minha senha</p>
                 </form>
             </div>
@@ -73,7 +73,7 @@
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
     <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
