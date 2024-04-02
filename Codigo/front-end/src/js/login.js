@@ -50,6 +50,32 @@ btnCadastro.addEventListener("click", function (e) {
 })
 
 
+btnLogin.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    var data = {
+        email: emailLogin.value,
+        senha: senhaLogin.value
+    }
+
+    axios.post(urlLogin, data)
+        .then(response => {
+            console.log('Login realizado com sucesso', response.data);
+        })
+        .catch(error => {
+            if (error.response) {
+                console.log("Data:", error.response.data);
+                console.log("Status:", error.response.status);
+                console.log("Headers:", error.response.headers);
+            } else if (error.request) {
+                console.log("Request:", error.request);
+            } else {
+                console.log("Error:", error.message);
+            }
+            console.log("Config:", error.config);
+        })
+
+})
 
 /* Início de Teste de login pelo Google */
 
