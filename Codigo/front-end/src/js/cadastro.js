@@ -1,23 +1,31 @@
-// variáveis do login
-var formLogin = document.getElementById("forms-login");
-var btnLogin = document.getElementById("btn-login");
-var emailLogin = document.getElementById("email-login");
-var senhaLogin = document.getElementById("password-login");
+// varíaveis do cadastro
+var formCadastro = document.getElementById("forms-cadastro");
+var btnCadastro = document.getElementById("btn-cadastro");
+var emailCadastro = document.getElementById("email-cadastro");
+var senhaCadastro = document.getElementById("password-cadastro");
+var ultimoNome = document.getElementById('ultimo_nome');
+var primeiroNome = document.getElementById('primeiro_nome');
+var contato = document.getElementById('contato');
 
-// endpoints 
-var urlLogin = "https://localhost:8080/usuario/login";
+// endpoint
+var urlCadastro = "http://localhost:8080/usuario/register";
 
-btnLogin.addEventListener("click", function (e) {
+// enviar dados do cadastro
+btnCadastro.addEventListener("click", function (e) {
     e.preventDefault();
 
     var data = {
-        email: emailLogin.value,
-        senha: senhaLogin.value
+        email: emailCadastro.value,
+        senha: senhaCadastro.value,
+        primeiroNome: primeiroNome.value,
+        ultimoNome: ultimoNome.value,
+        contato: contato.value,
+        role: "CLIENTE"
     }
 
-    axios.post(urlLogin, data)
+    axios.post(urlCadastro, data)
         .then(response => {
-            console.log('Login realizado com sucesso', response.data);
+            console.log('Cadastro realizado com sucesso', response.data);
         })
         .catch(error => {
             if (error.response) {
@@ -33,6 +41,8 @@ btnLogin.addEventListener("click", function (e) {
         })
 
 })
+
+
 
 /* Início de Teste de login pelo Google */
 
