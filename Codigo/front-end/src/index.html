@@ -60,8 +60,8 @@
   <div class="bg-primary text-white py-5">
     <div class="container py-5">
       <h1>
-        Best products & <br />
-        brands in our store
+        Encontrea multimídia<br />
+        Certa para seu veículo
       </h1>
       <p>
         Trendy Products, Factory Prices, Excellent Service
@@ -76,6 +76,96 @@
   </div>
   <!-- Jumbotron -->
 </header>
+
+<!--Filtro de pesquisa de veiculo-->
+<title>Filtro de Carros</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    /* Estilos personalizados para parecer com a imagem */
+    body {
+        background-color: #f0f0f0; /* Cor de fundo cinza claro */
+    }
+
+    .card {
+        border: none; /* Sem bordas visíveis */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    }
+
+    .form-control {
+        border: none; /* Sem bordas */
+        border-bottom: 1px solid #ccc; /* Linha na parte inferior */
+        border-radius: 0; /* Sem bordas arredondadas */
+        background-color: transparent; /* Fundo transparente */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Cor azul do botão */
+        border-color: #007bff; /* Cor da borda do botão */
+        color: white; /* Texto branco */
+    }
+    /* Estilos para o botão flutuante do WhatsApp */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+}
+
+.floating-whatsapp img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center"> <!-- Centraliza o conteúdo -->
+        <div class="col-md-12"> <!-- Aumenta a largura do card para 8 colunas -->
+            <div class="card card-body">
+                <form id="filtroCarros" class="row">
+                    <!-- Marca do carro -->
+                    <div class="form-group col-md-4">
+                        <label for="marcaCarro">Marca do carro</label>
+                        <input type="text" class="form-control" id="marcaCarro" placeholder="Toyota">
+                    </div>
+                    <!-- Modelo do carro -->
+                    <div class="form-group col-md-4">
+                        <label for="modeloCarro">Modelo do carro</label>
+                        <input type="text" class="form-control" id="modeloCarro" placeholder="Corolla">
+                    </div>
+                    <!-- Ano do modelo -->
+                    <div class="form-group col-md-4">
+                        <label for="anoModelo">Ano do modelo</label>
+                        <input type="number" class="form-control" id="anoModelo" placeholder="2015">
+                    </div>
+                    <!-- Botão de pesquisa -->
+                    <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
+                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Botão flutuante do WhatsApp -->
+<div class="floating-whatsapp">
+  <a href="https://wa.me/SEUNUMERODOTELEFONE" target="_blank">
+    <img src="./images/whatsapp_iamge.png" alt="WhatsApp" />
+  </a>
+</div>
+
+
 <!-- Products -->
 <section>
   <div class="container my-5">
