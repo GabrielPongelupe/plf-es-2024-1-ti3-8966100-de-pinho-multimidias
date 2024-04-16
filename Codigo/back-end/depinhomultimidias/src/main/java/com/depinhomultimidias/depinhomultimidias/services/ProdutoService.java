@@ -2,12 +2,15 @@ package com.depinhomultimidias.depinhomultimidias.services;
 
 import java.util.Optional;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
 import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
+import com.depinhomultimidias.depinhomultimidias.specification.FilterCriteria;
 
+import jakarta.annotation.Nullable;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
 
@@ -33,5 +36,16 @@ public class ProdutoService {
         newProduto.setDescricao(produto.getDescricao());
         newProduto.setPreco(produto.getPreco());
         return produtoRepository.save(newProduto);
+    }
+
+    public Produto findByMarcaAndAnoAndModeloInDescricao(@Nullable String marca, String ano, String modelo){
+        Optional<Produto> produto = this.produtoRepository.findByMarcaAndAnoAndModeloInDescricao(marca, ano, modelo);
+        return produto.orElseThrow(()-> new RuntimeException(
+        "Objeto não encontrado! Marca: " + marca + ", Ano: " + ano + ", Modelo: " + modelo + ", Tipo: " + Produto.class.getName()));
+        
+    }
+
+    public List<Produto> findAll(FilterCriteria filterCriteria) {
+        return this.produtoRepository.findAll();
     }
 }
