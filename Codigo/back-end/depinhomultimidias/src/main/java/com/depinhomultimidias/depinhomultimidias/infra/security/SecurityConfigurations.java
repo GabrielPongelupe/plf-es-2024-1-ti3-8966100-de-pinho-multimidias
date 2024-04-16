@@ -43,8 +43,9 @@ public class SecurityConfigurations {
             .requestMatchers(HttpMethod.GET, "/usuario/{id}").permitAll() //TIRAR DEPOIS
             .requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
             .requestMatchers(HttpMethod.POST, "/usuario/register").permitAll()
-            .requestMatchers(HttpMethod.POST, "/produto").hasRole("ADMIN")
-            .requestMatchers(HttpMethod.PUT, "/usuario").permitAll()
+            .requestMatchers(HttpMethod.POST, "/produto").permitAll() //hasRole("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/usuario/{id}").permitAll()
+            .requestMatchers(HttpMethod.GET, "/produto/filtro").permitAll()
             .anyRequest().authenticated()
         )
         

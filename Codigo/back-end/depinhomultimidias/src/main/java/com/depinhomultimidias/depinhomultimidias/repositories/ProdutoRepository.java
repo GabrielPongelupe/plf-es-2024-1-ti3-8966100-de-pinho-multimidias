@@ -14,5 +14,6 @@ import com.depinhomultimidias.depinhomultimidias.models.Produto;
 
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto,Long>,JpaSpecificationExecutor<Produto> {
-
+    @Query("SELECT p FROM Produto p WHERE p.codigoProduto = :codigoProduto")
+    Optional<Produto> findBycodigoProduto(Long codigoProduto);
 }
