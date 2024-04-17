@@ -136,21 +136,21 @@
                     <!-- Marca do carro -->
                     <div class="form-group col-md-4">
                         <label for="marcaCarro">Marca do carro</label>
-                        <input type="text" class="form-control" id="marcaCarro" placeholder="Toyota">
+                        <input type="text" id="marca-carro-filtro"  class="form-control" id="marcaCarro" placeholder="Toyota">
                     </div>
                     <!-- Modelo do carro -->
                     <div class="form-group col-md-4">
                         <label for="modeloCarro">Modelo do carro</label>
-                        <input type="text" class="form-control" id="modeloCarro" placeholder="Corolla">
+                        <input type="text" id="modelo-carro-filtro" class="form-control" id="modeloCarro" placeholder="Corolla">
                     </div>
                     <!-- Ano do modelo -->
                     <div class="form-group col-md-4">
                         <label for="anoModelo">Ano do modelo</label>
-                        <input type="number" class="form-control" id="anoModelo" placeholder="2015">
+                        <input type="number" id="ano-carro-filtro" class="form-control" id="anoModelo" placeholder="2015">
                     </div>
                     <!-- Botão de pesquisa -->
                     <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
-                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                        <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
                     </div>
                 </form>
             </div>
@@ -593,6 +593,8 @@
 
     <!-- Custom scripts -->
     <script type="text/javascript" src="js/script.js"></script>
-</body>
+    <script src="./js/filtro.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
 </html>
 
