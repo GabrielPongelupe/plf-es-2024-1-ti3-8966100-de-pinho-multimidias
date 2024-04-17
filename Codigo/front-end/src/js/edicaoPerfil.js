@@ -7,7 +7,7 @@ var primeiroNome = document.getElementById('primeiro-nome-perfil');
 var contato = document.getElementById('contato-perfil');
 
 // endpoint
-var urledicaoPerfil = "http://localhost:8080/usuario/1";
+var urledicaoPerfil = "http://localhost:8080/usuario/2";
 
 
 btnSalvar.addEventListener("click", function (e) {

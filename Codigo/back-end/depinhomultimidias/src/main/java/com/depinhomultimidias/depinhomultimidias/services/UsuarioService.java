@@ -34,12 +34,26 @@ public class UsuarioService implements UserDetailsService{
     @Transactional
     public Usuario update(@NonNull Usuario usuario){
         Usuario newUsuario = findById(usuario.getId());
-        newUsuario.setPrimeiroNome(usuario.getPrimeiroNome());
-        newUsuario.setUltimoNome(usuario.getUltimoNome());
-        newUsuario.setFotoPerfil(usuario.getFotoPerfil());
-        newUsuario.setContato(usuario.getContato());
-        newUsuario.setEmail(usuario.getEmail());
-        newUsuario.setSenha(usuario.getSenha());
+        if(usuario.getPrimeiroNome() != null){
+            newUsuario.setPrimeiroNome(usuario.getPrimeiroNome());
+        }
+        if(usuario.getUltimoNome() != null){
+            newUsuario.setUltimoNome(usuario.getUltimoNome());
+        }
+        if(usuario.getFotoPerfil() != null){
+            newUsuario.setFotoPerfil(usuario.getFotoPerfil());
+        }
+        if(usuario.getContato() != null){
+            newUsuario.setContato(usuario.getContato());
+        }
+        if(usuario.getEmail() != null){
+            newUsuario.setEmail(usuario.getEmail());
+        }
+        if(usuario.getSenha() != null){
+            newUsuario.setSenha(usuario.getSenha());
+
+        }
+        
         return usuarioRepository.save(newUsuario);
     }
 
