@@ -11,7 +11,6 @@ import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
 import com.depinhomultimidias.depinhomultimidias.specification.FilterCriteria;
 import com.depinhomultimidias.depinhomultimidias.specification.ProdutoSpecification;
 
-import jakarta.annotation.Nullable;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
 
@@ -33,9 +32,19 @@ public class ProdutoService {
     @Transactional
     public Produto update (@NonNull Produto produto) {
         Produto newProduto = findById(produto.getCodigoProduto());
-        newProduto.setNome(produto.getNome());
-        newProduto.setDescricao(produto.getDescricao());
-        newProduto.setPreco(produto.getPreco());
+        if(produto.getNome() != null){
+            newProduto.setNome(produto.getNome());
+        }
+        if(produto.getDescricao() != null){
+            newProduto.setDescricao(produto.getDescricao());
+        }
+        if(produto.getPreco() != null){
+            newProduto.setPreco(produto.getPreco());
+        }
+        if(produto.getVideo_relacionado() != null){
+            newProduto.setVideo_relacionado(produto.getVideo_relacionado());
+        }
+        
         return produtoRepository.save(newProduto);
     }
 

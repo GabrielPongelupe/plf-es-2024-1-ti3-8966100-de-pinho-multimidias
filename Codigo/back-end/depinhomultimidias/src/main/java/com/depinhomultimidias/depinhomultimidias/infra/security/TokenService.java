@@ -17,40 +17,33 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class TokenService {
-
+    
     @Value("${api.security.token.secret}")
     private String secret;
-    
-    //Gera token de autenticação para requisicoes Http
-    public String generateToken(Usuario usuario){
 
-        try {
-            // CADA APLICACAO TEM SUA PROPRIA 'CHAVE' PARA CRIPTOGRAFIA DE TOKENS .Algorithm.HMAC256()
-            // DEFINE ESSA CHAVE E APLICA ELA
+    public String generateToken(Usuario user){
+        try{
             Algorithm algorithm = Algorithm.HMAC256(secret);
             String token = JWT.create()
-                        .withIssuer("dePinho")
-                        .withSubject(usuario.getEmail())
-                        .withExpiresAt(genExpirationDate())
-                        .sign(algorithm);
+                    .withIssuer("auth-api")
+                    .withSubject(user.getEmail())
+                    .withExpiresAt(genExpirationDate())
+                    .sign(algorithm);
             return token;
-        } catch (JWTCreationException e) {
-            throw new RuntimeException("Erro de geração de Token", e);
+        } catch (JWTCreationException exception) {
+            throw new RuntimeException("Error while generating token", exception);
         }
-        
-        
     }
 
     public String validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                .withIssuer("dePinho")
-                .build()
-                .verify(token)
-                .getSubject();
-
-        } catch (JWTVerificationException e) {
+                    .withIssuer("auth-api")
+                    .build()
+                    .verify(token)
+                    .getSubject();
+        } catch (JWTVerificationException exception){
             return "";
         }
     }

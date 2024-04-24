@@ -3,6 +3,8 @@ package com.depinhomultimidias.depinhomultimidias.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.depinhomultimidias.depinhomultimidias.enums.TipoProduto;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,7 +43,17 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<ItemPedido> itens = new ArrayList<>();
 
-   
+   @Column(name = "ano_inicio")
+   private int ano_inicio;
+
+   @Column(name = "ano_fim")
+   private int ano_fim;
+
+   @Column(name = "video_relacionado")
+   private String video_relacionado;
+
+   @Column(name = "tipo_produto")
+   private TipoProduto tipo_produto;
    
 
 }
