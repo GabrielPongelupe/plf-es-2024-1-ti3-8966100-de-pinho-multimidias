@@ -26,7 +26,7 @@ import com.depinhomultimidias.depinhomultimidias.enums.StatusPedido;
 @NoArgsConstructor  
 @AllArgsConstructor
 @Entity
-@Table(name = "pedidos")
+@Table(name = "pedido")
 public class Pedido {
 
     @Id
