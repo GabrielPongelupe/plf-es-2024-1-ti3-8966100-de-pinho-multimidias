@@ -50,7 +50,7 @@ exemplo sintático : {
 + pedido : Pedido
 + produto : Produto
 + quantidade : Integer
-+ preco : Doubl
++ preco : Double
 
 ##### Pagamento:
 + id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
