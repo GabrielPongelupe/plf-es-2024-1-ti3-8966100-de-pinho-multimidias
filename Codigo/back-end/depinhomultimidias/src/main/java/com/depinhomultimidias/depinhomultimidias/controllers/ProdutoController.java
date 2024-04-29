@@ -47,11 +47,16 @@ public class ProdutoController {
     @GetMapping("/filtro")
     public List<Produto> filtrar(@RequestParam(required = false) String marca,
                                  @RequestParam(required = false) Integer ano,
-                                 @RequestParam(required = false) String modelo) {
+                                 @RequestParam(required = false) String modelo,
+                                 @RequestParam(required = false) boolean possuiComandoVolante,
+                                 @RequestParam(required = false) boolean possuiRadioOriginal
+                                 ) {
         FilterCriteria filtro = new FilterCriteria();
         filtro.setMarca(marca);
         filtro.setAno(ano);
         filtro.setModelo(modelo);
+        filtro.setPossuiComandoVolante(possuiComandoVolante);
+        filtro.setPossuiRadioOriginal(possuiRadioOriginal);
         return produtoService.filtrarProdutos(filtro);
     }
 }

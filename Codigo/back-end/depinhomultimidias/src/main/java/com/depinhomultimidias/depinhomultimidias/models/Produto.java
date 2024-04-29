@@ -54,6 +54,11 @@ public class Produto {
 
    @Column(name = "tipo_produto", nullable = true)
    private TipoProduto tipoProduto;
-   
+
+   @Column(name = "possuiComandoVolante", nullable = true)
+   private boolean possuiComandoVolante;
+
+   @Column(name = "possuiRadioOriginal", nullable = true)
+   private boolean possuiRadioOriginal;
 
 }
