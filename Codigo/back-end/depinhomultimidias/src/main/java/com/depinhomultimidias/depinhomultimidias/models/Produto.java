@@ -44,10 +44,10 @@ public class Produto {
     private List<ItemPedido> itens = new ArrayList<>();
 
    @Column(name = "ano_inicio", nullable = true)
-   private int anoInicio;
+   private Integer anoInicio;
 
    @Column(name = "ano_fim", nullable = true)
-   private int anoFim;
+   private Integer anoFim;
 
    @Column(name = "video_relacionado", nullable = true)
    private String videoRelacionado;
