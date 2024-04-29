@@ -43,17 +43,17 @@ public class Produto {
     @OneToMany(mappedBy = "produto")
     private List<ItemPedido> itens = new ArrayList<>();
 
-   @Column(name = "ano_inicio")
-   private int ano_inicio;
+   @Column(name = "ano_inicio", nullable = true)
+   private int anoInicio;
 
-   @Column(name = "ano_fim")
-   private int ano_fim;
+   @Column(name = "ano_fim", nullable = true)
+   private int anoFim;
 
-   @Column(name = "video_relacionado")
-   private String video_relacionado;
+   @Column(name = "video_relacionado", nullable = true)
+   private String videoRelacionado;
 
-   @Column(name = "tipo_produto")
-   private TipoProduto tipo_produto;
+   @Column(name = "tipo_produto", nullable = true)
+   private TipoProduto tipoProduto;
    
 
 }

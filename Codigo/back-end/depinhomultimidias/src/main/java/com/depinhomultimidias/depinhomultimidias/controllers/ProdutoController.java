@@ -46,7 +46,7 @@ public class ProdutoController {
     }
     @GetMapping("/filtro")
     public List<Produto> filtrar(@RequestParam(required = false) String marca,
-                                 @RequestParam(required = false) String ano,
+                                 @RequestParam(required = false) Integer ano,
                                  @RequestParam(required = false) String modelo) {
         FilterCriteria filtro = new FilterCriteria();
         filtro.setMarca(marca);

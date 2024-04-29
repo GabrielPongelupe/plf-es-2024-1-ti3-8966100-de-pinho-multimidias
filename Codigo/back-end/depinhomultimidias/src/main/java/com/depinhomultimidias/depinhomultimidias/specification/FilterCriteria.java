@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 public class FilterCriteria {
     private String modelo;
     private String marca;
-    private String ano;
+    private Integer ano;
 }

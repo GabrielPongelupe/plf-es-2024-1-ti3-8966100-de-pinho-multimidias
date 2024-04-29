@@ -41,8 +41,8 @@ public class ProdutoService {
         if(produto.getPreco() != null){
             newProduto.setPreco(produto.getPreco());
         }
-        if(produto.getVideo_relacionado() != null){
-            newProduto.setVideo_relacionado(produto.getVideo_relacionado());
+        if(produto.getVideoRelacionado() != null){
+            newProduto.setVideoRelacionado(produto.getVideoRelacionado());
         }
         
         return produtoRepository.save(newProduto);
