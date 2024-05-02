@@ -16,7 +16,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title text-center">Cadastrar produto</h5>
+                                <h3 class="card-title">Cadastrar produto</h3>
                                 <form>
                                     <div class="form-group">
                                         <label for="nomeProduto">Nome do produto</label>
@@ -60,18 +60,14 @@
                                     </div>
                                     <div class="form-group mt-3">
                                         <label for="videoRelacionado">Vídeo relacionado</label>
-                                        <input type="url" class="form-control" id="videoRelacionado" placeholder="https://exemplo.com/seuvideo-aqui.html">
+                                        <input type="url" class="form-control" id="videoRelacionado" placeholder="https://exemplo.com/seuvideo-aqui">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="descricaoGrande">Descrição grande</label>
-                                        <textarea class="form-control" id="descricaoGrande" rows="3" placeholder="Escreva detalhadamente sobre o seu lançamento aqui! Não poupe detalhes! Quanto mais informações você fornecer para o consumidor melhor!"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 box-img p-4">
                         <div class="quadro grande">
                             <label for="imagemProduto1" class="btn-adicionar">+</label>
                             <input type="file" id="imagemProduto1" style="display: none;">
@@ -91,6 +87,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row col-md-12">
+                    <div class="form-group w-100">
+                        <label for="descricaoGrande">Descrição grande</label>
+                        <textarea class="form-control" id="descricaoGrande" rows="3" placeholder="Escreva detalhadamente sobre o seu lançamento aqui! Não poupe detalhes! Quanto mais informações você fornecer para o consumidor melhor!"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
                 </div>
             </div>
         </div>
@@ -113,13 +116,15 @@
     box-shadow: none !important;
 }
 
-
+label {
+    font-weight: 600;
+}
 
     .quadro {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 10px;
+        margin-bottom: 10px;
         border: 2px solid #ccc;
         border-radius: 15px; /* Bordas arredondadas */
     }
@@ -138,6 +143,7 @@
     .pequeno {
         width: 100px;
         height: 100px;
+        margin-right: 10px;
     }
 
     .btn-adicionar {
@@ -152,6 +158,17 @@
         margin-right: 20px;
         margin-bottom: 20px;
     }
+
+    .box-img {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .grande {
+        width: 100%;
+    }
+
 </style>
 
 <script>
