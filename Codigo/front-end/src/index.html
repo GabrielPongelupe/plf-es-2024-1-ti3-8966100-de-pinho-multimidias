@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Material Design for Bootstrap</title>
+    <title>Home</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- MDB -->
@@ -144,7 +144,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center"> <!-- Centraliza o conteúdo -->
         <div class="col-md-12"> <!-- Aumenta a largura do card para 8 colunas -->
-            <div class="card card-body">
+            <div class="card card-body p-5">
                 <form id="filtroCarros" class="row">
                     <!-- Marca do carro -->
                     <div class="form-group col-md-4">
@@ -161,33 +161,33 @@
                         <label for="anoModelo">Ano do modelo</label>
                         <input type="number" id="ano-carro-filtro" class="form-control" id="anoModelo" placeholder="2015">
                     </div>
+
+                    <!-- Adicione isso ao seu formulário existente -->
+                    <div class="row">
+
+                      <div class="col-md-12 d-flex flex-direction-row justify-content-center gap-4 my-4">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox1">
+                          <label class="form-check-label" for="checkbox1">
+                            Possui comando de volante?
+                          </label>
+                        </div>
+    
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox1">
+                          <label class="form-check-label" for="checkbox1">
+                            Possui rádio original de fábrica?
+                          </label>
+                        </div>
+                      </div>
+
+                    </div>
+
                     <!-- Botão de pesquisa -->
                     <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
-                        <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
-                    </div>
-                    <!-- Adicione isso ao seu formulário existente -->
-                    <div class="form-group col-md-12 text-center mt-3"> <!-- Adiciona margem superior -->
-                        <label class="form-check-label" for="comandoVolante">Possui comando de volante?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="comandoVolante" id="comandoVolanteSim" value="sim">
-                            <label class="form-check-label" for="comandoVolanteSim">Sim</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="comandoVolante" id="comandoVolanteNao" value="nao">
-                            <label class="form-check-label" for="comandoVolanteNao">Não</label>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-12 text-center">
-                        <label class="form-check-label" for="radioOriginal">Possui rádio original de fábrica?</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioOriginal" id="radioOriginalSim" value="sim">
-                            <label class="form-check-label" for="radioOriginalSim">Sim</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioOriginal" id="radioOriginalNao" value="nao">
-                            <label class="form-check-label" for="radioOriginalNao">Não</label>
-                        </div>
-                    </div>
+                      <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
+                  </div>
+                  
                 </form>
             </div>
         </div>
