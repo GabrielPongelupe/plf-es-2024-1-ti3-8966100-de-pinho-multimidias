@@ -1,0 +1,105 @@
+.search-bar {
+    position: relative;
+}
+
+.search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    border: none;
+    background: transparent;
+}
+
+.search-form {
+    box-shadow: none;
+    margin-right: -15px;
+    /* Ajuste o espaçamento para compensar o padding do container */
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.card-img-top {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar .container-fluid {
+    padding-right: 0;
+}
+
+
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog{
+    border:none;
+    box-shadow: 0 0 1em rgb(0 0 0 / .3);
+    width: 80%;
+}
+
+#fechar-modal-alterar{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+.quadro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    border: 2px solid #ccc;
+    border-radius: 15px; /* Bordas arredondadas */
+}
+
+.grande {
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+}
+
+.quadros-pequenos {
+    display: flex;
+}
+
+.pequeno {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.btn-adicionar {
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Adicionando margem ao formulário */
+.card {
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.box-img {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.grande {
+    width: 100%;
+}
