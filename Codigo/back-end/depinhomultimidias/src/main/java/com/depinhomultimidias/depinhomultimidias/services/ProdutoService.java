@@ -53,4 +53,10 @@ public class ProdutoService {
     public List<Produto> filtrarProdutos(FilterCriteria filterCriteria) {
         return this.produtoRepository.findAll(ProdutoSpecification.filtrarPorFiltro(filterCriteria));
     }
+
+    @Transactional
+    public void deleteById(Long id) {
+        // Verifica se o produto existe
+        produtoRepository.deleteBycodigoProduto(id);
+    }
 }

@@ -17,6 +17,7 @@ http://127.0.0.1:8080
 +  /produto/{id} (PUT)
 +  /produto (CREATE)
 +  /produto/filtro? (GET)
++  /produto/delete/{codigo} (DELETE)
     + exemplo : http://127.0.0.1:8080/produto/filtro?possuiComandoVolante=true&marca=Fiat
     + variáveis da query do filtro: possuiRadioOriginal, possuiComandoVolante, marca, ano, modelo
  
