@@ -8,6 +8,7 @@ var comandoVolante = document.getElementById('comando-volante');
 var radioOriginal = document.getElementById('radio-original');
 
 
+// Verifica o valor da checkbox
 
 // endpoint
 var urledicaoFiltrocarros = "http://127.0.0.1:8080/produto/filtro";
@@ -15,11 +16,16 @@ var urledicaoFiltrocarros = "http://127.0.0.1:8080/produto/filtro";
 async function getProdutosFiltrados(){
     try {
         
+        
+        
         const marca = marcaCarro.value;
         const modelo = modeloCarro.value;
         const ano = anoCarro.value;
-        const comando = comandoVolante.value;
-        const radio = radioOriginal.value;
+        
+        const comando = comandoVolante.checked;
+        const radio = radioOriginal.checked;
+        console.log(radio)
+
         const response=await axios.get(urledicaoFiltrocarros,{
             params:{
                 possuiComandoVolante:comando,
