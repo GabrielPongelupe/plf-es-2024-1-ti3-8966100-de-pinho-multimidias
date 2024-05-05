@@ -21,6 +21,8 @@ btnLogin.addEventListener("click", function (e) {
     axios.post(urlLogin, data)
         .then(response => {
             localStorage.setItem("token", response.data.token);
+            alert("Login realizado com sucesso");
+            window.location.href = "index.html";
             console.log('Login realizado com sucesso', response.data);
             console.log('Token:', response.data.token);
         })

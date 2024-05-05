@@ -25,6 +25,8 @@ btnCadastro.addEventListener("click", function (e) {
 
     axios.post(urlCadastro, data)
         .then(response => {
+            alert("Cadastro realizado com sucesso");
+            window.location.href = "login.html";
             console.log('Cadastro realizado com sucesso', response.data);
         })
         .catch(error => {

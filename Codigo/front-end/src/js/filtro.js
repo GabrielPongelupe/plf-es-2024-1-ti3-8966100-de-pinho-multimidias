@@ -6,36 +6,59 @@ var modeloCarro = document.getElementById('modelo-carro-filtro');
 var anoCarro = document.getElementById('ano-carro-filtro');
 var comandoVolante = document.getElementById('comando-volante');
 var radioOriginal = document.getElementById('radio-original');
+var telaProdutos = document.getElementById('tela-produtos');
 
-
-// Verifica o valor da checkbox
 
 // endpoint
 var urledicaoFiltrocarros = "http://127.0.0.1:8080/produto/filtro";
 
-async function getProdutosFiltrados(){
+async function getProdutosFiltrados() {
     try {
-        
-        
-        
+
         const marca = marcaCarro.value;
         const modelo = modeloCarro.value;
         const ano = anoCarro.value;
-        
         const comando = comandoVolante.checked;
         const radio = radioOriginal.checked;
-        console.log(radio)
 
-        const response=await axios.get(urledicaoFiltrocarros,{
-            params:{
-                possuiComandoVolante:comando,
-                radioOriginal:radio,
-                marca:marca,
-                modelo:modelo,
-                ano:ano,
+        const response = await axios.get(urledicaoFiltrocarros, {
+            params: {
+                possuiComandoVolante: comando,
+                possuiRadioOriginal: radio,
+                marca: marca,
+                ano: ano,
+                modelo: modelo
             }
         })
+
         console.log(response.data);
+        telaProdutos.innerHTML = "";
+        if (response.data.length == 0) {
+            telaProdutos.innerHTML = `
+              <div class="alert alert-warning" role="alert">
+                Nenhum produto encontrado. Pesquise novamente!
+              </div>
+            `;
+        } else {
+            response.data.forEach(produto => {
+                telaProdutos.innerHTML += `
+
+    <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+        <div class="card w-100 my-2 shadow-2-strong">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBK_T0Czsqal3dhSALYalAHdYdbZwRYryKBUGE7S9BBg&s" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${produto.nome}</h5>
+            <p class="card-text">Ano: ${produto.anoInicio} - ${produto.anoFim}</p>
+            <p class="card-text">Preço: R$${produto.preco}</p>
+            <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
+              <a href="#!" class="btn btn-primary shadow-0 me-1">Comprar</a>
+            </div>
+          </div>
+        </div>
+    </div>`;
+            }
+            );
+        }
         return response.data;
     } catch (error) {
         console.log("erro ao obter produtos filtrados");
@@ -47,7 +70,5 @@ btnPesquisar.addEventListener("click", function (e) {
     e.preventDefault();
 
     getProdutosFiltrados();
-
-   
-
+    
 })
