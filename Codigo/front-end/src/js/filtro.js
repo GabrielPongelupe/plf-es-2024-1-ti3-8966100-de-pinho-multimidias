@@ -4,11 +4,13 @@ var btnPesquisar = document.getElementById("botao-pesquisar-filtro");
 var marcaCarro = document.getElementById("marca-carro-filtro");
 var modeloCarro = document.getElementById('modelo-carro-filtro');
 var anoCarro = document.getElementById('ano-carro-filtro');
+var comandoVolante = document.getElementById('comando-volante');
+var radioOriginal = document.getElementById('radio-original');
 
 
 
 // endpoint
-var urledicaoFiltrocarros = "http://localhost:8080/produto/filtro";
+var urledicaoFiltrocarros = "http://127.0.0.1:8080/produto/filtro";
 
 async function getProdutosFiltrados(){
     try {
@@ -16,11 +18,12 @@ async function getProdutosFiltrados(){
         const marca = marcaCarro.value;
         const modelo = modeloCarro.value;
         const ano = anoCarro.value;
-        /*const marca = "Fiat";
-        const modelo = "Toro";
-        const ano = "2024";*/
+        const comando = comandoVolante.value;
+        const radio = radioOriginal.value;
         const response=await axios.get(urledicaoFiltrocarros,{
             params:{
+                possuiComandoVolante:comando,
+                radioOriginal:radio,
                 marca:marca,
                 modelo:modelo,
                 ano:ano,
