@@ -3,7 +3,10 @@ package com.depinhomultimidias.depinhomultimidias.services;
 import java.util.Optional;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
@@ -58,5 +61,9 @@ public class ProdutoService {
     public void deleteById(Long id) {
         // Verifica se o produto existe
         produtoRepository.deleteBycodigoProduto(id);
+    }
+
+    public Page<Produto> findAllPageable(Pageable pageable) {
+        return produtoRepository.findAll(pageable);
     }
 }

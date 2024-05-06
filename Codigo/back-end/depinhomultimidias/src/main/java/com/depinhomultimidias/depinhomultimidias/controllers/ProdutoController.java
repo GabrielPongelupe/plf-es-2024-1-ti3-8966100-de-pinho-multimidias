@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -67,4 +68,10 @@ public class ProdutoController {
         produtoService.deleteById(codigo);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping
+    public List<Produto> findAllPageable(Pageable pageable) {
+        return produtoService.findAllPageable(pageable).getContent();        
+    }
+    
 }
