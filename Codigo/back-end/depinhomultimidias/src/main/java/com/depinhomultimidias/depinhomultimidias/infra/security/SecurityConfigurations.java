@@ -34,6 +34,7 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.GET, "/produto/filtro").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/produto/{id}").permitAll()
                     .requestMatchers(HttpMethod.GET, "/produto").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/produto/{id}").permitAll()
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

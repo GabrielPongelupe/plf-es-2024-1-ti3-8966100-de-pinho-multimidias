@@ -47,6 +47,21 @@ public class ProdutoService {
         if(produto.getVideoRelacionado() != null){
             newProduto.setVideoRelacionado(produto.getVideoRelacionado());
         }
+        if(produto.getAnoFim() != null){
+            newProduto.setAnoFim(newProduto.getAnoFim());
+        }
+        if(produto.getAnoInicio() != null){
+            newProduto.setAnoInicio(newProduto.getAnoInicio());
+        }
+        if (produto.getTipoProduto() != null) {
+            newProduto.setTipoProduto(produto.getTipoProduto());
+
+        }
+        if (produto.getVideoRelacionado() != null) {
+            newProduto.setVideoRelacionado(produto.getVideoRelacionado());
+        }
+         newProduto.setPossuiComandoVolante(produto.isPossuiComandoVolante());
+         newProduto.setPossuiRadioOriginal(produto.isPossuiRadioOriginal());
         
         return produtoRepository.save(newProduto);
     }
