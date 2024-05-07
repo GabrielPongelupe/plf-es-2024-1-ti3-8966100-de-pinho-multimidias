@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('tela');
     const modalAlterar = document.getElementById('modal-alterar');
     const modalExcluir = document.getElementById('modal-excluir');
-    const telaModal = document.getElementById('tela-modal');
+    const concluirExclusao = document.getElementById('concluir-exclusao');
+    const concluirEdicao = document.getElementById('confirmar-edicao');
 
+    // urls
+    const urlExclusao = 'http://127.0.0.1:8080/produto/delete/';
 
     // Função para pegar todos os produtos
     async function getProdutos() {
@@ -38,9 +41,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
 
+            let produtoId = "";
             document.querySelectorAll('.btn-alterar').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-produto-id');
+                    produtoId = this.getAttribute('data-produto-id');
                     const nomeProduto = this.getAttribute('produto-nome');
                     const tipoProduto = this.getAttribute('tipo-produto');
                     const anoInicio = this.getAttribute('ano-inicio');
@@ -81,11 +85,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
+            document.querySelectorAll('#modal-alterar input').forEach(function (input) {
+                input.addEventListener('change', function () {
+                    const novoValor = this.value;
+                    const campo = this.id;
+
+                    const dadosAtualizados = {
+                        [campo]: novoValor
+                    };
+
+
+                    concluirEdicao.addEventListener('click', function () {
+                        axios.put(`http://127.0.0.1:8080/produto/${produtoId}`, dadosAtualizados);
+                        alert(`Dados do campo ${campo} atualizados com sucesso`, response.data);
+                        window.location.reload();
+
+                    });
+                });
+            });
+
             document.querySelectorAll('.btn-excluir').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     const produtoId = this.getAttribute('data-produto-id');
-                    console.log(produtoId, "produtoId");
                     modalExcluir.showModal();
+
+                    concluirExclusao.addEventListener('click', function () {
+                        axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoId}`);
+                        alert("Produto excluído com sucesso!");
+                        window.location.reload();
+                    });
+
                 });
             });
 
@@ -95,14 +124,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getProdutos();
-
-    //document.getElementById('tipoProduto').addEventListener('change', verificarOpcaoSelecionada);
-
-    // document.querySelectorAll('.btn-adicionar').forEach(function(btn) {
-    //     btn.addEventListener('click', function() {
-    //         var inputId = this.getAttribute('for');
-    //         document.getElementById(inputId).click();
-    //     });
-    // });
 
 });
