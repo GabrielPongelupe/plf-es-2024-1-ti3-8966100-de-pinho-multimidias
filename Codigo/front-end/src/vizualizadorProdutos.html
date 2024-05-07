@@ -7,6 +7,8 @@
     <title>Gerenciar Produtos</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/editarProduto.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
 
 <body>
@@ -30,23 +32,8 @@
     </div>
 
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <!-- inicio grid -->
-            <div class="col-md-3 mb-4">
-                <div class="card">
-                    <img class="card-img-top" src="./images/whatsapp-logo-2022.svg" alt="Imagem do Produto"
-                        style="width: 200px; height: 200px;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nome do Produto</h5>
-                        <p class="card-text">Tipo do Produto | Código</p>
-                        <button class="btn btn-primary btn-block" id="btn-alterar">Editar</button>
-                        <button class="btn btn-danger btn-block" id="btn-excluir">Excluir</button>
-                    </div>
-                </div>
-            </div>
-            <!-- fim grid -->
-        </div>
+    <div class="container" >
+        <div class="row justify-content-center" id="tela"></div>
     </div>
 
     <dialog id="modal-alterar">
@@ -160,8 +147,7 @@
     </dialog>
 
 
-    <script src="./js/modalEditarProduto.js"></script>
-    <script src="./js/modalExcluirProduto.js"></script>
+    <script src="./js/visualizadorProdutos.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
