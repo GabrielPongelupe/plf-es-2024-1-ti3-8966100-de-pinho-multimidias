@@ -47,11 +47,11 @@ public class ProdutoService {
         if(produto.getVideoRelacionado() != null){
             newProduto.setVideoRelacionado(produto.getVideoRelacionado());
         }
-        if(produto.getAnoFim() != null){
-            newProduto.setAnoFim(newProduto.getAnoFim());
+        if (produto.getAnoFim() != null) {
+            newProduto.setAnoFim(produto.getAnoFim()); 
         }
-        if(produto.getAnoInicio() != null){
-            newProduto.setAnoInicio(newProduto.getAnoInicio());
+        if (produto.getAnoInicio() != null) {
+            newProduto.setAnoInicio(produto.getAnoInicio()); 
         }
         if (produto.getTipoProduto() != null) {
             newProduto.setTipoProduto(produto.getTipoProduto());

@@ -1,15 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Variáveis globais
     const container = document.getElementById('tela');
     const modalAlterar = document.getElementById('modal-alterar');
     const modalExcluir = document.getElementById('modal-excluir');
     const concluirExclusao = document.getElementById('concluir-exclusao');
     const concluirEdicao = document.getElementById('confirmar-edicao');
 
-    // urls
     const urlExclusao = 'http://127.0.0.1:8080/produto/delete/';
 
-    // Função para pegar todos os produtos
     async function getProdutos() {
         const params = {
             page: 0,
@@ -17,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         const url = 'http://127.0.0.1:8080/produto';
-
 
         try {
             const response = await axios.get(url, { params });
@@ -40,30 +36,28 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>`;
             });
 
-
-            let produtoId = "";
             document.querySelectorAll('.btn-alterar').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    produtoId = this.getAttribute('data-produto-id');
-                    const nomeProduto = this.getAttribute('produto-nome');
+                    const produtoId = this.getAttribute('data-produto-id');
+                    const nome = this.getAttribute('produto-nome');
                     const tipoProduto = this.getAttribute('tipo-produto');
                     const anoInicio = this.getAttribute('ano-inicio');
                     const anoFim = this.getAttribute('ano-fim');
                     const descricao = this.getAttribute('produto-descricao');
-                    const possuiRadio = this.getAttribute('possuiRadio');
-                    const comandoVolante = this.getAttribute('comandoVolante');
-                    const precoProduto = this.getAttribute('preco-produto');
-                    const videoProduto = this.getAttribute('video-produto');
+                    const possuiRadioOriginal = this.getAttribute('possuiRadio') === 'true';
+                    const possuiComandoVolante = this.getAttribute('comandoVolante') === 'true';
+                    const preco = this.getAttribute('preco-produto');
+                    const videoRelacionado = this.getAttribute('video-produto');
 
                     modalAlterar.showModal();
 
-                    document.getElementById('nomeProduto').value = nomeProduto;
+                    document.getElementById('nome').value = nome;
                     document.getElementById('tipoProduto').value = tipoProduto;
-                    document.getElementById('precoProduto').value = precoProduto;
+                    document.getElementById('preco').value = preco;
                     document.getElementById('anoInicio').value = anoInicio;
-                    document.getElementById('anoFinal').value = anoFim;
-                    document.getElementById('descricaoGrande').value = descricao;
-                    document.getElementById('videoRelacionado').value = videoProduto;
+                    document.getElementById('anoFim').value = anoFim;
+                    document.getElementById('descricao').value = descricao;
+                    document.getElementById('videoRelacionado').value = videoRelacionado;
 
                     let divCheckboxes = document.getElementById('checkboxesMultimidia');
                     if (tipoProduto === 'MULTIMIDIA') {
@@ -71,37 +65,43 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         divCheckboxes.style.display = 'none';
                     }
-                    if (possuiRadio) {
-                        document.getElementById('checkbox2').checked = true;
-                    } else {
-                        document.getElementById('checkbox2').checked = false;
-                    }
-
-                    if (comandoVolante) {
-                        document.getElementById('checkbox1').checked = true;
-                    } else {
-                        document.getElementById('checkbox1').checked = false;
-                    }
+                    document.getElementById('checkbox1').checked = possuiComandoVolante;
+                    document.getElementById('checkbox2').checked = possuiRadioOriginal;
                 });
             });
 
-            document.querySelectorAll('#modal-alterar input').forEach(function (input) {
-                input.addEventListener('change', function () {
-                    const novoValor = this.value;
-                    const campo = this.id;
+            concluirEdicao.addEventListener('click', function () {
+                const produtoId = document.querySelector('.btn-alterar').getAttribute('data-produto-id');
+                const nome = document.getElementById('nome').value;
+                const tipoProduto = document.getElementById('tipoProduto').value;
+                const preco = document.getElementById('preco').value;
+                const anoInicio = document.getElementById('anoInicio').value;
+                const anoFim = document.getElementById('anoFim').value;
+                const descricao = document.getElementById('descricao').value;
+                const videoRelacionado = document.getElementById('videoRelacionado').value;
+                const possuiComandoVolante = document.getElementById('checkbox1').checked;
+                const possuiRadioOriginal = document.getElementById('checkbox2').checked;
 
-                    const dadosAtualizados = {
-                        [campo]: novoValor
-                    };
+                const dadosAtualizados = {
+                    nome: nome,
+                    tipoProduto: tipoProduto,
+                    preco: preco,
+                    anoInicio: anoInicio,
+                    anoFim: anoFim,
+                    descricao: descricao,
+                    videoRelacionado: videoRelacionado,
+                    possuiComandoVolante: possuiComandoVolante,
+                    possuiRadioOriginal: possuiRadioOriginal
+                };
 
-
-                    concluirEdicao.addEventListener('click', function () {
-                        axios.put(`http://127.0.0.1:8080/produto/${produtoId}`, dadosAtualizados);
-                        alert(`Dados do campo ${campo} atualizados com sucesso`, response.data);
+                axios.put(`http://127.0.0.1:8080/produto/${produtoId}`, dadosAtualizados)
+                    .then(response => {
+                        alert("Produto atualizado com sucesso!");
                         window.location.reload();
-
+                    })
+                    .catch(error => {
+                        console.error('Erro ao atualizar o produto:', error);
                     });
-                });
             });
 
             document.querySelectorAll('.btn-excluir').forEach(function (btn) {
@@ -110,11 +110,15 @@ document.addEventListener('DOMContentLoaded', function () {
                     modalExcluir.showModal();
 
                     concluirExclusao.addEventListener('click', function () {
-                        axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoId}`);
-                        alert("Produto excluído com sucesso!");
-                        window.location.reload();
+                        axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoId}`)
+                            .then(response => {
+                                alert("Produto excluído com sucesso!");
+                                window.location.reload();
+                            })
+                            .catch(error => {
+                                console.error('Erro ao excluir o produto:', error);
+                            });
                     });
-
                 });
             });
 
@@ -124,5 +128,4 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     getProdutos();
-
 });

@@ -60,6 +60,9 @@ formulario.addEventListener('submit', function (event) {
 botao.addEventListener("click", function (e) {
     e.preventDefault();
     cadastrarProduto();
+    alert("Cadastro realizado com sucesso");
+    window.location.reload();
+    
 });
 })
 
