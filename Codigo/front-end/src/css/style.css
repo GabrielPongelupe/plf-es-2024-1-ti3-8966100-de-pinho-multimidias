@@ -33,3 +33,7 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.form-control {
+  color: #000 !important;
+}
