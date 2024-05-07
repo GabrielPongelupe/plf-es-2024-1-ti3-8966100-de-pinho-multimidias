@@ -121,11 +121,19 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 });
             });
+            
+            
+            
+const fecharModal = document.getElementById('fechar-modal-alterar');
+fecharModal.addEventListener("click", function() {
+    modalAlterar.close();
+});
 
         } catch (error) {
             console.error('Erro ao obter produtos:', error);
         }
     }
+
 
     getProdutos();
 });
