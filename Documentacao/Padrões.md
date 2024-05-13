@@ -1,6 +1,6 @@
 ### Rotas:
 http://127.0.0.1:8080
-### Duvida:
+#### Perguntas Frequentes:
 +  /duvida/{id} (GET)
 +  /duvida/{id} (PUT)
 +  /duvida (CREATE)
