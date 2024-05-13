@@ -35,5 +35,10 @@ public class ItemPedidoService {
         newItemPedido.setPreco(itemPedido.getPreco());
         return itemPedidoRepository.save(newItemPedido);
     }
+    @Transactional
+    public void delete(@NonNull Long id) {
+        ItemPedido itemPedido = findById(id);
+        itemPedidoRepository.delete(itemPedido);
+    }
 
 }

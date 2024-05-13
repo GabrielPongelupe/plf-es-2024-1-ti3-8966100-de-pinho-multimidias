@@ -24,6 +24,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -93,6 +94,11 @@ public class UsuarioController {
     public ResponseEntity<Usuario> update(@PathVariable("id") Long id, @Valid @RequestBody Usuario usuario) {
         usuario.setId(id);
         this.usuarioService.update(usuario);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.usuarioService.delete(id);
         return ResponseEntity.noContent().build();
     }
     

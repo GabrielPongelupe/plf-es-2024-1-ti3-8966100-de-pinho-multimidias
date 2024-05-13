@@ -33,5 +33,10 @@ public class PagamentoService {
         newPagamento.setPedido(pagamento.getPedido());
         return pagamentoRepository.save(newPagamento);
     }
+    @Transactional
+    public void delete(@NonNull Long id) {
+        Pagamento pagamento = findById(id);
+        pagamentoRepository.delete(pagamento);
+    }
 
 }

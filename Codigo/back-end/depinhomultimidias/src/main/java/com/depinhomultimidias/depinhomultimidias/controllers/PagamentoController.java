@@ -5,6 +5,7 @@ import java.net.URI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,11 @@ public class PagamentoController {
     public ResponseEntity<Pagamento> update(@PathVariable("id") Long id, @RequestBody Pagamento pagamento) {
         pagamento.setId(id);
         this.pagamentoService.update(pagamento);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.pagamentoService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

@@ -35,4 +35,10 @@ public class PedidoService {
         newPedido.setUsuario(pedido.getUsuario());
         return pedidoRepository.save(newPedido);
     }
+
+    @Transactional
+    public void delete(@NonNull Long id) {
+        Pedido pedido = findById(id);
+        pedidoRepository.delete(pedido);
+    }
 }

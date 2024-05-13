@@ -14,6 +14,7 @@ import com.depinhomultimidias.depinhomultimidias.services.PedidoService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,6 +48,11 @@ public class PedidoController {
     public ResponseEntity<Pedido> update(@PathVariable("id") Long id, @RequestBody Pedido pedido) {
         pedido.setId(id);
         this.pedidoService.update(pedido);
+        return ResponseEntity.noContent().build();
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
+        this.pedidoService.delete(id);
         return ResponseEntity.noContent().build();
     }
     
