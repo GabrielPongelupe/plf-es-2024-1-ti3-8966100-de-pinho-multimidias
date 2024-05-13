@@ -37,7 +37,7 @@ public class DuvidaController {
         return ResponseEntity.ok(this.duvidaService.findById(id));
     }
 
-    @PostMapping("path")
+    @PostMapping
     public ResponseEntity<Duvida> create(@RequestBody Duvida duvida) {
         this.duvidaService.create(duvida);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(duvida.getId()).toUri();
