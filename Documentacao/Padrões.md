@@ -4,14 +4,17 @@ http://127.0.0.1:8080
 +  /item-pedido/{id} (GET)
 +  /item-pedido/{id} (PUT)
 +  /item-pedido (CREATE)
++  /item-pedido/delete/{id} (DELETE)
 ##### Pagamento:
 +  /pagamento/{id} (GET)
 +  /pagamento/{id} (PUT)
 +  /pagamento (CREATE)
++  /pagamento/delete/{id} (DELETE)
 ##### Pedido:
 +  /pedido/{id} (GET)
 +  /pedido/{id} (PUT)
 +  /pedido (CREATE)
++  /pedido/delete/{id} (DELETE)
 ##### Produto:
 +  /produto/{id} (GET)
 +  /produto/{id} (PUT)
@@ -29,7 +32,8 @@ http://127.0.0.1:8080
 +  /usuario/{id} (PUT)
 +  /usuario (CREATE) // **DEPRECIADA** / **NÃO UTILIZAR**
 +  /usuario/login (CREATE)
-+  /usuario/register (CREATE) 
++  /usuario/register (CREATE)
++  /usuario/delete/{id} (DELETE)
 
 
 ### Padrão JSON
