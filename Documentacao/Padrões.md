@@ -1,5 +1,10 @@
 ### Rotas:
 http://127.0.0.1:8080
+### Duvida:
++  /duvida/{id} (GET)
++  /duvida/{id} (PUT)
++  /duvida (CREATE)
++  /duvida/delete/{id} (DELETE)
 ##### Item Pedidos:
 +  /item-pedido/{id} (GET)
 +  /item-pedido/{id} (PUT)
