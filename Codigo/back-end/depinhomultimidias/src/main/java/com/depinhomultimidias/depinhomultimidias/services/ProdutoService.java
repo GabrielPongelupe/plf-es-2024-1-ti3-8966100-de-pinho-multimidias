@@ -62,6 +62,20 @@ public class ProdutoService {
         }
          newProduto.setPossuiComandoVolante(produto.isPossuiComandoVolante());
          newProduto.setPossuiRadioOriginal(produto.isPossuiRadioOriginal());
+         if (produto.getImagem() != null) {
+            newProduto.setImagem(produto.getImagem());
+            
+         }
+         if(produto.getImagem2() != null){
+            newProduto.setImagem2(produto.getImagem2());
+         }
+
+         if(produto.getImagem3() != null){
+            newProduto.setImagem3(produto.getImagem3());
+         }
+         if(produto.getImagemPrincipal() != null){
+            newProduto.setImagemPrincipal(produto.getImagemPrincipal());
+         }
         
         return produtoRepository.save(newProduto);
     }

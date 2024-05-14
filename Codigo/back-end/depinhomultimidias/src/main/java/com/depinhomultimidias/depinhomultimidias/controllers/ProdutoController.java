@@ -73,5 +73,8 @@ public class ProdutoController {
     public List<Produto> findAllPageable(Pageable pageable) {
         return produtoService.findAllPageable(pageable).getContent();        
     }
+
+  
+    
     
 }

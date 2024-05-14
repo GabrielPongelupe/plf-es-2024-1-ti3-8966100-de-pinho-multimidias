@@ -29,8 +29,13 @@ public class DuvidaService {
     @Transactional
     public Duvida update(@NonNull Duvida duvida) {
         Duvida newDuvida = findById(duvida.getId());
-        newDuvida.setPergunta(duvida.getPergunta());
-        newDuvida.setResposta(duvida.getResposta());
+        if (duvida.getPergunta() != null) {
+            newDuvida.setPergunta(duvida.getPergunta());
+            
+        }
+        if (duvida.getResposta() != null) {
+            newDuvida.setResposta(duvida.getResposta());
+        }
         return duvidaRepository.save(newDuvida);
     }
     @Transactional

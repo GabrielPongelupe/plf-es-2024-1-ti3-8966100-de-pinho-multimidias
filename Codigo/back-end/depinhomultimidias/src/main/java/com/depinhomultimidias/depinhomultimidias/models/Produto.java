@@ -39,7 +39,6 @@ public class Produto {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    
     @OneToMany(mappedBy = "produto")
     private List<ItemPedido> itens = new ArrayList<>();
 
@@ -60,5 +59,18 @@ public class Produto {
 
    @Column(name = "possuiRadioOriginal", nullable = true)
    private boolean possuiRadioOriginal;
+    
+   @Column(name = "imagem_Principal", nullable = true)
+   private String  imagemPrincipal;
+
+   @Column(name = "imagem",nullable = true)
+   private String imagem;
+
+   @Column(name = "imagem2",nullable = true)
+   private String imagem2;
+    
+   @Column(name = "imagem3",nullable = true)
+   private String imagem3;
+
 
 }
