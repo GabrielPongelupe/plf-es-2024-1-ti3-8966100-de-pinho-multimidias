@@ -58,6 +58,11 @@ exemplo sintático : {
   
 }
 #### Variáveis e seus tipos:
+##### Perguntas Frequentes:
++ id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
++ pergunta : String
++ resposta : String
+
 ##### Item Pedido:
 + id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
 + pedido : Pedido
@@ -90,6 +95,10 @@ exemplo sintático : {
 + tipoProduto : TipoProduto
 + possuiComandoVolante : boolean
 + possuiRadioOriginal : boolean
++ imagemPricipal : String
++ imagem: String
++ imagem2: String
++ imagem3: String
 
 ##### Usuario: 
 + id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
