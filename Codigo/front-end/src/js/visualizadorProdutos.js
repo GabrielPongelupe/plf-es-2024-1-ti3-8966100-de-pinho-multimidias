@@ -137,3 +137,9 @@ fecharModal.addEventListener("click", function() {
 
     getProdutos();
 });
+
+const fecharModalExcluir = document.getElementById('fechar-modal-excluir');
+
+fecharModalExcluir.addEventListener("click", function() {
+    modalExcluir.close();
+});
