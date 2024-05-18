@@ -1,0 +1,105 @@
+  /* Estilos personalizados para parecer com a imagem */
+  body {
+    background-color: #f0f0f0;
+    /* Cor de fundo cinza claro */
+  }
+
+  .card {
+    border: none;
+    /* Sem bordas visíveis */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+  }
+
+  .form-control {
+    border: none;
+    /* Sem bordas */
+    border-bottom: 1px solid #ccc;
+    /* Linha na parte inferior */
+    border-radius: 0;
+    /* Sem bordas arredondadas */
+    background-color: transparent;
+    /* Fundo transparente */
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    /* Cor azul do botão */
+    border-color: #007bff;
+    /* Cor da borda do botão */
+    color: white;
+    /* Texto branco */
+  }
+
+  /* Estilos para o botão flutuante do WhatsApp */
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .floating-whatsapp:hover {
+    transform: scale(1.1);
+  }
+
+  .floating-whatsapp img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.062);
+  }
+
+  /* Adicione isso ao seu CSS existente */
+  .form-check-label {
+    margin-left: 5px;
+    /* Espaçamento após o checkbox */
+  }
+
+  .form-check-input {
+    margin-top: 0.3rem;
+    /* Alinhamento vertical do checkbox */
+  }
+
+  /* Estilos para os checkboxes alinhados horizontalmente */
+  .form-check-inline .form-check-input {
+    position: relative;
+    margin-right: 0.75rem;
+    /* Espaçamento entre os checkboxes */
+  }
+
+  .form-check-inline {
+    margin-top: 10px;
+    /* Adiciona margem na parte superior dos checkboxes */
+  }
+
+  
+/* FAQ */
+.faq {
+    width: 80%;
+}
+
+.faq summary{
+    padding: 10px;
+    padding-left: 1em;
+    border: 1px solid #ced4da;
+    border-radius: .5em;
+    margin-bottom: 12px;
+}
+
+::marker {
+    color: #007bff;
+    font-size: 1em;
+}
+
+.faq details summary{
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.faq details p {
+    color: #3C3C43;
+    padding: 1em;
+    transition: all .5s;
+}
