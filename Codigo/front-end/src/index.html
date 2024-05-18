@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Home</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- MDB -->
-    <link rel="stylesheet" href="css/mdb.min.css" />
-    <!-- Custom styles -->
-    <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <title>Início</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- MDB -->
+  <link rel="stylesheet" href="css/mdb.min.css" />
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-    <!--Main Navigation-->
+
+<!--Main Navigation-->
 <header>
   <!-- Jumbotron -->
   <div class="p-3 text-center bg-white border-bottom">
@@ -21,7 +24,7 @@
       <div class="row gy-3">
         <!-- Left elements -->
         <div class="col-lg-2 col-sm-4 col-4">
-          <a href="https://mdbootstrap.com/"  class="float-start">
+          <a href="https://mdbootstrap.com/" class="float-start">
             <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
           </a>
         </div>
@@ -30,9 +33,16 @@
         <!-- Center elements -->
         <div class="order-lg-last col-lg-5 col-sm-8 col-8">
           <div class="d-flex float-end">
-            <a href="login.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" > <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Login</p> </a>
+            <a href="login.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center"> <i
+                class="fas fa-user-alt m-1 me-md-2"></i>
+              <p class="d-none d-md-block mb-0">Login</p>
+            </a>
             <!-- <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" > <i class="fas fa-heart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Favoritos</p> </a> -->
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" > <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Carrinho</p> </a>
+            <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+              class="border rounded py-1 px-3 nav-link d-flex align-items-center"> <i
+                class="fas fa-shopping-cart m-1 me-md-2"></i>
+              <p class="d-none d-md-block mb-0">Carrinho</p>
+            </a>
           </div>
         </div>
         <!-- Center elements -->
@@ -54,9 +64,90 @@
     </div>
   </div>
   <!-- Jumbotron -->
+</header>
 
-  
-  <!-- Jumbotron -->
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+  /* Estilos personalizados para parecer com a imagem */
+  body {
+    background-color: #f0f0f0;
+    /* Cor de fundo cinza claro */
+  }
+
+  .card {
+    border: none;
+    /* Sem bordas visíveis */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+  }
+
+  .form-control {
+    border: none;
+    /* Sem bordas */
+    border-bottom: 1px solid #ccc;
+    /* Linha na parte inferior */
+    border-radius: 0;
+    /* Sem bordas arredondadas */
+    background-color: transparent;
+    /* Fundo transparente */
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    /* Cor azul do botão */
+    border-color: #007bff;
+    /* Cor da borda do botão */
+    color: white;
+    /* Texto branco */
+  }
+
+  /* Estilos para o botão flutuante do WhatsApp */
+  .floating-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+  }
+
+  .floating-whatsapp:hover {
+    transform: scale(1.1);
+  }
+
+  .floating-whatsapp img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.062);
+  }
+
+  /* Adicione isso ao seu CSS existente */
+  .form-check-label {
+    margin-left: 5px;
+    /* Espaçamento após o checkbox */
+  }
+
+  .form-check-input {
+    margin-top: 0.3rem;
+    /* Alinhamento vertical do checkbox */
+  }
+
+  /* Estilos para os checkboxes alinhados horizontalmente */
+  .form-check-inline .form-check-input {
+    position: relative;
+    margin-right: 0.75rem;
+    /* Espaçamento entre os checkboxes */
+  }
+
+  .form-check-inline {
+    margin-top: 10px;
+    /* Adiciona margem na parte superior dos checkboxes */
+  }
+</style>
+
+<body>
+
   <div class="bg-primary text-white py-5">
     <div class="container py-5">
       <h1>
@@ -65,461 +156,480 @@
       </h1>
     </div>
   </div>
-  <!-- Jumbotron -->
-</header>
 
-<!--Filtro de pesquisa de veiculo-->
-<title>Filtro de Carros</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<style>
-    /* Estilos personalizados para parecer com a imagem */
-    body {
-        background-color: #f0f0f0; /* Cor de fundo cinza claro */
-    }
-
-    .card {
-        border: none; /* Sem bordas visíveis */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    }
-
-    .form-control {
-        border: none; /* Sem bordas */
-        border-bottom: 1px solid #ccc; /* Linha na parte inferior */
-        border-radius: 0; /* Sem bordas arredondadas */
-        background-color: transparent; /* Fundo transparente */
-    }
-
-    .btn-primary {
-        background-color: #007bff; /* Cor azul do botão */
-        border-color: #007bff; /* Cor da borda do botão */
-        color: white; /* Texto branco */
-    }
-
-    /* Estilos para o botão flutuante do WhatsApp */
-    .floating-whatsapp {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        transition: all 0.3s ease;
-    }
-
-    .floating-whatsapp:hover {
-        transform: scale(1.1);
-    }
-
-    .floating-whatsapp img {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.062);
-    }
-
-    /* Adicione isso ao seu CSS existente */
-    .form-check-label {
-        margin-left: 5px; /* Espaçamento após o checkbox */
-    }
-
-    .form-check-input {
-        margin-top: 0.3rem; /* Alinhamento vertical do checkbox */
-    }
-
-    /* Estilos para os checkboxes alinhados horizontalmente */
-    .form-check-inline .form-check-input {
-        position: relative;
-        margin-right: 0.75rem; /* Espaçamento entre os checkboxes */
-    }
-    
-    .form-check-inline {
-        margin-top: 10px; /* Adiciona margem na parte superior dos checkboxes */
-    }
-
-</style>
-
-</head>
-
-<body>
-
-<div class="container mt-5">
+  <div class="container mt-5">
     <div class="row justify-content-center"> <!-- Centraliza o conteúdo -->
-        <div class="col-md-12"> <!-- Aumenta a largura do card para 8 colunas -->
-            <div class="card card-body p-5">
-                <form id="filtroCarros" class="row">
-                    <!-- Marca do carro -->
-                    <div class="form-group col-md-4">
-                        <label for="marcaCarro">Marca do carro</label>
-                        <input type="text" id="marca-carro-filtro"  class="form-control" id="marcaCarro" placeholder="Toyota">
-                    </div>
-                    <!-- Modelo do carro -->
-                    <div class="form-group col-md-4">
-                        <label for="modeloCarro">Modelo do carro</label>
-                        <input type="text" id="modelo-carro-filtro" class="form-control" id="modeloCarro" placeholder="Corolla">
-                    </div>
-                    <!-- Ano do modelo -->
-                    <div class="form-group col-md-4">
-                        <label for="anoModelo">Ano do modelo</label>
-                        <input type="number" id="ano-carro-filtro" class="form-control" id="anoModelo" placeholder="2015">
-                    </div>
-
-                    <div class="row">
-
-                      <div class="col-md-12 d-flex flex-direction-row justify-content-center gap-4 my-4">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="comando-volante">
-                          <label class="form-check-label" for="comando-volante">
-                            Possui comando de volante?
-                          </label>
-                        </div>
-    
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="radio-original">
-                          <label class="form-check-label" for="radio-original">
-                            Possui rádio original de fábrica?
-                          </label>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <!-- Botão de pesquisa -->
-                    <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
-                      <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
-                  </div>
-                  
-                </form>
+      <div class="col-md-12"> <!-- Aumenta a largura do card para 8 colunas -->
+        <div class="card card-body p-5">
+          <form id="filtroCarros" class="row">
+            <!-- Marca do carro -->
+            <div class="form-group col-md-4">
+              <label for="marcaCarro">Marca do carro</label>
+              <input type="text" id="marca-carro-filtro" class="form-control" id="marcaCarro" placeholder="Toyota">
             </div>
+            <!-- Modelo do carro -->
+            <div class="form-group col-md-4">
+              <label for="modeloCarro">Modelo do carro</label>
+              <input type="text" id="modelo-carro-filtro" class="form-control" id="modeloCarro" placeholder="Corolla">
+            </div>
+            <!-- Ano do modelo -->
+            <div class="form-group col-md-4">
+              <label for="anoModelo">Ano do modelo</label>
+              <input type="number" id="ano-carro-filtro" class="form-control" id="anoModelo" placeholder="2015">
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-12 d-flex flex-direction-row justify-content-center gap-4 my-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="comando-volante">
+                  <label class="form-check-label" for="comando-volante">
+                    Possui comando de volante?
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="radio-original">
+                  <label class="form-check-label" for="radio-original">
+                    Possui rádio original de fábrica?
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Botão de pesquisa -->
+            <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
+              <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
+            </div>
+
+          </form>
         </div>
-    </div>
-</div>
-
-
-<!-- Botão flutuante do WhatsApp -->
-<div class="floating-whatsapp">
-  <a href="https://wa.me/5531999036093" target="_blank">
-    <img src="./images/whatsapp-logo-2022.svg" alt="WhatsApp Logo">
-  </a>
-</div>
-
-
-<!-- Products -->
-<section>
-  <div class="container my-5">
-    <div class="row" id="tela-produtos"></div>
-</section>
-<!-- Products -->
-
-<!-- Feature -->
-<section class="mt-5" style="background-color: #f5f5f5;">
-  <div class="container text-dark pt-3">
-    <header class="pt-4 pb-3">
-      <h3>Why choose us</h3>
-    </header>
-
-    <div class="row mb-4">
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Reasonable prices</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Best quality</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Worldwide shipping</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Customer satisfaction</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Happy customers</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-      <div class="col-lg-4 col-md-6">
-        <figure class="d-flex align-items-center mb-4">
-          <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-            <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
-          </span>
-          <figcaption class="info">
-            <h6 class="title">Thousand items</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-          </figcaption>
-        </figure>
-        <!-- itemside // -->
-      </div>
-      <!-- col // -->
-    </div>
-  </div>
-  <!-- container end.// -->
-</section>
-<!-- Feature -->
-
-<!-- Blog -->
-<section class="mt-5 mb-4">
-  <div class="container text-dark">
-    <header class="mb-4">
-      <h3>Blog posts</h3>
-    </header>
-
-    <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <article>
-          <a href="#" class="img-fluid">
-            <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/1.webp" style="object-fit: cover;" height="160" />
-          </a>
-          <div class="mt-2 text-muted small d-block mb-1">
-            <span>
-              <i class="fa fa-calendar-alt fa-sm"></i>
-              23.12.2022
-            </span>
-            <a href="#"><h6 class="text-dark">How to promote brands</h6></a>
-            <p>When you enter into any new area of science, you almost reach</p>
-          </div>
-        </article>
-      </div>
-      <!-- col.// -->
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <article>
-          <a href="#" class="img-fluid">
-            <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/2.webp" style="object-fit: cover;" height="160" />
-          </a>
-          <div class="mt-2 text-muted small d-block mb-1">
-            <span>
-              <i class="fa fa-calendar-alt fa-sm"></i>
-              13.12.2022
-            </span>
-            <a href="#"><h6 class="text-dark">How we handle shipping</h6></a>
-            <p>When you enter into any new area of science, you almost reach</p>
-          </div>
-        </article>
-      </div>
-      <!-- col.// -->
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <article>
-          <a href="#" class="img-fluid">
-            <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/3.webp" style="object-fit: cover;" height="160" />
-          </a>
-          <div class="mt-2 text-muted small d-block mb-1">
-            <span>
-              <i class="fa fa-calendar-alt fa-sm"></i>
-              25.11.2022
-            </span>
-            <a href="#"><h6 class="text-dark">How to promote brands</h6></a>
-            <p>When you enter into any new area of science, you almost reach</p>
-          </div>
-        </article>
-      </div>
-      <!-- col.// -->
-      <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-        <article>
-          <a href="#" class="img-fluid">
-            <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/4.webp" style="object-fit: cover;" height="160" />
-          </a>
-          <div class="mt-2 text-muted small d-block mb-1">
-            <span>
-              <i class="fa fa-calendar-alt fa-sm"></i>
-              03.09.2022
-            </span>
-            <a href="#"><h6 class="text-dark">Success story of sellers</h6></a>
-            <p>When you enter into any new area of science, you almost reach</p>
-          </div>
-        </article>
       </div>
     </div>
   </div>
-</section>
-<!-- Blog -->
 
-<!-- Footer -->
-<footer class="text-center text-lg-start text-muted mt-3" style="background-color: #f5f5f5;">
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-center text-md-start pt-4 pb-4">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-12 col-lg-3 col-sm-12 mb-2">
-          <!-- Content -->
-          <a href="https://mdbootstrap.com/"  class="">
-            <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
-          </a>
-          <p class="mt-2 text-dark">
-            © 2023 Copyright: MDBootstrap.com
-          </p>
+
+  <!-- Botão flutuante do WhatsApp -->
+  <div class="floating-whatsapp">
+    <a href="https://wa.me/5531999036093" target="_blank">
+      <img src="./images/whatsapp-logo-2022.svg" alt="WhatsApp Logo">
+    </a>
+  </div>
+
+
+  <!-- Products -->
+  <section>
+    <div class="container my-5">
+      <div class="row" id="tela-produtos"></div>
+  </section>
+  <!-- Products -->
+
+  <!-- Feature -->
+  <section class="mt-5" style="background-color: #f5f5f5;">
+    <div class="container text-dark pt-3">
+      <header class="pt-4 pb-3">
+        <h3>Why choose us</h3>
+      </header>
+
+      <div class="row mb-4">
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Reasonable prices</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-dark fw-bold mb-2">
-            Store
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-muted" href="#">About us</a></li>
-            <li><a class="text-muted" href="#">Find store</a></li>
-            <li><a class="text-muted" href="#">Categories</a></li>
-            <li><a class="text-muted" href="#">Blogs</a></li>
-          </ul>
+        <!-- col // -->
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Best quality</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-dark fw-bold mb-2">
-            Information
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-muted" href="#">Help center</a></li>
-            <li><a class="text-muted" href="#">Money refund</a></li>
-            <li><a class="text-muted" href="#">Shipping info</a></li>
-            <li><a class="text-muted" href="#">Refunds</a></li>
-          </ul>
+        <!-- col // -->
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Worldwide shipping</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
         </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-6 col-sm-4 col-lg-2">
-          <!-- Links -->
-          <h6 class="text-uppercase text-dark fw-bold mb-2">
-            Support
-          </h6>
-          <ul class="list-unstyled mb-4">
-            <li><a class="text-muted" href="#">Help center</a></li>
-            <li><a class="text-muted" href="#">Documents</a></li>
-            <li><a class="text-muted" href="#">Account restore</a></li>
-            <li><a class="text-muted" href="#">My orders</a></li>
-          </ul>
+        <!-- col // -->
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Customer satisfaction</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
         </div>
-        <!-- Grid column -->
+        <!-- col // -->
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Happy customers</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
+        </div>
+        <!-- col // -->
+        <div class="col-lg-4 col-md-6">
+          <figure class="d-flex align-items-center mb-4">
+            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
+              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
+            </span>
+            <figcaption class="info">
+              <h6 class="title">Thousand items</h6>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
+            </figcaption>
+          </figure>
+          <!-- itemside // -->
+        </div>
+        <!-- col // -->
+      </div>
+    </div>
+    <!-- container end.// -->
+  </section>
+  <!-- Feature -->
 
-        <!-- Grid column -->
-        <div class="col-12 col-sm-12 col-lg-3">
-          <!-- Links -->
-          <h6 class="text-uppercase text-dark fw-bold mb-2">Newsletter</h6>
-          <p class="text-muted">Stay in touch with latest updates about our products and offers</p>
-          <div class="input-group mb-3">
-            <input type="email" class="form-control border" placeholder="Email" aria-label="Email" aria-describedby="button-addon2" />
-            <button class="btn btn-light border shadow-0" type="button" id="button-addon2" data-mdb-ripple-color="dark">
-              Join
-            </button>
+  <!-- FAQ -->
+
+  <section class="mt-5 mb-4">
+
+    <div class="container text-dark">
+      <header class="mb-4">
+        <h3>Perguntas frequentes</h3>
+      </header>
+
+      <div class="row">
+        <div class="accordion w-100" id="basicAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button data-mdb-button-init data-mdb-collapse-init class="accordion-button collapsed" type="button"
+                data-mdb-target="#basicAccordionCollapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Question #1
+              </button>
+            </h2>
+            <div id="basicAccordionCollapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+              data-mdb-parent="#basicAccordion" style="">
+              <div class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is shown by default,
+                until the collapse plugin adds the appropriate classes that we use to style each
+                element. These classes control the overall appearance, as well as the showing and
+                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                our default variables. It's also worth noting that just about any HTML can go within
+                the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button data-mdb-button-init data-mdb-collapse-init class="accordion-button collapsed" type="button"
+                data-mdb-target="#basicAccordionCollapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Question #2
+              </button>
+            </h2>
+            <div id="basicAccordionCollapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-mdb-parent="#basicAccordion" style="">
+              <div class="accordion-body">
+                <strong>This is the second item's accordion body.</strong> It is hidden by default,
+                until the collapse plugin adds the appropriate classes that we use to style each
+                element. These classes control the overall appearance, as well as the showing and
+                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                our default variables. It's also worth noting that just about any HTML can go within
+                the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button data-mdb-button-init data-mdb-collapse-init class="accordion-button collapsed" type="button"
+                data-mdb-target="#basicAccordionCollapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Question #3
+              </button>
+            </h2>
+            <div id="basicAccordionCollapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-mdb-parent="#basicAccordion" style="">
+              <div class="accordion-body">
+                <strong>This is the third item's accordion body.</strong> It is hidden by default,
+                until the collapse plugin adds the appropriate classes that we use to style each
+                element. These classes control the overall appearance, as well as the showing and
+                hiding via CSS transitions. You can modify any of this with custom CSS or overriding
+                our default variables. It's also worth noting that just about any HTML can go within
+                the <code>.accordion-body</code>, though the transition does limit overflow.
+              </div>
+            </div>
           </div>
         </div>
-        <!-- Grid column -->
       </div>
-      <!-- Grid row -->
+
+    </div>
+
+  </section>
+  <!-- Blog -->
+  <section class="mt-5 mb-4">
+    <div class="container text-dark">
+      <header class="mb-4">
+        <h3>Blog posts</h3>
+      </header>
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <article>
+            <a href="#" class="img-fluid">
+              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/1.webp"
+                style="object-fit: cover;" height="160" />
+            </a>
+            <div class="mt-2 text-muted small d-block mb-1">
+              <span>
+                <i class="fa fa-calendar-alt fa-sm"></i>
+                23.12.2022
+              </span>
+              <a href="#">
+                <h6 class="text-dark">How to promote brands</h6>
+              </a>
+              <p>When you enter into any new area of science, you almost reach</p>
+            </div>
+          </article>
+        </div>
+        <!-- col.// -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <article>
+            <a href="#" class="img-fluid">
+              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/2.webp"
+                style="object-fit: cover;" height="160" />
+            </a>
+            <div class="mt-2 text-muted small d-block mb-1">
+              <span>
+                <i class="fa fa-calendar-alt fa-sm"></i>
+                13.12.2022
+              </span>
+              <a href="#">
+                <h6 class="text-dark">How we handle shipping</h6>
+              </a>
+              <p>When you enter into any new area of science, you almost reach</p>
+            </div>
+          </article>
+        </div>
+        <!-- col.// -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <article>
+            <a href="#" class="img-fluid">
+              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/3.webp"
+                style="object-fit: cover;" height="160" />
+            </a>
+            <div class="mt-2 text-muted small d-block mb-1">
+              <span>
+                <i class="fa fa-calendar-alt fa-sm"></i>
+                25.11.2022
+              </span>
+              <a href="#">
+                <h6 class="text-dark">How to promote brands</h6>
+              </a>
+              <p>When you enter into any new area of science, you almost reach</p>
+            </div>
+          </article>
+        </div>
+        <!-- col.// -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+          <article>
+            <a href="#" class="img-fluid">
+              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/4.webp"
+                style="object-fit: cover;" height="160" />
+            </a>
+            <div class="mt-2 text-muted small d-block mb-1">
+              <span>
+                <i class="fa fa-calendar-alt fa-sm"></i>
+                03.09.2022
+              </span>
+              <a href="#">
+                <h6 class="text-dark">Success story of sellers</h6>
+              </a>
+              <p>When you enter into any new area of science, you almost reach</p>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
-  <!-- Section: Links  -->
+  <!-- Blog -->
 
-  <div class="">
-    <div class="container">
-      <div class="d-flex justify-content-between py-4 border-top">
-        <!--- payment --->
-        <div>
-          <i class="fab fa-lg fa-cc-visa text-dark"></i>
-          <i class="fab fa-lg fa-cc-amex text-dark"></i>
-          <i class="fab fa-lg fa-cc-mastercard text-dark"></i>
-          <i class="fab fa-lg fa-cc-paypal text-dark"></i>
+  <!-- Footer -->
+  <footer class="text-center text-lg-start text-muted mt-3" style="background-color: #f5f5f5;">
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start pt-4 pb-4">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-12 col-lg-3 col-sm-12 mb-2">
+            <!-- Content -->
+            <a href="https://mdbootstrap.com/" class="">
+              <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
+            </a>
+            <p class="mt-2 text-dark">
+              © 2023 Copyright: MDBootstrap.com
+            </p>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-dark fw-bold mb-2">
+              Store
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-muted" href="#">About us</a></li>
+              <li><a class="text-muted" href="#">Find store</a></li>
+              <li><a class="text-muted" href="#">Categories</a></li>
+              <li><a class="text-muted" href="#">Blogs</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-dark fw-bold mb-2">
+              Information
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-muted" href="#">Help center</a></li>
+              <li><a class="text-muted" href="#">Money refund</a></li>
+              <li><a class="text-muted" href="#">Shipping info</a></li>
+              <li><a class="text-muted" href="#">Refunds</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-6 col-sm-4 col-lg-2">
+            <!-- Links -->
+            <h6 class="text-uppercase text-dark fw-bold mb-2">
+              Support
+            </h6>
+            <ul class="list-unstyled mb-4">
+              <li><a class="text-muted" href="#">Help center</a></li>
+              <li><a class="text-muted" href="#">Documents</a></li>
+              <li><a class="text-muted" href="#">Account restore</a></li>
+              <li><a class="text-muted" href="#">My orders</a></li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-12 col-sm-12 col-lg-3">
+            <!-- Links -->
+            <h6 class="text-uppercase text-dark fw-bold mb-2">Newsletter</h6>
+            <p class="text-muted">Stay in touch with latest updates about our products and offers</p>
+            <div class="input-group mb-3">
+              <input type="email" class="form-control border" placeholder="Email" aria-label="Email"
+                aria-describedby="button-addon2" />
+              <button class="btn btn-light border shadow-0" type="button" id="button-addon2"
+                data-mdb-ripple-color="dark">
+                Join
+              </button>
+            </div>
+          </div>
+          <!-- Grid column -->
         </div>
-        <!--- payment --->
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
 
-        <!--- language selector --->
-        <div class="dropdown dropup">
-          <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+    <div class="">
+      <div class="container">
+        <div class="d-flex justify-content-between py-4 border-top">
+          <!--- payment --->
+          <div>
+            <i class="fab fa-lg fa-cc-visa text-dark"></i>
+            <i class="fab fa-lg fa-cc-amex text-dark"></i>
+            <i class="fab fa-lg fa-cc-mastercard text-dark"></i>
+            <i class="fab fa-lg fa-cc-paypal text-dark"></i>
+          </div>
+          <!--- payment --->
 
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
-            </li>
-          </ul>
+          <!--- language selector --->
+          <div class="dropdown dropup">
+            <a class="dropdown-toggle text-dark" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown"
+              aria-expanded="false"> <i class="flag-united-kingdom flag m-0 me-1"></i>English </a>
+
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="Dropdown">
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i
+                    class="fa fa-check text-success ms-2"></i></a>
+              </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+              </li>
+            </ul>
+          </div>
+          <!--- language selector --->
         </div>
-        <!--- language selector --->
       </div>
     </div>
-  </div>
-</footer>
-<!-- Footer -->
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.es.min.js"></script>
     <script type="text/javascript" src="js/mdb.umd.min.js"></script>
 
+    <!-- Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <!-- Custom scripts -->
     <script src="./js/filtro.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </body>
-</html>
+  </footer>
+</body>
 
+</html>
