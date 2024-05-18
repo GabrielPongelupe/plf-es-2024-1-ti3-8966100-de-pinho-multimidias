@@ -72,7 +72,7 @@ async function getProdutosFiltrados() {
                 const anoInicio = this.getAttribute('anoInicio');
                 const anoFim = this.getAttribute('anoFim');
                 const quantidade = "1";
-                carrinho.push({ codigoProduto, nome, preco, quantidade, anoInicio, anoFim });
+                carrinho.push({ codigoProduto, nome, preco, quantidade, anoInicio, anoFim});
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));
                 // redirecionar pro carrinho
                 alert('Produto adicionado ao carrinho!');
