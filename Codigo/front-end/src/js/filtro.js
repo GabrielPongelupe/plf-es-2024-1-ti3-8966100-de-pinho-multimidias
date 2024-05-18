@@ -7,6 +7,10 @@ var anoCarro = document.getElementById('ano-carro-filtro');
 var comandoVolante = document.getElementById('comando-volante');
 var radioOriginal = document.getElementById('radio-original');
 var telaProdutos = document.getElementById('tela-produtos');
+var nomeProduto = "";
+var precoProduto = "";
+var codigoProduto = "";
+var carrinho = [];
 
 
 // endpoint
@@ -51,7 +55,7 @@ async function getProdutosFiltrados() {
             <p class="card-text">Ano: ${produto.anoInicio} - ${produto.anoFim}</p>
             <p class="card-text">Preço: R$${produto.preco}</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-              <a href="#!" class="btn btn-primary shadow-0 me-1">Comprar</a>
+              <button class="btn btn-primary shadow-0 me-1" codigo-produto="${produto.codigoProduto}" nome-produto="${produto.nome}" preco-produto="${produto.preco}" anoFim="${produto.anoFim}" anoInicio="${produto.anoInicio}">Adicionar ao Carrinho</button>
             </div>
           </div>
         </div>
@@ -59,6 +63,22 @@ async function getProdutosFiltrados() {
             }
             );
         }
+
+        document.querySelectorAll('.btn-primary').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                const codigoProduto = this.getAttribute('codigo-produto');
+                const nome = this.getAttribute('nome-produto');
+                const preco = parseFloat(this.getAttribute('preco-produto'));
+                const anoInicio = this.getAttribute('anoInicio');
+                const anoFim = this.getAttribute('anoFim');
+                const quantidade = "1";
+                carrinho.push({ codigoProduto, nome, preco, quantidade, anoInicio, anoFim });
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                // redirecionar pro carrinho
+                alert('Produto adicionado ao carrinho!');
+                window.location.href = "carrinho.html";
+            });
+        });
         return response.data;
     } catch (error) {
         console.log("erro ao obter produtos filtrados");
@@ -70,5 +90,5 @@ btnPesquisar.addEventListener("click", function (e) {
     e.preventDefault();
 
     getProdutosFiltrados();
-    
+
 })

@@ -14,23 +14,8 @@
 
     <div class="container mt-5">
         <h1 class="text-center mt-5">Acesse sua conta</h1>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <button class="gmail-btn" id="authorize_button" onclick="handleAuthClick()"> Fazer login com o
-                        Gmail</button>
-                </div>
-                <div class="col-auto">
-                    <div id="g_id_onload"
-                        data-client_id="4702882738-dfpp9qr71nbf9jbog01pql775ou3c7sj.apps.googleusercontent.com"
-                        data-callback="handleCredentialResponse">
-                    </div>
-                    <div class="g_id_signin" data-type="standard"></div>
-                </div>
-            </div>
-        </div>
-
-
+        
+        
         <div id="form" class="row justify-content-center mt-5">
             <div class="col-md-6">
                 <form method="POST" action="/login" id="forms-login">
@@ -54,6 +39,17 @@
         <div id="form-2" class="row justify-content-center">
             <div class="col-auto">
                 <p>Ainda não possui conta? <a href="cadastro.html">Faça o cadastro!</a></p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <div id="g_id_onload"
+                        data-client_id="4702882738-dfpp9qr71nbf9jbog01pql775ou3c7sj.apps.googleusercontent.com"
+                        data-callback="handleCredentialResponse">
+                    </div>
+                    <div class="g_id_signin" data-type="standard"></div>
+                </div>
             </div>
         </div>
     </div>
