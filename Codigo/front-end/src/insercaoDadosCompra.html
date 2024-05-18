@@ -3,69 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Perguntas</title>
+    <title>Formulário de Detalhes de Envio</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
+       body {
+            background-color: #f7f7f7;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        .header {
-            background-color: #0056b3;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-        }
-        .question-list {
+        .form-container {
             background-color: #ffffff;
-            margin-top: 20px;
-            padding: 20px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .question-item {
-            background-color: #e9e9e9;
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
+        .form-title {
+            margin-bottom: 20px;
         }
-        .question-text {
-            margin: 0;
+        .btn-primary {
+            background-color: #0056b3;
+            border-color: #0056b3;
         }
-        .vote-buttons {
-            float: right;
+        .btn-primary:hover {
+            background-color: #003d82;
+            border-color: #003d82;
         }
-        .vote-button {
-            cursor: pointer;
-            margin-left: 5px;
+        .btn-proximo {
+            padding-left: 120px; 
+            padding-right: 120px; 
+            font-size: 18px; 
         }
-        .clear {
-            clear: both;
+        .btn-proximo .arrow {
+            display: inline-block;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Gerenciar Perguntas</h1>
-            <button>Cadastrar pergunta</button>
-        </div>
-        <div class="question-list">
-            <!-- Repita este bloco para cada pergunta -->
-            <div class="question-item">
-                <p class="question-text">When will I receive my order?</p>
-                <div class="vote-buttons">
-                    <span class="vote-button">👍</span> <!-- Thumb up icon -->
-                    <span class="vote-button">👎</span> <!-- Thumb down icon -->
-                </div>
-                <div class="clear"></div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="form-container">
+                <h2 class="form-title">Preencha seus dados de envio</h2>
+                <form>
+                    <div class="form-row">
+                        <!-- Primeiro nome -->
+                        <div class="form-group col-md-6">
+                            <label for="primeiroNome">Primeiro nome:</label>
+                            <input type="text" class="form-control" id="primeiroNome" placeholder="Insira seu primeiro nome" required>
+                        </div>
+                        <!-- Último nome -->
+                        <div class="form-group col-md-6">
+                            <label for="ultimoNome">Último nome:</label>
+                            <input type="text" class="form-control" id="ultimoNome" placeholder="Insira seu último nome" required>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="exemplo@dominio.com" required>
+                    </div>
+                    <!-- Rua -->
+                    <div class="form-group">
+                        <label for="rua">Rua:</label>
+                        <input type="text" class="form-control" id="rua" placeholder="Insira sua rua" required>
+                    </div>
+                    <div class="form-row">
+                        <!-- Estado -->
+                        <div class="form-group col-md-6">
+                            <label for="estado">Estado:</label>
+                            <input type="text" class="form-control" id="estado" placeholder="Insira seu estado" required>
+                        </div>
+                        <!-- Cidade -->
+                        <div class="form-group col-md-6">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" class="form-control" id="cidade" placeholder="Insira sua cidade" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <!-- CEP -->
+                        <div class="form-group col-md-6">
+                            <label for="cep">CEP:</label>
+                            <input type="text" class="form-control" id="cep" placeholder="Insira seu CEP" required>
+                        </div>
+                        <!-- Telefone -->
+                        <div class="form-group col-md-6">
+                            <label for="telefone">Telefone:</label>
+                            <input type="tel" class="form-control" id="telefone" placeholder="Insira seu telefone" required>
+                        </div>
+                    </div>
+                    <!-- Botão Próximo -->
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary btn-proximo">Próximo <span class="arrow">&rarr;</span></button>
+                    </div>
+                </form>
             </div>
-            <!-- Fim do bloco de pergunta -->
         </div>
     </div>
+</div>
+<!-- Bootstrap JS e jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
