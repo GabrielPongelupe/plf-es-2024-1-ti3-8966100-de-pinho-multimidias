@@ -1,5 +1,6 @@
 package com.depinhomultimidias.depinhomultimidias.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,10 @@ public class DuvidaService {
     public void delete(Long id) {
         Duvida duvida = findById(id);
         duvidaRepository.delete(duvida);
+    }
+
+    public List<Duvida> getAllDuvidas() {
+        return duvidaRepository.findAll();
     }
 
 }

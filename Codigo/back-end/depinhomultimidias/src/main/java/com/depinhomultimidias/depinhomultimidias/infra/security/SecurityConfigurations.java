@@ -39,6 +39,8 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
                     .requestMatchers(HttpMethod.GET, "/duvida/{id}").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/duvida").permitAll()
+
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

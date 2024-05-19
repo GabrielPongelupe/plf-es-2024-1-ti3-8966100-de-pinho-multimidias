@@ -1,6 +1,7 @@
 package com.depinhomultimidias.depinhomultimidias.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -43,6 +46,9 @@ public class DuvidaController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(duvida.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    
+    
     
     @PutMapping("/{id}")
     public ResponseEntity<Duvida> update(@PathVariable("id") Long id, @RequestBody Duvida duvida) {
@@ -52,11 +58,15 @@ public class DuvidaController {
 
     }
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<List<Duvida>> deleteById(@PathVariable Long id) {
         this.duvidaService.delete(id);
         return ResponseEntity.noContent().build();
     }
     
-
+    @GetMapping
+    public ResponseEntity<List<Duvida>> getAllDuvidas() {
+        List<Duvida> duvidas = duvidaService.getAllDuvidas();
+        return ResponseEntity.ok(duvidas);
+    }
 
 }
