@@ -40,6 +40,12 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.GET, "/duvida/{id}").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/duvida").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/dados-pedido/{id}").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/dados-pedido").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/dados-pedido").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/dados-pedido/{id}").permitAll()
+                    .requestMatchers(HttpMethod.DELETE, "/dados-pedido/delete/{id}").permitAll()
 
                     .anyRequest().authenticated()
                 )
