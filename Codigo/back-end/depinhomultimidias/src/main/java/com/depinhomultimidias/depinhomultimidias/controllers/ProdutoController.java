@@ -41,7 +41,8 @@ public class ProdutoController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getCodigoProduto()).toUri();
         return ResponseEntity.created(uri).build();
     }
-     @PutMapping("/{id}")
+    
+    @PutMapping("/{id}")
     public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody Produto produto) {
         produto.setCodigoProduto(id);
         this.produtoService.update(produto);

@@ -57,7 +57,7 @@ public class DuvidaController {
          return ResponseEntity.noContent().build();
 
     }
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<List<Duvida>> deleteById(@PathVariable Long id) {
         this.duvidaService.delete(id);
         return ResponseEntity.noContent().build();

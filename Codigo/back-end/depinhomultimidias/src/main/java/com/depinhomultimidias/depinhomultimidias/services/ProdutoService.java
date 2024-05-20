@@ -28,30 +28,32 @@ public class ProdutoService {
         return produto.orElseThrow(() -> new RuntimeException(
                 "Objeto não encontrado! Id: " + codigoProduto + ", Tipo: " + Produto.class.getName()));
     }
+
     @Transactional
     public Produto create(@NonNull Produto produto) {
         return this.produtoRepository.save(produto);
     }
+
     @Transactional
-    public Produto update (@NonNull Produto produto) {
+    public Produto update(@NonNull Produto produto) {
         Produto newProduto = findById(produto.getCodigoProduto());
-        if(produto.getNome() != null){
+        if (produto.getNome() != null) {
             newProduto.setNome(produto.getNome());
         }
-        if(produto.getDescricao() != null){
+        if (produto.getDescricao() != null) {
             newProduto.setDescricao(produto.getDescricao());
         }
-        if(produto.getPreco() != null){
+        if (produto.getPreco() != null) {
             newProduto.setPreco(produto.getPreco());
         }
-        if(produto.getVideoRelacionado() != null){
+        if (produto.getVideoRelacionado() != null) {
             newProduto.setVideoRelacionado(produto.getVideoRelacionado());
         }
         if (produto.getAnoFim() != null) {
-            newProduto.setAnoFim(produto.getAnoFim()); 
+            newProduto.setAnoFim(produto.getAnoFim());
         }
         if (produto.getAnoInicio() != null) {
-            newProduto.setAnoInicio(produto.getAnoInicio()); 
+            newProduto.setAnoInicio(produto.getAnoInicio());
         }
         if (produto.getTipoProduto() != null) {
             newProduto.setTipoProduto(produto.getTipoProduto());
@@ -60,27 +62,28 @@ public class ProdutoService {
         if (produto.getVideoRelacionado() != null) {
             newProduto.setVideoRelacionado(produto.getVideoRelacionado());
         }
-         newProduto.setPossuiComandoVolante(produto.isPossuiComandoVolante());
-         newProduto.setPossuiRadioOriginal(produto.isPossuiRadioOriginal());
-         if (produto.getImagem() != null) {
+        newProduto.setPossuiComandoVolante(produto.isPossuiComandoVolante());
+        newProduto.setPossuiRadioOriginal(produto.isPossuiRadioOriginal());
+        if (produto.getImagem() != null) {
             newProduto.setImagem(produto.getImagem());
-            
-         }
-         if(produto.getImagem2() != null){
-            newProduto.setImagem2(produto.getImagem2());
-         }
 
-         if(produto.getImagem3() != null){
+        }
+        if (produto.getImagem2() != null) {
+            newProduto.setImagem2(produto.getImagem2());
+        }
+
+        if (produto.getImagem3() != null) {
             newProduto.setImagem3(produto.getImagem3());
-         }
-         if(produto.getImagemPrincipal() != null){
+        }
+        if (produto.getImagemPrincipal() != null) {
             newProduto.setImagemPrincipal(produto.getImagemPrincipal());
-         }
-        
+        }
+        if (produto.getImagem() != null) {
+            newProduto.setImagem(produto.getImagem());
+        }
+
         return produtoRepository.save(newProduto);
     }
-
-    
 
     public List<Produto> filtrarProdutos(FilterCriteria filterCriteria) {
         return this.produtoRepository.findAll(ProdutoSpecification.filtrarPorFiltro(filterCriteria));
