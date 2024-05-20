@@ -1,10 +1,16 @@
 ### Rotas:
 http://127.0.0.1:8080
+#### Dados da Compra:
++  /dados-pedido/{id} (GET)
++  /dados-pedido/{id} (PUT)
++  /dados-pedido (CREATE)
++  /dados-pedido/delete/{id} (DELETE)
 #### Perguntas Frequentes:
 +  /duvida/{id} (GET)
 +  /duvida/{id} (PUT)
 +  /duvida (CREATE)
 +  /duvida/delete/{id} (DELETE)
++  /duvida (GETALL)
 ##### Item Pedidos:
 +  /item-pedido/{id} (GET)
 +  /item-pedido/{id} (PUT)
@@ -20,6 +26,9 @@ http://127.0.0.1:8080
 +  /pedido/{id} (PUT)
 +  /pedido (CREATE)
 +  /pedido/delete/{id} (DELETE)
++  /pedido? (GET)
+    + exemplo: http://127.0.0.1:8080/pedido?page=0&size=4
+    + variáveis da query pedido: page, size
 ##### Produto:
 +  /produto/{id} (GET)
 +  /produto/{id} (PUT)
@@ -58,6 +67,21 @@ exemplo sintático : {
   
 }
 #### Variáveis e seus tipos:
+##### Dados da compra:
++ id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
++ primeiroNome : String
++ ultimoNome : String
++ email : String
++ estado: String
++ cidade: String
++ bairro: String
++ rua: String
++ numero: String
++ complemento: String
++ cep: String
++ telefone: String
++ formaPagamento: TipoPagamento
++ pedido: Pedido 
 ##### Perguntas Frequentes:
 + id : Long (default: @GeneratedValue(strategy = GenerationType.IDENTITY)) *Unique
 + pergunta : String
