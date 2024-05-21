@@ -1,7 +1,26 @@
-document.addEventListener("DOMContentLoaded", function () {
+// variaveis do cadastro
+var botao = document.getElementById("btn-cadastrar-produto");
 
-    // variaveis do cadastro
-    var botao = document.getElementById("btn-cadastrar-produto");
+var formulario = document.getElementById("forms-cadastro-produto");
+formulario.addEventListener('submit', function (event) {
+    // Impede o envio do formulário para que possamos processar os valores antes
+    event.preventDefault();
+
+    var nome = document.getElementById("nomeProduto").value;
+    var tipoProduto = document.getElementById("tipoProduto").value;
+    var preco = parseFloat(document.getElementById("precoProduto").value);
+    var comandoVolante = document.getElementById("checkbox1").checked;
+    var radioOriginal = document.getElementById("checkbox2").checked;
+    var anoInicio = parseInt(document.getElementById("anoInicio").value);
+    var anoFinal = parseInt(document.getElementById("anoFinal").value);
+    var videoRelacionado = document.getElementById("videoRelacionado").value;
+    var descricao = document.getElementById("descricaoGrande").value;
+
+    // Coletando os URLs das imagens
+    var imagemProduto1 = document.getElementById("imagemProduto1").value;
+    var imagemProduto2 = document.getElementById("imagemProduto2").value;
+    var imagemProduto3 = document.getElementById("imagemProduto3").value;
+    var imagemProduto4 = document.getElementById("imagemProduto4").value;
 
     // url 
     var urlCadastroProduto = "http://127.0.0.1:8080/produto";
@@ -11,18 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // funcao para cadastrar produto
     async function cadastrarProduto() {
-        var nome = document.getElementById("nomeProduto").value;
-        var tipoProduto = document.getElementById("tipoProduto").value;
-        var preco = parseFloat(document.getElementById("precoProduto").value);
-        var comandoVolante = document.getElementById("checkbox1").checked;
-        var radioOriginal = document.getElementById("checkbox2").checked;
-        var anoInicio = parseInt(document.getElementById("anoInicio").value);
-        var anoFinal = parseInt(document.getElementById("anoFinal").value);
-        var videoRelacionado = document.getElementById("videoRelacionado").value;
-        var descricao = document.getElementById("descricaoGrande").value;
-
-        console.log(nome, tipoProduto, preco, comandoVolante, radioOriginal, anoInicio, anoFinal, videoRelacionado, descricao)
-
+       
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", `Bearer ${token}`);
@@ -36,7 +44,11 @@ document.addEventListener("DOMContentLoaded", function () {
             "videoRelacionado": videoRelacionado,
             "tipoProduto": tipoProduto,
             "possuiComandoVolante": comandoVolante,
-            "possuiRadioOriginal": radioOriginal
+            "possuiRadioOriginal": radioOriginal,
+            "imagemPrincipal": imagemProduto1,
+            "imagem": imagemProduto2,
+            "imagem2": imagemProduto3,
+            "imagem3": imagemProduto4
         });
 
         const requestOptions = {
@@ -52,13 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .catch((error) => console.error(error));
     }
 
-
     botao.addEventListener("click", function (e) {
         e.preventDefault();
         cadastrarProduto();
         alert("Cadastro realizado com sucesso");
         window.location.reload();
-
     });
-})
-
+});
