@@ -12,7 +12,7 @@ const buttonEdicao = document.getElementById('concluir-edicao');
 const buttonExclusao = document.getElementById('concluir-exclusao');
 
 //Adicionar perguntas cadastradas na HomePage
-const addHome = document.querySelector(".faq");
+const addHome = document.getElementById('faq-home');
 
 const addPergunta = document.getElementById('add-pergunta');
 
@@ -82,35 +82,31 @@ buttonCadastro.addEventListener("click", function (e) {
 
 async function getPerguntas() {
 
-    //precisa da rota de get de todos as perguntas
-    const url = 'http://127.0.0.1:8080/duvida/2';
+    const url = 'http://127.0.0.1:8080/duvida';
+    
 
     try {
         const response = await axios.get(url);
         const perguntas = response.data;
 
-        // perguntas.forEach(pergunta => {
+         perguntas.forEach(pergunta => {
             addPergunta.innerHTML += `
-        <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center question mb-3">
-          <span>${perguntas.pergunta}</span>
-          <div class="button-group">
-            <button class="btn btn-icon btn-edit me-2" data-pergunta="${perguntas.pergunta}" data-resposta="${perguntas.resposta}" data-pergunta-id="${perguntas.id}">
-              <i class="fas fa-pencil-alt"></i>
-            </button>
-            <button class="btn btn-icon btn-delete lixeira" data-pergunta-id="${perguntas.id}">
-              <i class="fas fa-trash-alt"></i>
-            </button>
-          </div>
-        </div>
-               `;
-            addHome.innerHTML += `
-            <details>
-                <summary>${perguntas.pergunta}</summary>
-                <p>${perguntas.resposta}</p>
-            </details>
-            `;
-        // }
-    // );
+                <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center question mb-3">
+                <span>${pergunta.pergunta}</span>
+                <div class="button-group">
+                    <button class="btn btn-icon btn-edit me-2" data-pergunta="${pergunta.pergunta}" data-resposta="${pergunta.resposta}" data-pergunta-id="${pergunta.id}">
+                    <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    <button class="btn btn-icon btn-delete lixeira" data-pergunta-id="${pergunta.id}">
+                    <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+                </div>
+                    `;
+         }
+     );
+
+     
 
         document.querySelectorAll('.btn-edit').forEach(function (btn) {
             btn.addEventListener('click', function () {
