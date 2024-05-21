@@ -36,12 +36,19 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.DELETE, "/produto/delete/{id}").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/produto").permitAll()
                     .requestMatchers(HttpMethod.PUT, "/produto/{id}").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.POST, "/duvida").hasRole("ADMIN")
-                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").hasRole("ADMIN")
+
+
+            //PONGE, renato e arthur, nos tivemos que colocar permit all nos metodos das duvidas pq estavamos tomando 403 ate colocando a autentication key seja no console saja no postman, logo futuramnte voce pode olhar isso ai, cordialmente Renato
+
+                    .requestMatchers(HttpMethod.POST, "/duvida").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
                     .requestMatchers(HttpMethod.GET, "/duvida/{id}").permitAll()
-                    .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").permitAll()
                     .requestMatchers(HttpMethod.GET, "/duvida").permitAll()
                     .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
+
+
+
                     .requestMatchers(HttpMethod.GET, "/dados-pedido/{id}").permitAll()
                     .requestMatchers(HttpMethod.GET, "/dados-pedido").permitAll()
                     .requestMatchers(HttpMethod.POST, "/dados-pedido").permitAll()
