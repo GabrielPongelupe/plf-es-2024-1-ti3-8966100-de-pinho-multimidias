@@ -6,7 +6,9 @@ const modalExcluir = document.getElementById("modal-excluir");
 const buttonCadastrar = document.getElementById("btn-cadastrar")
 // const buttonEdit = document.querySelectorAll(".btn-edit")
 const buttonDelete = document.querySelectorAll(".lixeira")
-const buttonClose = document.querySelectorAll(".close")
+const buttonCloseCadastrar = document.querySelectorAll(".close-cadastrar");
+const buttonCloseEditar = document.querySelectorAll(".close-editar");
+const buttonCloseExcluir = document.querySelectorAll(".close-excluir");
 const buttonCadastro = document.getElementById("concluir-cadastro");
 const buttonEdicao = document.getElementById('concluir-edicao');
 const buttonExclusao = document.getElementById('concluir-exclusao');
@@ -125,7 +127,7 @@ async function getPerguntas() {
         buttonEdicao.addEventListener('click', function () {
             const perguntaId = document.querySelector('.btn-edit').getAttribute('data-pergunta-id');
             const pergunta = document.getElementById('pergunta-editar').value;
-            const resposta = document.getElementById('pergunta-editar').value;
+            const resposta = document.getElementById('resposta-editar').value;
 
             const dadosAtualizados = {
                 pergunta: pergunta,
@@ -164,7 +166,7 @@ async function getPerguntas() {
         });
 
     } catch (error) {
-        console.error('Erro ao obter produtos:', error);
+        console.error('Erro ao obter perguntas:', error);
     }
 }
 
@@ -182,18 +184,31 @@ buttonCadastrar.onclick = function () {
 //     })
 // })
 
-buttonClose.forEach(button => {
-    button.addEventListener("click", () => {
-        modalCadastrar.close();
-        modalEditar.close();
-        modalExcluir.close();
-    });
-});
+
 
 buttonDelete.forEach(button => {
     button.addEventListener("click", () => {
         modalExcluir.showModal();
     });
 });
+
+buttonCloseCadastrar.forEach(button => {
+    button.addEventListener("click", () => {
+        modalCadastrar.close();
+    });
+});
+
+buttonCloseEditar.forEach(button => {
+    button.addEventListener("click", () => {
+        modalEditar.close();
+    });
+});
+
+buttonCloseExcluir.forEach(button => {
+    button.addEventListener("click", () => {
+        modalExcluir.close();
+    });
+});
+
 
 });
