@@ -19,6 +19,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 
@@ -100,6 +102,16 @@ public class UsuarioController {
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
         this.usuarioService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/tipoUser")
+    public ResponseEntity<String> getUserType(@RequestHeader(value = "Authorization", required = false) String authHeader) {
+        if (authHeader == null || authHeader.isEmpty()) {
+            return ResponseEntity.ok("none");
+        }
+        String token = authHeader.replace("Bearer ", "");
+        String userType = usuarioService.getUserTypeByToken(token);
+        return ResponseEntity.ok(userType);
     }
     
     

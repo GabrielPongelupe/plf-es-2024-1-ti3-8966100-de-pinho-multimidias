@@ -3,11 +3,13 @@ package com.depinhomultimidias.depinhomultimidias.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.depinhomultimidias.depinhomultimidias.infra.security.TokenService;
 import com.depinhomultimidias.depinhomultimidias.models.Usuario;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 
@@ -19,6 +21,9 @@ public class UsuarioService implements UserDetailsService{
     
     @Autowired
     public UsuarioRepository usuarioRepository;
+
+    @Autowired
+    TokenService tokenService;
 
     public Usuario findById(@NonNull Long id){
         Optional<Usuario> usuario = this.usuarioRepository.findById(id);
@@ -66,5 +71,23 @@ public class UsuarioService implements UserDetailsService{
     public void delete(@NonNull Long id){
         Usuario usuario = findById(id);
         usuarioRepository.delete(usuario);
+    }
+
+    public String getUserTypeByToken(String token) {
+        String email = tokenService.validateToken(token);
+        if (email.isEmpty()) {
+            return "none";
+        }
+
+        Usuario usuario = usuarioRepository.findByEmail(email);
+        if (usuario == null) {
+            return "none";
+        }
+
+        if (usuario.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            return usuario.getId().toString();
+        } else {
+            return "user";
+        }
     }
 }
