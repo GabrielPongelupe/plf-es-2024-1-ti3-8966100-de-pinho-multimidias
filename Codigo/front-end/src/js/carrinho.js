@@ -98,8 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Evento de finalizar compra
     btnFinalizarCompra.addEventListener('click', function () {
         const precoPedido = calcularPrecoTotal();
-        const codigoProduto = carrinho[0].codigoProduto;
-        pedido.push({ codigoProduto, precoPedido });
+        const nomeProduto = carrinho[0].nome;
+        pedido.push({ nomeProduto, precoPedido });
         localStorage.setItem('pedido', JSON.stringify(pedido));
         alert('Pedido gerado com sucesso!');
         //window.location.href = 'checkout.html';
