@@ -11,6 +11,9 @@ const buttonCadastro = document.getElementById("concluir-cadastro");
 const buttonEdicao = document.getElementById('concluir-edicao');
 const buttonExclusao = document.getElementById('concluir-exclusao');
 
+//Adicionar perguntas cadastradas na HomePage
+const addHome = document.querySelector(".faq");
+
 const addPergunta = document.getElementById('add-pergunta');
 
 //constantes crud perguntas frequentes
@@ -100,6 +103,12 @@ async function getPerguntas() {
           </div>
         </div>
                `;
+            addHome.innerHTML += `
+            <details>
+                <summary>${perguntas.pergunta}</summary>
+                <p>${perguntas.resposta}</p>
+            </details>
+            `;
         // }
     // );
 
