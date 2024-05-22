@@ -107,8 +107,19 @@ function combinarProdutos(produtos) {
     return combinados;
 }
 
+// Adicionar validação de campos obrigatórios
+formFiltro.addEventListener('submit', function(event) {
+    const marcaCarroValue = marcaCarro.value.trim();
+    const modeloCarroValue = modeloCarro.value.trim();
+    const anoCarroValue = anoCarro.value.trim();
+
+    if (!marcaCarroValue || !modeloCarroValue || !anoCarroValue) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        event.preventDefault(); // Impede o envio do formulário
+    }
+});
+
 btnPesquisar.addEventListener("click", function (e) {
     e.preventDefault();
     getProdutosFiltrados();
 });
-
