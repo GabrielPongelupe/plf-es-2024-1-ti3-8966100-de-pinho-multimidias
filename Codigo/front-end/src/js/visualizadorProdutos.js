@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalExcluir = document.getElementById('modal-excluir');
     const concluirExclusao = document.getElementById('concluir-exclusao');
     const concluirEdicao = document.getElementById('confirmar-edicao');
+    let produtoIdAtual = null;  // Variável para armazenar o ID do produto a ser editado ou excluído
 
     const urlExclusao = 'http://127.0.0.1:8080/produto/delete/';
 
@@ -23,22 +24,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 container.innerHTML += `
                     <div class="col-md-3 mb-4">
                         <div class="card">
-                            <img class="card-img-top" src="./images/whatsapp-logo-2022.svg" alt="Imagem do Produto" style="width: 200px; height: 200px;">
+                            <img class="card-img-top" src="${produto.imagemPrincipal}" alt="Imagem do Produto" style="width: 200px; height: 200px;">
                             <div class="card-body">
                                 <h5 class="card-title">${produto.nome}</h5>
                                 <p class="card-text">Preço: R$${produto.preco}</p>
                                 <p class="card-text">Ano Início: ${produto.anoInicio}</p>
                                 <p class="card-text">Ano Fim: ${produto.anoFim}</p> 
-                                <button class="btn btn-primary btn-block btn-alterar" data-produto-id="${produto.codigoProduto}" produto-nome="${produto.nome}" tipo-produto="${produto.tipoProduto}" ano-inicio="${produto.anoInicio}" ano-fim="${produto.anoFim}" produto-descricao="${produto.descricao}" possuiRadio="${produto.possuiRadioOriginal}" comandoVolante ="${produto.possuiComandoVolante}" preco-produto="${produto.preco}" video-produto="${produto.videoRelacionado}">Editar</button>
+
+                                <button class="btn btn-primary btn-block btn-alterar" 
+                                    data-produto-id="${produto.codigoProduto}" produto-nome="${produto.nome}" 
+                                    tipo-produto="${produto.tipoProduto}" ano-inicio="${produto.anoInicio}" 
+                                    ano-fim="${produto.anoFim}" produto-descricao="${produto.descricao}" 
+                                    possuiRadio="${produto.possuiRadioOriginal}" comandoVolante ="${produto.possuiComandoVolante}" 
+                                    preco-produto="${produto.preco}" video-produto="${produto.videoRelacionado}"
+                                    imagem-principal="${produto.imagemPrincipal}" imagem-dois="${produto.imagem}"
+                                    imagem-tres="${produto.imagem2}"  imagem-quatro="${produto.imagem3}">Editar
+                                </button>
+                                
                                 <button class="btn btn-danger btn-block btn-excluir" data-produto-id="${produto.codigoProduto}">Excluir</button>
                             </div>
                         </div>                                                                                                      
                     </div>`;
             });
 
+            // Listener para botão de alterar
             document.querySelectorAll('.btn-alterar').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-produto-id');
+                    produtoIdAtual = this.getAttribute('data-produto-id');
                     const nome = this.getAttribute('produto-nome');
                     const tipoProduto = this.getAttribute('tipo-produto');
                     const anoInicio = this.getAttribute('ano-inicio');
@@ -48,6 +60,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     const possuiComandoVolante = this.getAttribute('comandoVolante') === 'true';
                     const preco = this.getAttribute('preco-produto');
                     const videoRelacionado = this.getAttribute('video-produto');
+                    const imagemPrincipal = this.getAttribute('imagem-principal');
+                    const img2 = this.getAttribute('imagem-dois');
+                    const img3 = this.getAttribute('imagem-tres');
+                    const img4 = this.getAttribute('imagem-quatro');
 
                     modalAlterar.showModal();
 
@@ -57,7 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('anoInicio').value = anoInicio;
                     document.getElementById('anoFim').value = anoFim;
                     document.getElementById('descricao').value = descricao;
-                    document.getElementById('videoRelacionado').value = videoRelacionado;
+                    document.getElementById('videoRelacionado').value = videoRelacionado;   
+                    document.getElementById('imagemProduto1').value = imagemPrincipal;
+                    document.getElementById('imagemProduto2').value = img2;
+                    document.getElementById('imagemProduto3').value = img3;
+                    document.getElementById('imagemProduto4').value = img4;
 
                     let divCheckboxes = document.getElementById('checkboxesMultimidia');
                     if (tipoProduto === 'MULTIMIDIA') {
@@ -70,8 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             });
 
+            // Listener para concluir edição
             concluirEdicao.addEventListener('click', function () {
-                const produtoId = document.querySelector('.btn-alterar').getAttribute('data-produto-id');
+                if (!produtoIdAtual) return;  // Verifica se há um produto a ser editado
+
                 const nome = document.getElementById('nome').value;
                 const tipoProduto = document.getElementById('tipoProduto').value;
                 const preco = document.getElementById('preco').value;
@@ -81,6 +103,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 const videoRelacionado = document.getElementById('videoRelacionado').value;
                 const possuiComandoVolante = document.getElementById('checkbox1').checked;
                 const possuiRadioOriginal = document.getElementById('checkbox2').checked;
+                const imagemPrincipal = document.getElementById('imagemProduto1').value;
+                const imagem = document.getElementById('imagemProduto2').value;
+                const imagem2 = document.getElementById('imagemProduto3').value;
+                const imagem3 = document.getElementById('imagemProduto4').value;
 
                 const dadosAtualizados = {
                     nome: nome,
@@ -91,10 +117,14 @@ document.addEventListener('DOMContentLoaded', function () {
                     descricao: descricao,
                     videoRelacionado: videoRelacionado,
                     possuiComandoVolante: possuiComandoVolante,
-                    possuiRadioOriginal: possuiRadioOriginal
+                    possuiRadioOriginal: possuiRadioOriginal,
+                    imagemPrincipal: imagemPrincipal,
+                    imagem: imagem,
+                    imagem2: imagem2,
+                    imagem3: imagem3
                 };
 
-                axios.put(`http://127.0.0.1:8080/produto/${produtoId}`, dadosAtualizados)
+                axios.put(`http://127.0.0.1:8080/produto/${produtoIdAtual}`, dadosAtualizados)
                     .then(response => {
                         alert("Produto atualizado com sucesso!");
                         window.location.reload();
@@ -104,42 +134,42 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
             });
 
+            // Listener para botão de excluir
             document.querySelectorAll('.btn-excluir').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    const produtoId = this.getAttribute('data-produto-id');
+                    produtoIdAtual = this.getAttribute('data-produto-id');
                     modalExcluir.showModal();
-
-                    concluirExclusao.addEventListener('click', function () {
-                        axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoId}`)
-                            .then(response => {
-                                alert("Produto excluído com sucesso!");
-                                window.location.reload();
-                            })
-                            .catch(error => {
-                                console.error('Erro ao excluir o produto:', error);
-                            });
-                    });
                 });
             });
-            
-            
-            
-const fecharModal = document.getElementById('fechar-modal-alterar');
-fecharModal.addEventListener("click", function() {
-    modalAlterar.close();
-});
+
+            // Listener para concluir exclusão
+            concluirExclusao.addEventListener('click', function () {
+                if (!produtoIdAtual) return;  // Verifica se há um produto a ser excluído
+
+                axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoIdAtual}`)
+                    .then(response => {
+                        alert("Produto excluído com sucesso!");
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir o produto:', error);
+                    });
+            });
+
+            const fecharModal = document.getElementById('fechar-modal-alterar');
+            fecharModal.addEventListener("click", function() {
+                modalAlterar.close();
+            });
 
         } catch (error) {
             console.error('Erro ao obter produtos:', error);
         }
     }
 
-
     getProdutos();
-});
 
-const fecharModalExcluir = document.getElementById('fechar-modal-excluir');
-
-fecharModalExcluir.addEventListener("click", function() {
-    modalExcluir.close();
+    const fecharModalExcluir = document.getElementById('fechar-modal-excluir');
+    fecharModalExcluir.addEventListener("click", function() {
+        modalExcluir.close();
+    });
 });

@@ -49,7 +49,7 @@ async function getProdutosFiltrados() {
             telaProdutos.innerHTML += `
     <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBK_T0Czsqal3dhSALYalAHdYdbZwRYryKBUGE7S9BBg&s" class="card-img-top" style="aspect-ratio: 1 / 1" />
+          <img src="${produto.imagemPrincipal}" class="card-img-top" style="aspect-ratio: 1 / 1" />
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${produto.nome}</h5>
             <p class="card-text">Ano: ${produto.anoInicio} - ${produto.anoFim}</p>
