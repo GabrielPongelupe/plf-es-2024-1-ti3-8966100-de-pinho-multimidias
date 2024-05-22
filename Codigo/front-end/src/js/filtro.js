@@ -55,7 +55,7 @@ async function getProdutosFiltrados() {
             <p class="card-text">Ano: ${produto.anoInicio} - ${produto.anoFim}</p>
             <p class="card-text">Preço: R$${produto.preco}</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-              <button id="btn-carrinho" class="btn btn-primary shadow-0 me-1" codigo-produto="${produto.codigoProduto}" nome-produto="${produto.nome}" preco-produto="${produto.preco}" anoFim="${produto.anoFim}" anoInicio="${produto.anoInicio}">Adicionar ao Carrinho</button>
+              <button id="btn-carrinho" class="btn btn-primary shadow-0 me-1" imagem-produto="${produto.imagemPrincipal}" codigo-produto="${produto.codigoProduto}" nome-produto="${produto.nome}" preco-produto="${produto.preco}" anoFim="${produto.anoFim}" anoInicio="${produto.anoInicio}">Adicionar ao Carrinho</button>
             </div>
           </div>
         </div>
@@ -64,6 +64,7 @@ async function getProdutosFiltrados() {
 
         document.querySelectorAll('#btn-carrinho').forEach(function (btn) {
             btn.addEventListener('click', function () {
+                const imagemProduto = this.getAttribute('imagem-produto');
                 const codigoProduto = this.getAttribute('codigo-produto');
                 const nome = this.getAttribute('nome-produto');
                 const preco = parseFloat(this.getAttribute('preco-produto'));
@@ -72,7 +73,7 @@ async function getProdutosFiltrados() {
                 const quantidade = "1";
 
                 // Adicionar o novo produto ao carrinho existente
-                carrinho.push({ codigoProduto, nome, preco, quantidade, anoInicio, anoFim });
+                carrinho.push({ imagemProduto, codigoProduto, nome, preco, quantidade, anoInicio, anoFim });
 
                 // Salvar o carrinho atualizado no localStorage
                 localStorage.setItem('carrinho', JSON.stringify(carrinho));

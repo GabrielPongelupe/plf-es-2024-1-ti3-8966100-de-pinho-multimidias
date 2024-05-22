@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 telaCarrinho.innerHTML += `
                 <div class="row gy-3 mb-4 ">
     <div class="col-lg-2">
-        <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" class="border rounded" style="width: 96px; height: 96px;" />
+        <img src="${produto.imagemProduto}" class="border rounded" style="width: 96px; height: 96px;" />
     </div>
     <div class="col-lg-5">
         <div class="me-lg-5">
@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pedido.push({ nomeProduto, precoPedido });
         localStorage.setItem('pedido', JSON.stringify(pedido));
         alert('Pedido gerado com sucesso!');
-        //window.location.href = 'checkout.html';
+        window.location.href = 'insercaoDadosCompra.html';
 
     });
 
