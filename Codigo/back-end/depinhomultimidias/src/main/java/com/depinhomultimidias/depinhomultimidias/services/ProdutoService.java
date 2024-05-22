@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
 import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
+import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 import com.depinhomultimidias.depinhomultimidias.specification.FilterCriteria;
 import com.depinhomultimidias.depinhomultimidias.specification.ProdutoSpecification;
 
@@ -25,7 +26,7 @@ public class ProdutoService {
 
     public Produto findById(@NonNull Long codigoProduto) {
         Optional<Produto> produto = this.produtoRepository.findBycodigoProduto(codigoProduto);
-        return produto.orElseThrow(() -> new RuntimeException(
+        return produto.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + codigoProduto + ", Tipo: " + Produto.class.getName()));
     }
 

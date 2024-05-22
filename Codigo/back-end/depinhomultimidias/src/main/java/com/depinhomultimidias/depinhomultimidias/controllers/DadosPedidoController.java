@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.depinhomultimidias.depinhomultimidias.models.DadosPedido;
-import com.depinhomultimidias.depinhomultimidias.models.Produto;
+
 import com.depinhomultimidias.depinhomultimidias.services.DadosPedidoService;
 
 @RestController

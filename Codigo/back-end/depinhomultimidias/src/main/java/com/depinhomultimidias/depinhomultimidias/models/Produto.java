@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.depinhomultimidias.depinhomultimidias.enums.TipoProduto;
 
-import jakarta.annotation.Nonnull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,16 +28,19 @@ public class Produto {
     @Id
     @Column(name = "codigo_produto", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Nonnull
     private Long codigoProduto;
 
+    
     @Column(name = "nome", nullable = false)
+    @NotBlank(message = "O Campo é obrigatório")
     private String nome;
 
     @Column(name = "preco", nullable = false)
+    @NotBlank(message = "O Campo é obrigatório")
     private Double preco;
 
     @Column(name = "descricao", nullable = false)
+    @NotBlank(message = "O Campo é obrigatório")
     private String descricao;
 
     @OneToMany(mappedBy = "produto")

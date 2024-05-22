@@ -1,13 +1,14 @@
 package com.depinhomultimidias.depinhomultimidias.models;
 
 
-import jakarta.annotation.Nonnull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,15 +21,14 @@ import lombok.NoArgsConstructor;
 public class Duvida {
     
     @Id
-    @Nonnull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Nonnull
+    @NotBlank(message = "O Campo é obrigatório")
     @Column(name = "pergunta")
     private String pergunta;
-    @Nonnull
+    @NotBlank(message = "O Campo é obrigatório")
     @Column(name = "resposta")
     private String resposta;
 }

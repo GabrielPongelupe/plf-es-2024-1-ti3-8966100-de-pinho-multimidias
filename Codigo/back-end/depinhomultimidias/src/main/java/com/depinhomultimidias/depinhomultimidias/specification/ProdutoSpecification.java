@@ -1,7 +1,6 @@
 package com.depinhomultimidias.depinhomultimidias.specification;
 
 
-import org.springframework.boot.autoconfigure.rsocket.RSocketProperties.Server.Spec;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.depinhomultimidias.depinhomultimidias.models.Produto;

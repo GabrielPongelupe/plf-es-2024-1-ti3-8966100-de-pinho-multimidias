@@ -1,6 +1,6 @@
 package com.depinhomultimidias.depinhomultimidias.models;
 
-import jakarta.annotation.Nonnull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +24,6 @@ public class ItemPedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
-    @Nonnull
     private Long id;
 
     @ManyToOne

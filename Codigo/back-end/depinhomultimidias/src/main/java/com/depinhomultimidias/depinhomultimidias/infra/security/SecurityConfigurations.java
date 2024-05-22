@@ -29,23 +29,23 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.GET, "/usuario/{id}").hasRole("ADMIN") //TIRAR DEPOIS
                     .requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
                     .requestMatchers(HttpMethod.POST, "/usuario/register").permitAll()
-                    .requestMatchers(HttpMethod.POST, "/produto").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.POST, "/produto").permitAll() //hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PUT, "/usuario/{id}").authenticated()
                     .requestMatchers(HttpMethod.GET, "/produto/filtro").permitAll()
                     .requestMatchers(HttpMethod.GET, "/usuario/tipoUser").authenticated()
-                    .requestMatchers(HttpMethod.DELETE, "/produto/delete/{id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/produto/delete/{id}").permitAll() //.hasRole("ADMIN")
                     .requestMatchers(HttpMethod.GET, "/produto").permitAll()
-                    .requestMatchers(HttpMethod.PUT, "/produto/{id}").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/produto/{id}").permitAll()//hasRole("ADMIN")
 
 
             //PONGE, renato e arthur, nos tivemos que colocar permit all nos metodos das duvidas pq estavamos tomando 403 ate colocando a autentication key seja no console saja no postman, logo futuramnte voce pode olhar isso ai, cordialmente Renato
 
-                    .requestMatchers(HttpMethod.POST, "/duvida").permitAll()
-                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/duvida/{id}").permitAll()
-                    .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").permitAll()
-                    .requestMatchers(HttpMethod.GET, "/duvida").permitAll()
-                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/duvida").permitAll() //hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll() //hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/duvida/{id}").permitAll() //hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.DELETE, "/duvida/delete/{id}").permitAll() //hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.GET, "/duvida").permitAll() //hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT, "/duvida/{id}").permitAll() //hasRole("ADMIN")
 
 
 

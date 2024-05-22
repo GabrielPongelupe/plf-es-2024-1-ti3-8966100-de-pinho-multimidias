@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.Duvida;
 import com.depinhomultimidias.depinhomultimidias.repositories.DuvidaRepository;
+import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
@@ -19,7 +20,7 @@ public class DuvidaService {
 
     public Duvida findById(Long id) {
       Optional<Duvida> duvida = this.duvidaRepository.findById(id);  
-        return duvida.orElseThrow(() -> new RuntimeException(
+        return duvida.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Duvida.class.getName()));
      }
 

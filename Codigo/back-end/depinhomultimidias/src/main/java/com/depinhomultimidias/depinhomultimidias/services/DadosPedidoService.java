@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.DadosPedido;
 import com.depinhomultimidias.depinhomultimidias.repositories.DadosPedidoRepository;
+import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 @Service
 public class DadosPedidoService {
     
@@ -17,7 +18,7 @@ public class DadosPedidoService {
 
     public DadosPedido findById(Long id){
         Optional<DadosPedido> dadosPedido = this.dadosPedidoRepository.findById(id);
-        return dadosPedido.orElseThrow(() -> new RuntimeException(
+        return dadosPedido.orElseThrow(() -> new ObjectNotFoundException(
             "Objeto não encontrado! Id: " + id + ", Tipo: " + DadosPedido.class.getName()));
     }
 

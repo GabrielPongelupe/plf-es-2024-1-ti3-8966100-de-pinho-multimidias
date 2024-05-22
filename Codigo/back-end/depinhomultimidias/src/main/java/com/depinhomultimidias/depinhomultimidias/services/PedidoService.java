@@ -1,6 +1,5 @@
 package com.depinhomultimidias.depinhomultimidias.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
-import com.depinhomultimidias.depinhomultimidias.models.Produto;
 import com.depinhomultimidias.depinhomultimidias.repositories.PedidoRepository;
+import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
@@ -22,7 +21,7 @@ public class PedidoService {
 
     public Pedido findById(@NonNull Long id) {
         Optional<Pedido> pedido = this.pedidoRepository.findById(id);
-        return pedido.orElseThrow(() -> new RuntimeException(
+        return pedido.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
     }
 

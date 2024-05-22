@@ -34,7 +34,6 @@ public class Pedido {
     @Id
     @Column(name = "id", unique = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Nonnull
     private Long id;
 
     @Column(name = "momento", nullable = false)
