@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,10 +25,10 @@ public class Duvida {
     @Column(name = "id", unique = true)
     private Long id;
 
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     @Column(name = "pergunta")
     private String pergunta;
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     @Column(name = "resposta")
     private String resposta;
 }

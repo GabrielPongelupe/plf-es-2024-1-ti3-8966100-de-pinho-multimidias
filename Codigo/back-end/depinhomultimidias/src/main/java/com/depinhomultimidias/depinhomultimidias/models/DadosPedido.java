@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,46 +27,46 @@ public class DadosPedido {
     private Long id;
 
     @Column(name = "primeiro_nome", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String primeiroNome;
 
     @Column(name = "ultimo_nome", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String ultimoNome;
 
     @Column(name = "email", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String email;
 
     @Column(name = "estado", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String estado;
 
     @Column(name = "cidade", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String cidade;
 
     @Column(name = "bairro", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String bairro;
 
     @Column(name = "rua", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String rua;
 
     @Column(name = "numero", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String numero;
 
     @Column(name = "complemento", nullable = true)
     private String complemento;
 
     @Column(name = "cep", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String cep;
 
     @Column(name = "telefone", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String telefone;
 
     @Column(name = "forma_pagamento", nullable = true)

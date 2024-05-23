@@ -13,7 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,15 +33,16 @@ public class Produto {
 
     
     @Column(name = "nome", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String nome;
 
     @Column(name = "preco", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
+    @Min(value = 0, message = "O valor deve ser maior que zero")
     private Double preco;
 
     @Column(name = "descricao", nullable = false)
-    @NotBlank(message = "O Campo é obrigatório")
+    @NotNull(message = "O Campo é obrigatório")
     private String descricao;
 
     @OneToMany(mappedBy = "produto")
