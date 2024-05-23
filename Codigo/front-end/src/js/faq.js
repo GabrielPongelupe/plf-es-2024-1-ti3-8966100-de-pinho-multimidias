@@ -1,4 +1,3 @@
-//constantes e botoes modal
 document.addEventListener('DOMContentLoaded', function () {
 const modalCadastrar = document.getElementById("modal-cadastrar")
 const modalEditar = document.getElementById("modal-editar")
@@ -56,7 +55,6 @@ async function cadastrarPergunta() {
         const response = await fetch(urlCadastro, requestOptions);
         
         if (response.ok) {
-            alert("Cadastro realizado com sucesso");
             window.location.reload();
         } else {
             alert(`Erro ao cadastrar: ${result.message}`);
@@ -70,7 +68,7 @@ async function cadastrarPergunta() {
 buttonCadastro.addEventListener("click", function (e) {
     e.preventDefault();
     cadastrarPergunta();
-    alert("Cadastro realizado com sucesso");
+    alert("Pergunta cadastrada com sucesso");
     window.location.reload();
 
 });

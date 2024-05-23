@@ -1,154 +1,269 @@
 // escopo global
 
-function logout(){
-    localStorage.clear();
-    alert("Deslogado com sucesso");
-    window.location.href = "index.html";
+function logout() {
+  localStorage.clear();
+  alert("Deslogado com sucesso");
+  window.location.href = "index.html";
 }
 
 
 // Classe Header
 class Header extends HTMLElement {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    connectedCallback() {
-        this.renderHeader();
-    }
+  connectedCallback() {
+    this.renderHeader();
+  }
 
-    async renderHeader() {
-        let userType = 'default';
-        const token = localStorage.getItem('token');
+  async renderHeader() {
+    let userType = 'default';
+    const token = localStorage.getItem('token');
 
-        if (token) {
-            try {
-                const response = await axios.get("http://127.0.0.1:8080/usuario/tipoUser", {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+    if (token) {
+      try {
+        const response = await axios.get("http://127.0.0.1:8080/usuario/tipoUser", {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
 
-                if (response.status === 200) {
-                    userType = 'admin';
-                } else if (response.status === 403) {
-                    userType = 'client';
-                }
-            } catch (error) {
-                userType = 'client';
-            }
+        if (response.status === 200) {
+          userType = 'admin';
+        } else if (response.status === 403) {
+          userType = 'client';
         }
-
-        switch (userType) {
-            case 'admin':
-                this.renderAdminHeader();
-                break;
-            case 'client':
-                this.renderClientHeader();
-                break;
-            default:
-                this.renderDefaultHeader();
-                break;
-        }
+      } catch (error) {
+        userType = 'client';
+      }
     }
 
-    renderDefaultHeader() {
-        this.innerHTML = `
-    <header>
-    <div class="p-3 text-center bg-white border-bottom">
-      <div class="container">
-        <div class="row gy-3">
-          <div class="col-lg-2 col-sm-4 col-4">
-            <a href="index.html" class="float-start">
-              <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
-            </a>
-          </div>
-          <div class="order-lg-last col-lg-5 col-sm-8 col-8">
-            <div class="d-flex float-end">
-              <a href="login.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                <i class="fas fa-user-alt m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Fazer Login</p>
-              </a>
-              <a href="carrinho.html" class="border rounded py-1 px-3 nav-link d-flex align-items-center">
-                <i class="fas fa-shopping-cart m-1 me-md-2"></i><p class="d-none d-md-block mb-0">Carrinho</p>
-              </a>
-            </div>
-          </div>
+    switch (userType) {
+      case 'admin':
+        this.renderAdminHeader();
+        break;
+      case 'client':
+        this.renderClientHeader();
+        break;
+      default:
+        this.renderDefaultHeader();
+        break;
+    }
+  }
+
+  renderDefaultHeader() {
+    this.innerHTML = `
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
+      <img
+        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        height="50"
+        alt="MDB Logo"
+        loading="lazy"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarRightContent"
+      aria-controls="navbarRightContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarRightContent">
+      <!-- Right elements -->
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Icon -->
+        <a class="text-reset me-3 position-relative" href="carrinho.html">
+          <i class="fas fa-shopping-cart m-1 me-md-2"></i>
+          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle">1</span>
+        </a>
+
+        <!-- Avatar -->
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+            href="login.html"
+            id="navbarDropdownMenuAvatar"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <i class="fas fa-user-alt m-1 me-md-2"></i>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuAvatar"
+          >
+            <li>
+              <a class="dropdown-item" href="login.html">Entrar Agora</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Meus Pedidos</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="cadastro.html">Criar Conta</a>
+            </li>
+          </ul>
         </div>
       </div>
+      <!-- Right elements -->
     </div>
-  </header>`;
-    }
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->`;
+  }
 
-    renderAdminHeader() {
-        this.innerHTML = `
-    <header>
-    <div class="p-3 text-center bg-white border-bottom">
-      <div class="container">
-        <div class="row gy-3">
-          <div class="col-lg-2 col-sm-4 col-4">
-            <a href="index.html" class="float-start">
-              <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
-            </a>
-          </div>
-          <div class="order-lg-last col-lg-5 col-sm-8 col-8">
-            <div class="d-flex float-end">
-              <a href="vizualizadorProdutos.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                Gerenciar Produtos</p>
-              </a>
-              <a href="cadastroProduto.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                Adicionar Produto</p>
-              </a>
-              <a href="faq.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                Gerenciar FAQ</p>
-              </a>
-              <button class="border rounded py-1 px-3 nav-link d-flex align-items-center" id="logout-button" onclick="logout()">Sair</button>
-            </div>
-          </div>
-          
+  renderAdminHeader() {
+    this.innerHTML = `
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
+      <img
+        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        height="50"
+        alt="MDB Logo"
+        loading="lazy"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarRightContent"
+      aria-controls="navbarRightContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarRightContent">
+      <!-- Right elements -->
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Admin Links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="gerenciaProdutos.html">Gerenciar Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="faq.html">Gerenciar FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  onclick="logout()">Sair</a>
+          </li>
+        </ul>
+      </div>
+      <!-- Right elements -->
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->`;
+  }
+
+  renderClientHeader() {
+    this.innerHTML = `
+        <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
+      <img
+        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        height="50"
+        alt="MDB Logo"
+        loading="lazy"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarRightContent"
+      aria-controls="navbarRightContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarRightContent">
+      <!-- Right elements -->
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Icon -->
+        <a class="text-reset me-3 position-relative" href="carrinho.html">
+          <i class="fas fa-shopping-cart m-1 me-md-2"></i>
+          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle">1</span>
+        </a>
+
+        <!-- Avatar -->
+        <div class="dropdown">
+          <a
+            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+            href="login.html"
+            id="navbarDropdownMenuAvatar"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          <i class="fas fa-user-alt m-1 me-md-2"></i>
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuAvatar"
+          >
+            <li>
+              <a class="dropdown-item" href="edicaoPefil.html">Meu Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="index.html" onclick="logout()">Sair</a>
+            </li>
+          </ul>
         </div>
       </div>
+      <!-- Right elements -->
     </div>
-  </header>`;
-    }
-
-    renderClientHeader() {
-        this.innerHTML = `
-        <header>
-        <div class="p-3 text-center bg-white border-bottom">
-          <div class="container">
-            <div class="row gy-3">
-              <div class="col-lg-2 col-sm-4 col-4">
-                <a href="index.html" class="float-start">
-                  <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
-                </a>
-              </div>
-              <div class="order-lg-last col-lg-5 col-sm-8 col-8">
-                <div class="d-flex float-end">
-                  <a href="edicaoPefil.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                    Perfil</p>
-                  </a>
-                  <a href="carrinho.html" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
-                  Carrinho</p>
-                </a>
-                  <button class="border rounded py-1 px-3 nav-link d-flex align-items-center" onclick="logout()">
-                    <p class="d-none d-md-block mb-0">Sair</p>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
         `
-    }
+  }
 
 
 
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    customElements.define('header-component', Header);
-    const headerComponent = document.querySelector('header-component');
-    headerComponent.renderHeader();
+  customElements.define('header-component', Header);
+  const headerComponent = document.querySelector('header-component');
+  headerComponent.renderHeader();
 });
 
