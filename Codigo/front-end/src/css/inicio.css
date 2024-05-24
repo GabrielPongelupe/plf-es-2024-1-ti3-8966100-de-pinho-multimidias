@@ -103,3 +103,46 @@
     padding: 1em;
     transition: all .5s;
 }
+
+@media (max-width: 991.98px) { /* Adjust breakpoint as needed */
+  .navbar-nav {
+    flex-direction: column;
+  }
+  .navbar-nav .nav-item {
+    margin-bottom: 1rem; /* Adjust spacing between items */
+  }
+  .navbar-brand {
+    margin-bottom: 1rem; /* Add spacing below the logo */
+  }
+}
+
+/* Dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0; /* optional: you can adjust the distance between the toggle and the menu */
+}
+
+/* Ensure the dropdown appears within the viewport */
+.navbar .dropdown-menu {
+  right: 0; /* Align dropdown menu to the right edge of the parent */
+  left: auto;
+}
+
+@media (max-width: 991.98px) {
+  .navbar .dropdown-menu {
+    right: auto;
+    left: 0;
+  }
+}
+
+/* Increase icon sizes */
+.navbar .nav-link i,
+.navbar .dropdown-toggle i {
+  font-size: 1.5rem; /* Adjust size as needed */
+}
+
+/* Increase icon sizes */
+.navbar .fa-shopping-cart,
+.navbar .fa-user-alt {
+  font-size: 1.5rem; /* Adjust size as needed */
+}

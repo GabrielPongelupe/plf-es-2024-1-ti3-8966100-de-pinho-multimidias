@@ -5,9 +5,112 @@ document.addEventListener('DOMContentLoaded', function () {
     const concluirExclusao = document.getElementById('concluir-exclusao');
     const concluirEdicao = document.getElementById('confirmar-edicao');
     let produtoIdAtual = null;  // Variável para armazenar o ID do produto a ser editado ou excluído
+    var botaoConcluirCadastro = document.getElementById("btn-cadastrar-produto");
+    var botaoAbrirModal = document.getElementById("btn-abrir-modal-cadastro");
+    var formulario = document.getElementById("forms-cadastro-produto");
+    const modalAdicionarProduto = document.getElementById('modal-adicionar-produto');
+    const btnFecharModalAdicionarProduto = document.getElementById('fechar-modal-adicionar-produto');
 
-    const urlExclusao = 'http://127.0.0.1:8080/produto/delete/';
 
+
+    // Adicionar evento de mudança para verificar a opção selecionada
+    document.getElementById('tipoProduto').addEventListener('change', verificarOpcaoSelecionada);
+
+
+
+    // adicionar produtos
+    formulario.addEventListener('submit', async function (event) {
+
+        event.preventDefault();
+
+        var nome = document.getElementById("nomeProduto").value;
+        var tipoProduto = document.getElementById("tipoProduto").value;
+        var preco = parseFloat(document.getElementById("precoProduto").value);
+        var comandoVolante = document.getElementById("checkbox1").checked;
+        var radioOriginal = document.getElementById("checkbox2").checked;
+        var anoInicio = parseInt(document.getElementById("anoInicial").value);
+        var anoFinal = parseInt(document.getElementById("anoFinal").value);
+        var videoRelacionado = document.getElementById("videoRelacionado").value;
+        var descricao = document.getElementById("descricaoGrande").value;
+
+        // Coletando os URLs das imagens
+        var imagemProduto1 = document.getElementById("imagemAddProduto1").value;
+        var imagemProduto2 = document.getElementById("imagemAddProduto2").value;
+        var imagemProduto3 = document.getElementById("imagemAddProduto3").value;
+        var imagemProduto4 = document.getElementById("imagemAddProduto4").value;
+
+        // url 
+        var urlCadastroProduto = "http://127.0.0.1:8080/produto";
+
+        // token da localstorage
+        var token = localStorage.getItem("token");
+
+        // funcao para cadastrar produto
+        async function cadastrarProduto() {
+
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            myHeaders.append("Authorization", `Bearer ${token}`);
+
+            const raw = JSON.stringify({
+                "nome": nome,
+                "preco": preco,
+                "descricao": descricao,
+                "anoInicio": anoInicio,
+                "anoFim": anoFinal,
+                "videoRelacionado": videoRelacionado,
+                "tipoProduto": tipoProduto,
+                "possuiComandoVolante": comandoVolante,
+                "possuiRadioOriginal": radioOriginal,
+                "imagemPrincipal": imagemProduto1,
+                "imagem": imagemProduto2,
+                "imagem2": imagemProduto3,
+                "imagem3": imagemProduto4
+            });
+
+            console.log(raw,"raw")
+
+            const requestOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: raw,
+                redirect: "follow"
+            };
+
+
+            try {
+                const response = await fetch(urlCadastroProduto, requestOptions);
+                const result = await response.text();
+                console.log(response)
+                console.log(result);
+                alert("Cadastro realizado com sucesso");
+                modalAdicionarProduto.close();
+                window.location.reload();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+
+
+        await cadastrarProduto();
+
+    });
+
+    botaoAbrirModal.addEventListener("click", function () {
+        modalAdicionarProduto.showModal();
+    });
+
+    
+
+    btnFecharModalAdicionarProduto.addEventListener("click", function () {
+        event.preventDefault();
+        modalAdicionarProduto.close();
+    });
+
+
+
+    //exibir produtos
     async function getProdutos() {
         const params = {
             page: 0,
@@ -73,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('anoInicio').value = anoInicio;
                     document.getElementById('anoFim').value = anoFim;
                     document.getElementById('descricao').value = descricao;
-                    document.getElementById('videoRelacionado').value = videoRelacionado;   
+                    document.getElementById('videoRelacionado').value = videoRelacionado;
                     document.getElementById('imagemProduto1').value = imagemPrincipal;
                     document.getElementById('imagemProduto2').value = img2;
                     document.getElementById('imagemProduto3').value = img3;
@@ -156,8 +259,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
             });
 
+
             const fecharModal = document.getElementById('fechar-modal-alterar');
-            fecharModal.addEventListener("click", function() {
+            fecharModal.addEventListener("click", function () {
                 modalAlterar.close();
             });
 
@@ -169,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
     getProdutos();
 
     const fecharModalExcluir = document.getElementById('fechar-modal-excluir');
-    fecharModalExcluir.addEventListener("click", function() {
+    fecharModalExcluir.addEventListener("click", function () {
         modalExcluir.close();
     });
 });

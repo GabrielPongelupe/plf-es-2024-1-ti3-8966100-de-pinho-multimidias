@@ -34,14 +34,31 @@ async function getProdutosFiltrados() {
 
         const produtosFiltrados = response.data;
 
+        //verificar se o usuario preencheu marca, ano e modelo e adiciona um style no input
+        if (marca === "" || modelo === "" || ano === "") {
+            telaProdutos.innerHTML = `
+              <div class="alert alert-warning" role="alert">
+                Preencha todos os campos obrigatórios.
+              </div>
+            `;
+            marcaCarro.style.border = "1px solid red";
+            modeloCarro.style.border = "1px solid red";
+            anoCarro.style.border = "1px solid red";
+            return;
+        }
+
         if (!Array.isArray(produtosFiltrados) || produtosFiltrados.length === 0) {
             telaProdutos.innerHTML = `
               <div class="alert alert-warning" role="alert">
                 Nenhum produto encontrado. Pesquise novamente!
               </div>
             `;
+            marcaCarro.style.border = "none";
+            modeloCarro.style.border = "none";
+            anoCarro.style.border = "none";
             return;
         }
+
         const produtosCombinados = combinarProdutos(produtosFiltrados);
 
         telaProdutos.innerHTML = "";
@@ -61,6 +78,10 @@ async function getProdutosFiltrados() {
         </div>
     </div>`;
         });
+
+        marcaCarro.style.border = "none";
+        modeloCarro.style.border = "none";
+        anoCarro.style.border = "none";
 
         document.querySelectorAll('#btn-carrinho').forEach(function (btn) {
             btn.addEventListener('click', function () {
@@ -108,17 +129,6 @@ function combinarProdutos(produtos) {
     return combinados;
 }
 
-// Adicionar validação de campos obrigatórios
-formFiltro.addEventListener('submit', function(event) {
-    const marcaCarroValue = marcaCarro.value.trim();
-    const modeloCarroValue = modeloCarro.value.trim();
-    const anoCarroValue = anoCarro.value.trim();
-
-    if (!marcaCarroValue || !modeloCarroValue || !anoCarroValue) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
-        event.preventDefault(); // Impede o envio do formulário
-    }
-});
 
 btnPesquisar.addEventListener("click", function (e) {
     e.preventDefault();

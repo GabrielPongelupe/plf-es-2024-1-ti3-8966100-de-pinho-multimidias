@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+   
+
 const addHome = document.getElementById('faq-home');
 
 
