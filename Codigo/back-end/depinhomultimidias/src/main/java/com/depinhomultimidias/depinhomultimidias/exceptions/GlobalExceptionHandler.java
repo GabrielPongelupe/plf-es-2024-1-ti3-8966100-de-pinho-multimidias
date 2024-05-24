@@ -8,6 +8,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,6 +46,20 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     }
+    @ExceptionHandler(AuthenticationException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<Object> handleUsernameNotFoundException(
+        AuthenticationException AuthenticationException,
+        WebRequest request){
+            final String errorMessage = "Usuário ou senha inválidos. Por favor, tente novamente.";
+            log.error(errorMessage, AuthenticationException);
+            return buildErrorResponse(
+                AuthenticationException,
+                errorMessage,
+                HttpStatus.NOT_FOUND,
+                request);
+        }
+
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

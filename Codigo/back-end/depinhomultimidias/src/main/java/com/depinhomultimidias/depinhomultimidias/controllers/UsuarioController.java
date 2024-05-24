@@ -10,6 +10,7 @@ import com.depinhomultimidias.depinhomultimidias.models.DTOs.LoginResponseDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.RegisterDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 import com.depinhomultimidias.depinhomultimidias.services.UsuarioService;
+import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 
 import jakarta.validation.Valid;
 
@@ -63,7 +64,7 @@ public class UsuarioController {
     
     
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data){
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO data){
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.email(), data.senha());
         var auth = this.authenticationManager.authenticate(usernamePassword);
         var token = tokenService.generateToken((Usuario) auth.getPrincipal());
@@ -79,7 +80,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Valid RegisterDTO data){
+    public ResponseEntity<Void> register(@RequestBody @Valid RegisterDTO data){
         if(this.usuarioRepository.findByEmail(data.email()) != null){
             return ResponseEntity.badRequest().build();
         }
