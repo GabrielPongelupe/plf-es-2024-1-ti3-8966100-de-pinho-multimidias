@@ -6,6 +6,18 @@ function logout() {
   window.location.href = "index.html";
 }
 
+let qntdCarrinho = 0;
+var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+
+function atualizarQuantidadeCarrinho() {
+  qntdCarrinho = 0;
+  carrinho.forEach(item => {
+    qntdCarrinho ++;
+  });
+  document.getElementById('qntd-carrinho').textContent = qntdCarrinho;
+
+}
 
 // Classe Header
 class Header extends HTMLElement {
@@ -88,7 +100,7 @@ class Header extends HTMLElement {
         <!-- Icon -->
         <a class="text-reset me-3 position-relative" href="carrinho.html">
           <i class="fas fa-shopping-cart m-1 me-md-2"></i>
-          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle">1</span>
+          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle" id="qntd-carrinho"></span>
         </a>
 
         <!-- Avatar -->
@@ -219,7 +231,7 @@ class Header extends HTMLElement {
         <!-- Icon -->
         <a class="text-reset me-3 position-relative" href="carrinho.html">
           <i class="fas fa-shopping-cart m-1 me-md-2"></i>
-          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle">1</span>
+          <span class="badge rounded-pill badge-notification bg-danger position-absolute top-0 start-100 translate-middle" id="qntd-carrinho"></span>
         </a>
 
         <!-- Avatar -->
@@ -265,5 +277,7 @@ document.addEventListener("DOMContentLoaded", function () {
   customElements.define('header-component', Header);
   const headerComponent = document.querySelector('header-component');
   headerComponent.renderHeader();
+  atualizarQuantidadeCarrinho();
+
 });
 

@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
     //apagar o pedido do localstorage
     let pedido = [];
 
+    // pegar a token para fazer verificação se usuario ta logado ou nao
+    const token = localStorage.getItem('token');
 
     // calcular preco total
     function calcularPrecoTotal() {
@@ -28,29 +30,31 @@ document.addEventListener('DOMContentLoaded', function () {
         if (carrinho.length > 0) {
             carrinho.forEach((produto, index) => {
                 telaCarrinho.innerHTML += `
-                <div class="row gy-3 mb-4 ">
-    <div class="col-lg-2">
-        <img src="${produto.imagemProduto}" class="border rounded" style="width: 96px; height: 96px;" />
-    </div>
-    <div class="col-lg-5">
-        <div class="me-lg-5">
-            <p class="mb-0 nav-link">${produto.nome}</p>
-            <small class="h6">Preço da unidade: R$${produto.preco}</small>
-            <small class="text-muted text-nowrap">Multimídia válida de ${produto.anoInicio} a ${produto.anoFim}</small>
-        </div>
-    </div>
-    <div class="col-lg-2 col-sm-6 col-6">
-        <select class="form-select" onchange="atualizarQuantidade(${index}, this.value)">
-            <option ${produto.quantidade == 1 ? 'selected' : ''}>1</option>
-            <option ${produto.quantidade == 2 ? 'selected' : ''}>2</option>
-            <option ${produto.quantidade == 3 ? 'selected' : ''}>3</option>
-            <option ${produto.quantidade == 4 ? 'selected' : ''}>4</option>
-        </select>
-    </div>
-    <div class="col-lg-3 col-sm-6 col-6">
-        <button class="btn btn-light border text-danger icon-hover-danger" onclick="removerItem(${index})">Remover</button>
-    </div>
-</div>
+                <div class="row gy-3 mb-4">
+                <div class="col-lg-3">
+                    <img src="${produto.imagemProduto}" class="border rounded w-100" style="max-width: 192px; height: auto;" />
+                </div>
+                <div class="col-lg-6">
+                    <div class="me-lg-5">
+                        <p class="mb-0">${produto.nome}</p>
+                        <small class="h6">Preço da unidade: R$${produto.preco}</small>
+                        <br>
+                        <small class="text-muted">Multimídia válida de ${produto.anoInicio} a ${produto.anoFim}</small>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-sm-6 col-6">
+                    <select class="form-select" onchange="atualizarQuantidade(${index}, this.value)">
+                        <option ${produto.quantidade == 1 ? 'selected' : ''}>1</option>
+                        <option ${produto.quantidade == 2 ? 'selected' : ''}>2</option>
+                        <option ${produto.quantidade == 3 ? 'selected' : ''}>3</option>
+                        <option ${produto.quantidade == 4 ? 'selected' : ''}>4</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-sm-6 col-6">
+                    <button class="btn btn-light border text-danger icon-hover-danger" onclick="removerItem(${index})">Remover</button>
+                </div>
+            </div>
+            
 
                 `;
             });
@@ -102,6 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
         pedido.push({ nomeProduto, precoPedido });
         localStorage.setItem('pedido', JSON.stringify(pedido));
         alert('Pedido gerado com sucesso!');
+        if(token == null)
+            window.location.href = 'login.html';
+        else
         window.location.href = 'insercaoDadosCompra.html';
 
     });
