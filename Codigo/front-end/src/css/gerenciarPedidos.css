@@ -1,0 +1,32 @@
+.pedido{
+    border: 1px solid blue;
+    border-radius: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+.tituloLista {
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.produto img {
+    max-width: 100px;
+    margin-right: 12px;
+    border-radius: 10px;
+}
+
+.bi-pencil-square {
+    background-color: #0d6efd;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 2px;
+    border-radius: 4px;
+}
+
+.bi-pencil-square:hover {
+    cursor: pointer;
+}
+
