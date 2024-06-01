@@ -18,5 +18,10 @@ ul {
     border-radius: 10px;
 }
 
+.bi-copy {
+    color: blue;
+}
 
-
+.bi-copy:hover {
+    cursor: pointer;
+}
