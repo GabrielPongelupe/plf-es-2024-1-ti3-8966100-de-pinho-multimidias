@@ -1,0 +1,27 @@
+.pedido{
+    border: 1px solid blue;
+    border-radius: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+.tituloLista {
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.produto img {
+    max-width: 100px;
+    margin-right: 12px;
+    border-radius: 10px;
+}
+
+.bi-copy {
+    color: blue;
+}
+
+.bi-copy:hover {
+    cursor: pointer;
+}
