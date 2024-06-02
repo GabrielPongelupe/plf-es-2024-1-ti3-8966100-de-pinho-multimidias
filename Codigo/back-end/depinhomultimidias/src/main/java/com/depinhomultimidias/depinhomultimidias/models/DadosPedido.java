@@ -71,6 +71,8 @@ public class DadosPedido {
 
     @Column(name = "forma_pagamento", nullable = true)
     private TipoPagamento formaPagamento = TipoPagamento.PIX;
+    @Column(name = "cpf", nullable = false)
+    private String cpf;
 
     @OneToOne(mappedBy = "dadosPedido")
     private Pedido pedido;

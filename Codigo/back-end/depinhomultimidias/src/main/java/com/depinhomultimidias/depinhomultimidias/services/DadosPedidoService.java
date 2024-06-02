@@ -64,6 +64,9 @@ public class DadosPedidoService {
         if (dadosPedido.getEmail() != null) {
             newDadosPedido.setEmail(dadosPedido.getEmail());
         }
+        if (dadosPedido.getCpf() != null) {
+            newDadosPedido.setCpf(dadosPedido.getCpf());
+        }
 
         return dadosPedidoRepository.save(newDadosPedido);
     
