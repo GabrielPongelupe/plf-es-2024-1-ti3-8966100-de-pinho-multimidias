@@ -43,8 +43,12 @@ public class Pedido {
     @Column(name = "status", nullable = false)
     private int status = StatusPedido.AGUARDANDO_PAGAMENTO.getValue();
 
+    @Column(name = "rastramento")
+    private String rastramento;
+
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
@@ -56,6 +60,8 @@ public class Pedido {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "dados_pedido_id")
     private DadosPedido dadosPedido;
+
+
 
 
 
