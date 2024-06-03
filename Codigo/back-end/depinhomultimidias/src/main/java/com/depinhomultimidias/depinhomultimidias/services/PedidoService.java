@@ -33,9 +33,19 @@ public class PedidoService {
     @Transactional
     public Pedido update(@NonNull Pedido pedido) {
         Pedido newPedido = findById(pedido.getId());
+        if (pedido.getItens() != null) {
+            newPedido.setItens(pedido.getItens());
+        }
+        if(pedido.getPagamentos() != null) {
+            newPedido.setPagamentos(pedido.getPagamentos());
+        }
+        if(pedido.getRastramento() != null) {
+            newPedido.setRastramento(pedido.getRastramento());
+        }
+        if(pedido.getDadosPedido() != null) {
+            newPedido.setDadosPedido(pedido.getDadosPedido());
+        }
         newPedido.setStatus(pedido.getStatus());
-        newPedido.setItens(pedido.getItens());
-        newPedido.setUsuario(pedido.getUsuario());
         return pedidoRepository.save(newPedido);
     }
 
