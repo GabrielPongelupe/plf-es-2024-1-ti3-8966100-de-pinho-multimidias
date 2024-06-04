@@ -74,7 +74,7 @@
 
     <!-- PEDIDOS -->
 
-    <div class="container">
+    <div class="container" id="tela">
       <div class="row">
 
         <div class="col-md-6">
@@ -91,12 +91,10 @@
                     </li>
                     <li>
                       <label for="tipoProduto">Status</label>
-                      <select class="form-control" id="status">
-                          <option value="0">Aguardando Pagamento</option>
-                          <option value="1">Pago</option>
-                          <option value="2">Enviado</option>
-                          <option value="3">Cancelado</option>
-                      </select> 
+                      <li class="tituloLista">
+                        Status do pedido: <span id="idPedido" class="fw-normal">Enviado</span>
+                        <i class="bi bi-pencil-square edit-status-btn"></i>
+                      </li>
                   </li>
                   </ul>
 
@@ -172,10 +170,27 @@
             </div>
         </div>
 
-
       </div>
     </div>
 
+    <dialog id="modal-editar-status">
+      <header>  
+        <h2>Editar Status do Pedido</h2>
+        <button class="btn btn-icon close-editar" id="btn-modal-close-status">
+          <i class="fas">X</i>
+        </button>
+      </header>
+      <div class="form-group">
+        <label for="status-editar">Status</label>
+        <select class="form-control" id="status-editar">
+          <option value="0">Aguardando Pagamento</option>
+          <option value="1">Pago</option>
+          <option value="2">Enviado</option>
+          <option value="3">Cancelado</option>
+        </select> 
+      </div>
+      <button class="btn btn-primary mt-3 concluir-edicao-status">Salvar</button>
+    </dialog>
 
     <dialog id="modal-editar-codigo-rastreio">
       <header>  
@@ -183,8 +198,6 @@
         <button class="btn btn-icon close-editar" id="btn-modal-close-rastreio">
           <i class="fas">X</i>
         </button>
-  
-  
       </header>
       <div class="form-group">
         <label for="pergunta">Código de rastreio</label>
@@ -196,8 +209,7 @@
 
 
 
-    <!-- 
-    <script src="./js/gerenciaProdutos.js"></script>-->
+
     <script src="./js/gerenciarPedidos.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
