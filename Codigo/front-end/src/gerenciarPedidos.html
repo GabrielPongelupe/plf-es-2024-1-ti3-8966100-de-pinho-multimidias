@@ -89,11 +89,18 @@
                       Data do pedido:
                       <span id="dataPedido" class="fw-normal">23/12/2000</span>
                     </li>
-                    <li class="tituloLista">
-                      Status: <span id="statusPedido" class="fw-normal">Enviado</span>
-                      <i class="bi bi-pencil-square"></i>
-                    </li>
+                    <li>
+                      <label for="tipoProduto">Status</label>
+                      <select class="form-control" id="status">
+                          <option value="MULTIMIDIA">Aguardando Pagamento</option>
+                          <option value="MOLDURA">Pago</option>
+                          <option value="CHICOTE">Enviado</option>
+                          <option value="CHICOTE">Cancelado</option>
+                      </select> 
+                  </li>
                   </ul>
+
+ 
       
                   <ul class="p-0 me-5">
                     <li class="tituloLista">Contato</li>
@@ -135,7 +142,7 @@
                         <li>
                           Código de rastreio:
                           <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
+                          <i id="edit-rastreio-btn-1" class="bi bi-pencil-square"></i>
                         </li>
                         <li class="fw-bold">R$994,00</li>
                       </ul>
@@ -154,7 +161,7 @@
                         <li>
                           Código de rastreio:
                           <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
+                          <i  id="edit-rastreio-btn-2" class="bi bi-pencil-square"></i>
                         </li>
                         <li class="fw-bold">R$994,00</li>
                       </ul>
@@ -165,186 +172,52 @@
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="pedido p-5 mt-4">
-                <!--Dados do pedido-->
-                <div class="d-flex flex-row justify-content-between pb-4">
-                  <ul class="p-0 m-0">
-                    <li class="tituloLista">
-                      ID do pedido: <span id="idPedido" class="fw-normal">1234</span>
-                    </li>
-                    <li class="tituloLista">
-                      Data do pedido:
-                      <span id="dataPedido" class="fw-normal">23/12/2000</span>
-                    </li>
-                    <li class="tituloLista">
-                      Status: <span id="statusPedido" class="fw-normal">Enviado</span>
-                      <i class="bi bi-pencil-square"></i>
-                    </li>
-                  </ul>
-      
-                  <ul class="p-0 me-5">
-                    <li class="tituloLista">Contato</li>
-                    <li id="nome">Arthur Ferreira</li>
-                    <li id="cpf">12586326677</li>
-                    <li id="telefone">37 9 99999999</li>
-                    <li id="email">contato@arthur.com</li>
-                  </ul>
-                </div>
-      
-                <hr class="w-100" />
-      
-                <!--Dados de entrega-->
-                <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
-      
-                  <ul class="p-0 me-6">
-                    <li class="tituloLista">Endereço de entrega</li>
-                    <li id="endereco">Rua das Alvoradas, 46 - Centro</li>
-                    <li id="cidadeEstado">Belo Horizonte - Minas Gerais</li>
-                    <li id="cep">30170011</li>
-                    <li id="complemento">Apartamento 127</li>
-                  </ul>
-                </div>
-      
-                <hr class="w-100" />
-      
-                <!--Produtos-->
-                <div class="pt-4 produtos">
-
-                  <div class="d-flex flex-row align-items-center produto mb-5">
-                    <img
-                      src="https://images.tcdn.com.br/img/img_prod/1197109/central_multimidia_navpro_quadcore_plus_tela_ips_navpro_carplay_android_auto_sem_fio_11_2_0354010f2250b3120b4779f06afe13dc.jpg"
-                      alt=""
-                    />
-      
-                    <div class="dados-produto">
-                      <ul class="p-0 m-0">
-                        <li>Nome do produto</li>
-                        <li>
-                          Código de rastreio:
-                          <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
-                        </li>
-                        <li class="fw-bold">R$994,00</li>
-                      </ul>
-                    </div>
-                  </div>
-      
-                  <div class="d-flex flex-row align-items-center me-5 produto">
-                    <img
-                      src="https://images.tcdn.com.br/img/img_prod/1197109/central_multimidia_navpro_quadcore_plus_11_1_0c1c487df3f7268223a07bf59365bc18.jpg"
-                      alt=""
-                    />
-      
-                    <div class="dados-produto">
-                      <ul class="p-0 m-0">
-                        <li>Nome do produto</li>
-                        <li>
-                          Código de rastreio:
-                          <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
-                        </li>
-                        <li class="fw-bold">R$994,00</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$99999</p>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="pedido p-5 mt-4">
-                <!--Dados do pedido-->
-                <div class="d-flex flex-row justify-content-between pb-4">
-                  <ul class="p-0 m-0">
-                    <li class="tituloLista">
-                      ID do pedido: <span id="idPedido" class="fw-normal">1234</span>
-                    </li>
-                    <li class="tituloLista">
-                      Data do pedido:
-                      <span id="dataPedido" class="fw-normal">23/12/2000</span>
-                    </li>
-                    <li class="tituloLista">
-                      Status: <span id="statusPedido" class="fw-normal">Enviado</span>
-                      <i class="bi bi-pencil-square"></i>
-                    </li>
-                  </ul>
-      
-                  <ul class="p-0 me-5">
-                    <li class="tituloLista">Contato</li>
-                    <li id="nome">Arthur Ferreira</li>
-                    <li id="cpf">12586326677</li>
-                    <li id="telefone">37 9 99999999</li>
-                    <li id="email">contato@arthur.com</li>
-                  </ul>
-                </div>
-      
-                <hr class="w-100" />
-      
-                <!--Dados de entrega-->
-                <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
-      
-                  <ul class="p-0 me-6">
-                    <li class="tituloLista">Endereço de entrega</li>
-                    <li id="endereco">Rua das Alvoradas, 46 - Centro</li>
-                    <li id="cidadeEstado">Belo Horizonte - Minas Gerais</li>
-                    <li id="cep">30170011</li>
-                    <li id="complemento">Apartamento 127</li>
-                  </ul>
-                </div>
-      
-                <hr class="w-100" />
-      
-                <!--Produtos-->
-                <div class="pt-4 produtos">
-
-                  <div class="d-flex flex-row align-items-center produto mb-5">
-                    <img
-                      src="https://images.tcdn.com.br/img/img_prod/1197109/central_multimidia_navpro_quadcore_plus_tela_ips_navpro_carplay_android_auto_sem_fio_11_2_0354010f2250b3120b4779f06afe13dc.jpg"
-                      alt=""
-                    />
-      
-                    <div class="dados-produto">
-                      <ul class="p-0 m-0">
-                        <li>Nome do produto</li>
-                        <li>
-                          Código de rastreio:
-                          <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
-                        </li>
-                        <li class="fw-bold">R$994,00</li>
-                      </ul>
-                    </div>
-                  </div>
-      
-                  <div class="d-flex flex-row align-items-center me-5 produto">
-                    <img
-                      src="https://images.tcdn.com.br/img/img_prod/1197109/central_multimidia_navpro_quadcore_plus_11_1_0c1c487df3f7268223a07bf59365bc18.jpg"
-                      alt=""
-                    />
-      
-                    <div class="dados-produto">
-                      <ul class="p-0 m-0">
-                        <li>Nome do produto</li>
-                        <li>
-                          Código de rastreio:
-                          <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i class="bi bi-pencil-square"></i>
-                        </li>
-                        <li class="fw-bold">R$994,00</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$99999</p>
-            </div>
-        </div>
 
       </div>
     </div>
 
+
+    <dialog id="modal-editar-status">
+      <header>
+        <h2>Editar Status</h2>
+        <button class="btn btn-icon close-editar-status" id="btn-modal-close">
+          <i class="fas"  id="btn-modal-close-status">X</i>
+        </button>
+  
+  
+      </header>
+      <div class="form-group">
+        <label for="pergunta">Status</label>
+        <input type="text" class="form-control" id="status-editar" placeholder="Digite o status aqui">
+      </div>
+  
+      <button class="btn btn-primary mt-3" id="concluir-edicao">Salvar</button>
+    </dialog>
+
+
+
+    <dialog id="modal-editar-codigo-rastreio">
+      <header>  
+        <h2>Editar codigo de rastreio</h2>
+        <button class="btn btn-icon close-editar-rastreio" id="btn-modal-close">
+          <i class="fas"  id="btn-modal-close-rastreio" >X</i>
+        </button>
+  
+  
+      </header>
+      <div class="form-group">
+        <label for="pergunta">Código de rastreio</label>
+        <input type="text" class="form-control" id="rastreio-editar" placeholder="Digite o código de rastreio aqui">
+      </div>
+  
+      <button class="btn btn-primary mt-3" id="concluir-edicao">Salvar</button>
+    </dialog>
+
+
+
+
     <script src="./js/gerenciaProdutos.js"></script>
+    <script src="./js/gerenciarPedidos.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <link
