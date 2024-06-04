@@ -37,7 +37,7 @@ public class ProdutoService {
 
     @Transactional
     public Produto update(@NonNull Produto produto) {
-        Produto newProduto = findById(produto.getId());
+        Produto newProduto = findById(produto.getCodigoProduto());
         if (produto.getNome() != null) {
             newProduto.setNome(produto.getNome());
         }

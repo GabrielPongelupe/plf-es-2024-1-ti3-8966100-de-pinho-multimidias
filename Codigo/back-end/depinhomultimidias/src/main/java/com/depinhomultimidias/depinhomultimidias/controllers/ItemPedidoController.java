@@ -35,7 +35,7 @@ public class ItemPedidoController {
     @PostMapping
     public ResponseEntity<ItemPedido> create( @RequestBody ItemPedido itemPedido) {
         this.itemPedidoService.create(itemPedido);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(itemPedido.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(itemPedido.getProduto()).toUri();
         return ResponseEntity.created(uri).build();
     }
 

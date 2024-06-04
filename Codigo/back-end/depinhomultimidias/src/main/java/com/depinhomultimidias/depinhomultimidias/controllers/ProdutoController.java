@@ -38,13 +38,13 @@ public class ProdutoController {
     @PostMapping
     public ResponseEntity<Produto> create( @RequestBody Produto produto) {
         this.produtoService.create(produto);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(produto.getCodigoProduto()).toUri();
         return ResponseEntity.created(uri).build();
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<Produto> update(@PathVariable("id") Long id, @RequestBody Produto produto) {
-        produto.setId(id);
+        produto.setCodigoProduto(id);
         this.produtoService.update(produto);
         return ResponseEntity.noContent().build();
     }
