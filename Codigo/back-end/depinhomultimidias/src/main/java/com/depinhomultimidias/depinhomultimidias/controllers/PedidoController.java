@@ -1,20 +1,21 @@
 package com.depinhomultimidias.depinhomultimidias.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.depinhomultimidias.depinhomultimidias.models.DadosPedido;
 import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
-import com.depinhomultimidias.depinhomultimidias.models.DTOs.ItemPedidoDTO;
-import com.depinhomultimidias.depinhomultimidias.models.DTOs.PedidoDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
 import com.depinhomultimidias.depinhomultimidias.services.PedidoService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,11 +63,11 @@ public class PedidoController {
         this.pedidoService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @PostMapping("/criar")
-    public ResponseEntity<Pedido> createPedido(@RequestBody PedidoDTO pedidoDTO) {
-        Pedido pedido = pedidoService.createPedido(pedidoDTO);
-        return  ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId()).toUri()).build();
+     @GetMapping
+    public List<Pedido> findAllPageable(Pageable pageable) {
+        return pedidoService.findAllPageable(pageable).getContent();      
     }
+    
 }
     
 

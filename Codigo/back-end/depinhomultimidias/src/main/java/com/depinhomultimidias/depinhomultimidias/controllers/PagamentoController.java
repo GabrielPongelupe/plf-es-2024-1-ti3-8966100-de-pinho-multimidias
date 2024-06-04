@@ -110,9 +110,9 @@ public class PagamentoController {
             .failure("http://localhost:8080/pagamento/general")
             .pending("http://localhost:8080/pagamento/general")
             .build();
-       
-        
-        
+
+
+                
         PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
             .title(preferenceItem.getName())
             .quantity(preferenceItem.getQuantity())

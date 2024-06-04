@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
+import com.depinhomultimidias.depinhomultimidias.models.Usuario;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.ItemPedidoDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.PedidoDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.PedidoRepository;
@@ -26,11 +27,6 @@ public class PedidoService {
     @Autowired
     public PedidoRepository pedidoRepository;
 
-    @Autowired
-    public ProdutoRepository produtoRepository;
-
-    @Autowired
-    public UsuarioRepository usuarioRepository;
 
     public Pedido findById(@NonNull Long id) {
         Optional<Pedido> pedido = this.pedidoRepository.findById(id);
@@ -72,26 +68,8 @@ public class PedidoService {
         Pedido pedido = findById(id);
         pedidoRepository.delete(pedido);
     }
-    public Pedido createPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = new Pedido();
-        pedido.setStatus(pedidoDTO.getStatusPedido());
-        pedido.setUsuario(usuarioRepository.findById(pedidoDTO.getClienteId())
-                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado")));
 
-        for (ItemPedidoDTO itemDTO : pedidoDTO.getItens()) {
-            ItemPedido itemPedido = new ItemPedido();
-            Produto produto = produtoRepository.findById(itemDTO.getProdutoId())
-                    .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado"));
+    
 
-            itemPedido.setProduto(produto);
-            itemPedido.setQuantidade(itemDTO.getQuantidade());
-            itemPedido.setPedido(pedido);
-
-
-            pedido.getItens().add(itemPedido);
-        }
-
-        return pedidoRepository.save(pedido);
-    }
     
 }
