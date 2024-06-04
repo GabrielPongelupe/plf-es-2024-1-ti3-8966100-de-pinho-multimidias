@@ -2,6 +2,7 @@ package com.depinhomultimidias.depinhomultimidias.controllers;
 
 import java.net.URI;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
@@ -9,7 +10,12 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
+import com.depinhomultimidias.depinhomultimidias.models.Produto;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.ItemPedidoDTO;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.PedidoDTO;
+import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
 import com.depinhomultimidias.depinhomultimidias.services.PedidoService;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -30,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class PedidoController {
     @Autowired
     public PedidoService pedidoService;
+    
 
     @GetMapping("/{id}")
     public ResponseEntity<Pedido> findById(@RequestParam("id") Long id) {
@@ -55,5 +62,11 @@ public class PedidoController {
         this.pedidoService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    
+    @PostMapping("/criar")
+    public ResponseEntity<Pedido> createPedido(@RequestBody PedidoDTO pedidoDTO) {
+        Pedido pedido = pedidoService.createPedido(pedidoDTO);
+        return  ResponseEntity.created(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId()).toUri()).build();
+    }
 }
+    
+

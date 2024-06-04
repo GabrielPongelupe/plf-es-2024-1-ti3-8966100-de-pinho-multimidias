@@ -2,13 +2,20 @@ package com.depinhomultimidias.depinhomultimidias.services;
 
 import java.util.Optional;
 
+import org.apache.velocity.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
+import com.depinhomultimidias.depinhomultimidias.models.Produto;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.ItemPedidoDTO;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.PedidoDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.PedidoRepository;
+import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
+import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 
 import jakarta.transaction.Transactional;
@@ -18,6 +25,12 @@ import lombok.NonNull;
 public class PedidoService {
     @Autowired
     public PedidoRepository pedidoRepository;
+
+    @Autowired
+    public ProdutoRepository produtoRepository;
+
+    @Autowired
+    public UsuarioRepository usuarioRepository;
 
     public Pedido findById(@NonNull Long id) {
         Optional<Pedido> pedido = this.pedidoRepository.findById(id);
@@ -58,6 +71,27 @@ public class PedidoService {
     public void delete(@NonNull Long id) {
         Pedido pedido = findById(id);
         pedidoRepository.delete(pedido);
+    }
+    public Pedido createPedido(PedidoDTO pedidoDTO) {
+        Pedido pedido = new Pedido();
+        pedido.setStatus(pedidoDTO.getStatusPedido());
+        pedido.setUsuario(usuarioRepository.findById(pedidoDTO.getClienteId())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado")));
+
+        for (ItemPedidoDTO itemDTO : pedidoDTO.getItens()) {
+            ItemPedido itemPedido = new ItemPedido();
+            Produto produto = produtoRepository.findById(itemDTO.getProdutoId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Produto não encontrado"));
+
+            itemPedido.setProduto(produto);
+            itemPedido.setQuantidade(itemDTO.getQuantidade());
+            itemPedido.setPedido(pedido);
+
+
+            pedido.getItens().add(itemPedido);
+        }
+
+        return pedidoRepository.save(pedido);
     }
     
 }
