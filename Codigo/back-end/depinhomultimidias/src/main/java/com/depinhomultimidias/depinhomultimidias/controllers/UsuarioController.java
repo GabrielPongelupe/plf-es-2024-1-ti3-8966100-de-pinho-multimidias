@@ -8,6 +8,7 @@ import com.depinhomultimidias.depinhomultimidias.models.Usuario;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.AuthenticationDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.LoginResponseDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.RegisterDTO;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.TokenDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 import com.depinhomultimidias.depinhomultimidias.services.UsuarioService;
 import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
@@ -33,6 +34,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -59,6 +62,11 @@ public class UsuarioController {
     public ResponseEntity<Usuario> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(this.usuarioService.findById(id));
         
+    }
+
+    @GetMapping("pedidos{id}")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
     }
     
     
@@ -105,8 +113,9 @@ public class UsuarioController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/tipoUser")
-    public ResponseEntity<String> getUserType(@RequestHeader(value = "Authorization", required = false) String authHeader) {
+    @PostMapping("/tipoUser")
+    public ResponseEntity<String> getUserType(@RequestBody @Valid TokenDTO token1) {
+        String authHeader = token1.token();
         if (authHeader == null || authHeader.isEmpty()) {
             return ResponseEntity.ok("none");
         }
@@ -114,6 +123,8 @@ public class UsuarioController {
         String userType = usuarioService.getUserTypeByToken(token);
         return ResponseEntity.ok(userType);
     }
+
+    
     
     
     

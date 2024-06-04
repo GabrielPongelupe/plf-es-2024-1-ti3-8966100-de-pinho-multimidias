@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.depinhomultimidias.depinhomultimidias.enums.TipoProduto;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.gson.annotations.JsonAdapter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,6 +46,7 @@ public class Produto {
     @NotNull(message = "O Campo é obrigatório")
     private String descricao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "produto")
     private List<ItemPedido> itens = new ArrayList<>();
 

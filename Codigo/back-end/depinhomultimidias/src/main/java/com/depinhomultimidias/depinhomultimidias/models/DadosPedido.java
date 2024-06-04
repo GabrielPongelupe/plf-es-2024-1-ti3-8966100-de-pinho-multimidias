@@ -1,6 +1,7 @@
 package com.depinhomultimidias.depinhomultimidias.models;
 
 import com.depinhomultimidias.depinhomultimidias.enums.TipoPagamento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -75,6 +76,7 @@ public class DadosPedido {
     private String cpf;
 
     @OneToOne(mappedBy = "dadosPedido")
+    @JsonIgnore
     private Pedido pedido;
 
 }

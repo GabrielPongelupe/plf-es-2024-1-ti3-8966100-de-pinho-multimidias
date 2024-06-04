@@ -1,6 +1,7 @@
 package com.depinhomultimidias.depinhomultimidias.models;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -23,11 +24,14 @@ import java.util.List;
 
 
 import com.depinhomultimidias.depinhomultimidias.enums.StatusPedido;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor  
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties(value = { "usuario" }, allowSetters = true)
 @Table(name = "pedido")
 public class Pedido {
 
@@ -38,13 +42,13 @@ public class Pedido {
 
     @Column(name = "momento", nullable = false)
     @NotNull
-    private Instant momento = Instant.now();
+    private LocalDateTime momento = LocalDateTime.now();
 
     @Column(name = "status", nullable = false)
     private int status = StatusPedido.AGUARDANDO_PAGAMENTO.getValue();
 
-    @Column(name = "rastramento")
-    private String rastramento;
+    
+
 
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
@@ -55,6 +59,7 @@ public class Pedido {
     private Usuario usuario;
 
     @OneToMany(mappedBy = "pedido")
+    @JsonIgnore
     private List<Pagamento> pagamentos = new ArrayList<>();
     
     @OneToOne(cascade = CascadeType.ALL)

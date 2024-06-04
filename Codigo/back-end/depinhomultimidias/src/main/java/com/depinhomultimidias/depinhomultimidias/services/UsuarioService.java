@@ -85,10 +85,6 @@ public class UsuarioService implements UserDetailsService{
             return "none";
         }
 
-        if (usuario.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
-            return usuario.getId().toString();
-        } else {
-            return "user";
-        }
+        return usuario.getId().toString();
     }
 }
