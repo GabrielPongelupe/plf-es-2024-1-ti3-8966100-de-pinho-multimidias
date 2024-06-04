@@ -34,6 +34,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -60,6 +62,11 @@ public class UsuarioController {
     public ResponseEntity<Usuario> findById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(this.usuarioService.findById(id));
         
+    }
+
+    @GetMapping("pedidos{id}")
+    public String getMethodName(@RequestParam String param) {
+        return new String();
     }
     
     
@@ -116,6 +123,9 @@ public class UsuarioController {
         String userType = usuarioService.getUserTypeByToken(token);
         return ResponseEntity.ok(userType);
     }
+
+    
+    
     
     
 }

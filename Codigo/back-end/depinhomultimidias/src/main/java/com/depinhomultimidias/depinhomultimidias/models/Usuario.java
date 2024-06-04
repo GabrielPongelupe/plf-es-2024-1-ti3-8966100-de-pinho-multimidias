@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.depinhomultimidias.depinhomultimidias.enums.TipoUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Column;
@@ -59,6 +60,7 @@ public class Usuario implements UserDetails{
     @Column(name = "fote_perfil",nullable = true)
     private Blob fotoPerfil;
 
+    
     @OneToMany(mappedBy = "usuario")
     private List<Pedido> pedidos = new ArrayList<>();
 

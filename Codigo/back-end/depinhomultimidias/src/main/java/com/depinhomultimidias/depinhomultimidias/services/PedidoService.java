@@ -40,6 +40,7 @@ public class PedidoService {
 
     @Transactional
     public Pedido create(@NonNull Pedido pedido) {
+        System.out.println(pedido.getUsuario());
         return this.pedidoRepository.save(pedido);
     }
 
@@ -51,9 +52,6 @@ public class PedidoService {
         }
         if(pedido.getPagamentos() != null) {
             newPedido.setPagamentos(pedido.getPagamentos());
-        }
-        if(pedido.getRastramento() != null) {
-            newPedido.setRastramento(pedido.getRastramento());
         }
         if(pedido.getDadosPedido() != null) {
             newPedido.setDadosPedido(pedido.getDadosPedido());
