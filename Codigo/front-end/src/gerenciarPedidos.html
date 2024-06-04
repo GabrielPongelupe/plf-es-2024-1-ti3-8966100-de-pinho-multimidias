@@ -142,7 +142,7 @@
                         <li>
                           Código de rastreio:
                           <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i id="edit-rastreio-btn-1" class="bi bi-pencil-square"></i>
+                          <i class="bi bi-pencil-square edit-rastreio-btn"></i>
                         </li>
                         <li class="fw-bold">R$994,00</li>
                       </ul>
@@ -161,7 +161,7 @@
                         <li>
                           Código de rastreio:
                           <span class="codigoRastreio fw-bold">XYZ244</span>
-                          <i  id="edit-rastreio-btn-2" class="bi bi-pencil-square"></i>
+                          <i class="bi bi-pencil-square edit-rastreio-btn"></i>
                         </li>
                         <li class="fw-bold">R$994,00</li>
                       </ul>
@@ -177,30 +177,11 @@
     </div>
 
 
-    <dialog id="modal-editar-status">
-      <header>
-        <h2>Editar Status</h2>
-        <button class="btn btn-icon close-editar-status" id="btn-modal-close">
-          <i class="fas"  id="btn-modal-close-status">X</i>
-        </button>
-  
-  
-      </header>
-      <div class="form-group">
-        <label for="pergunta">Status</label>
-        <input type="text" class="form-control" id="status-editar" placeholder="Digite o status aqui">
-      </div>
-  
-      <button class="btn btn-primary mt-3" id="concluir-edicao">Salvar</button>
-    </dialog>
-
-
-
     <dialog id="modal-editar-codigo-rastreio">
       <header>  
         <h2>Editar codigo de rastreio</h2>
-        <button class="btn btn-icon close-editar-rastreio" id="btn-modal-close">
-          <i class="fas"  id="btn-modal-close-rastreio" >X</i>
+        <button class="btn btn-icon close-editar" id="btn-modal-close-rastreio">
+          <i class="fas">X</i>
         </button>
   
   
@@ -210,13 +191,13 @@
         <input type="text" class="form-control" id="rastreio-editar" placeholder="Digite o código de rastreio aqui">
       </div>
   
-      <button class="btn btn-primary mt-3" id="concluir-edicao">Salvar</button>
+      <button class="btn btn-primary mt-3 concluir-edicao">Salvar</button>
     </dialog>
 
 
 
-
-    <script src="./js/gerenciaProdutos.js"></script>
+    <!-- 
+    <script src="./js/gerenciaProdutos.js"></script>-->
     <script src="./js/gerenciarPedidos.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
