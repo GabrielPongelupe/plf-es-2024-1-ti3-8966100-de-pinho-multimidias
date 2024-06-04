@@ -12,8 +12,6 @@ import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
 import com.depinhomultimidias.depinhomultimidias.models.Usuario;
-import com.depinhomultimidias.depinhomultimidias.models.DTOs.ItemPedidoDTO;
-import com.depinhomultimidias.depinhomultimidias.models.DTOs.PedidoDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.PedidoRepository;
 import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
