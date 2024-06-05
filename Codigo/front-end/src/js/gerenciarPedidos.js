@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Função para mostrar todos os produtos na tela
   async function getPedidos() {
-    // Paginação para dividir a visualização de produtos 
     const params = {
         page: 0,
         size: 20
@@ -32,16 +31,17 @@ document.addEventListener("DOMContentLoaded", () => {
         pedido.itens.forEach(item => {
           produtosHtml += `
             <div class="d-flex flex-row align-items-center produto mb-5">
-              <img src="${item.produto.imagem}" alt="" />
+              <img src="${item.produto.imagemPrincipal}" alt="" />
               <div class="dados-produto">
                 <ul class="p-0 m-0">
                   <li>Nome do produto: ${item.produto.nome}</li>
                   <li>
                     Código de rastreio:
-                    <span class="codigoRastreio fw-bold">${item.codigoRastreio}</span> //DEVE SER TIRADO O CODIGO DE RASTREIO
-                    <i class="bi bi-pencil-square edit-rastreio-btn"></i>
+                    <span class="codigoRastreio fw-bold">${item.codigoRastreio}</span>
+                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-codigo="${item.codigoRastreio}"></i>
                   </li>
                   <li class="fw-bold">R$${item.produto.preco.toFixed(2)}</li>
+                  <li class="fw-bold">Quantidade: ${item.quantidade}</li>
                 </ul>
               </div>
             </div>
@@ -62,21 +62,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span id="dataPedido" class="fw-normal">${pedido.momento}</span>
                   </li>
                   <li>
-                    <label for="tipoProduto">Status</label>
-                    <select class="form-control" id="status">
-                      <option value="0">Aguardando Pagamento</option>
-                      <option value="1">Pago</option>
-                      <option value="2">Enviado</option>
-                      <option value="3">Cancelado</option>
-                    </select>
+                  <label for="tipoProduto">Status</label>
+                  <li class="tituloLista">
+                    Status do pedido: <span id="statusPedido" class="fw-normal">${pedido.status}</span>
+                    <i class="bi bi-pencil-square edit-status-btn" data-pedido-id="${pedido.id}" data-status="${pedido.status}"></i>
                   </li>
                 </ul>
                 <ul class="p-0 me-5">
                   <li class="tituloLista">Contato</li>
-                  <li id="nome">${pedido.dados_pedido.primeiroNome}</li>
-                  <li id="cpf">${pedido.dados_pedido.cpf}</li>
-                  <li id="telefone">${pedido.dados_pedido.telefone}</li>
-                  <li id="email">${pedido.dados_pedido.email}</li>
+                  <li id="nome">${pedido.dadosPedido.primeiroNome}</li>
+                  <li id="cpf">${pedido.dadosPedido.cpf}</li>
+                  <li id="telefone">${pedido.dadosPedido.telefone}</li>
+                  <li id="email">${pedido.dadosPedido.email}</li>
                 </ul>
               </div>
               <hr class="w-100" />
@@ -84,10 +81,10 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
                 <ul class="p-0 me-6">
                   <li class="tituloLista">Endereço de entrega</li>
-                  <li id="endereco">${pedido.dados_pedido.rua}, ${pedido.dados_pedido.numero} - ${pedido.dados_pedido.bairro}</li>
-                  <li id="cidadeEstado">${pedido.dados_pedido.cidade} - ${pedido.dados_pedido.estado}</li>
-                  <li id="cep">${pedido.dados_pedido.cep}</li>
-                  <li id="complemento">${pedido.dados_pedido.complemento}</li>
+                  <li id="endereco">${pedido.dadosPedido.rua}, ${pedido.dadosPedido.numero} - ${pedido.dadosPedido.bairro}</li>
+                  <li id="cidadeEstado">${pedido.dadosPedido.cidade} - ${pedido.dadosPedido.estado}</li>
+                  <li id="cep">${pedido.dadosPedido.cep}</li>
+                  <li id="complemento">${pedido.dadosPedido.complemento}</li>
                 </ul>
               </div>
               <hr class="w-100" />
@@ -95,62 +92,72 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="pt-4 produtos">
                 ${produtosHtml}
               </div>
-              <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$${pedido.total.toFixed(2)}</p>
+              <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$${pedido.total}</p>
             </div>
           </div>
         `;
       });
+
+      // Adiciona event listeners após renderizar os pedidos
+      addEventListeners();
     } catch (error) {
       console.error('Erro ao obter produtos:', error);
     }
   }
 
-  // Função para abrir modal de editar código de rastreio
-  function openRastreioModal() {
-    modalEditarRastreio.showModal();
-  }
+  // Função para adicionar event listeners aos botões de edição
+  function addEventListeners() {
+    document.querySelectorAll(".edit-rastreio-btn").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const itemId = btn.getAttribute("data-item-id");
+        const codigo = btn.getAttribute("data-codigo");
+        document.getElementById("rastreio-editar").value = codigo;
+        modalEditarRastreio.showModal();
 
-  // Função para fechar modal de editar código de rastreio
-  function closeRastreioModal() {
-    modalEditarRastreio.close();
-  }
-
-  // Função para abrir modal de status
-  function openStatusModal() {
-    modalEditarStatus.showModal();
-  }
-
-  // Função para fechar modal de editar código de rastreio
-  function closeStatusModal() {
-    modalEditarStatus.close();
-  }
-
-  // Event listeners para abrir modais
-  editRastreioBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      openRastreioModal();
+        concluirEdicaoRastreio.onclick = async () => {
+          const novoCodigo = document.getElementById("rastreio-editar").value;
+          try {
+            const response = await axios.put(`http://127.0.0.1:8080/item-pedido/${itemId}`, {
+              codigoRastreio: novoCodigo
+            });
+            if (response.status === 200) {
+              alert("Código de rastreio atualizado com sucesso!");
+              modalEditarRastreio.close();
+              window.location.reload();
+            }
+          } catch (error) {
+            console.error('Erro ao atualizar código de rastreio:', error);
+          }
+        };
+      });
     });
-  });
 
-  editStatusBtn.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      openStatusModal();
+    document.querySelectorAll(".edit-status-btn").forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+        const pedidoId = btn.getAttribute("data-pedido-id");
+        const statusAtual = btn.getAttribute("data-status");
+        document.getElementById("status-editar").value = statusAtual;
+        modalEditarStatus.showModal();
+
+        concluirEdicaoStatus.onclick = async () => {
+          const novoStatus = document.getElementById("status-editar").value;
+          try {
+            const response = await axios.put(`http://127.0.0.1:8080/pedido/${pedidoId}`, {
+              status: novoStatus
+            });
+              alert("Status do pedido atualizado com sucesso!");
+              modalEditarStatus.close();
+              window.location.reload();
+          } catch (error) {
+            console.error('Erro ao atualizar status do pedido:', error);
+          }
+        };
+      });
     });
-  });
 
-  // Event listeners para fechar modais
-  closestatusBtn.addEventListener("click", closeStatusModal);
-  closeRastreioBtn.addEventListener("click", closeRastreioModal);
+    closestatusBtn.onclick = () => modalEditarStatus.close();
+    closeRastreioBtn.onclick = () => modalEditarRastreio.close();
+  }
 
-  // Event listeners para botões de salvar (fechar modal)
-  concluirEdicaoStatus.addEventListener("click", () => {
-    closeStatusModal();
-  });
-
-  concluirEdicaoRastreio.addEventListener("click", () => {
-    closeRastreioModal();
-  });
-
-  // Chamada inicial para obter pedidos
   getPedidos();
 });
