@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const statusTexto = statusMap[pedido.status] || "Status Desconhecido";
+        const dataFormatada = formatarData(pedido.momento);
+
 
         container.innerHTML += `
           <div class="col-md-6">
@@ -71,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </li>
                   <li class="tituloLista">
                     Data do pedido:
-                    <span id="dataPedido" class="fw-normal">${pedido.momento}</span>
+                    <span id="dataPedido" class="fw-normal">${dataFormatada}</span>
                   </li>
                   <li>
                   <li class="tituloLista">
@@ -171,6 +173,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closestatusBtn.onclick = () => modalEditarStatus.close();
     closeRastreioBtn.onclick = () => modalEditarRastreio.close();
+  }
+
+  function formatarData(momentoArray) {
+    const [ano, mes, dia, hora, minuto, segundo] = momentoArray;
+    const data = new Date(ano, mes - 1, dia, hora, minuto, segundo);
+    const diaFormatado = data.getDate().toString().padStart(2, '0');
+    const mesFormatado = (data.getMonth() + 1).toString().padStart(2, '0');
+    const anoFormatado = data.getFullYear();
+    return `${diaFormatado}/${mesFormatado}/${anoFormatado}`;
   }
 
   getPedidos();
