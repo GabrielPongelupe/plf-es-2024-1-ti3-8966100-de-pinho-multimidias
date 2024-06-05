@@ -47,9 +47,10 @@ public class PedidoController {
 
     @PostMapping
     public ResponseEntity<Pedido> create( @RequestBody Pedido pedido) {
-        this.pedidoService.create(pedido);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedido.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        
+        Pedido pedidoCreated =this.pedidoService.create(pedido);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pedidoCreated.getId()).toUri();
+        return ResponseEntity.created(uri).body(pedidoCreated);
     }
     
      @PutMapping("/{id}")
