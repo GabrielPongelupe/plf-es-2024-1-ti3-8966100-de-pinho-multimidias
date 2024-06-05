@@ -114,18 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const pedidoId = btn.getAttribute("data-pedido-id");
         const pedidoPreco = btn.getAttribute("data-pedido-preco");
         const codigo = btn.getAttribute("data-codigo");
-        document.getElementById("rastreio-editar").textContent = codigo;
+        document.getElementById("rastreio-editar").value = codigo;
         modalEditarRastreio.showModal();
 
         concluirEdicaoRastreio.onclick = async () => {
-          const novoCodigo = document.getElementById("rastreio-editar").textContent;
+          const novoCodigo = document.getElementById("rastreio-editar").value;
           try {
             const response = await axios.put(`http://127.0.0.1:8080/item-pedido/${itemId}`, {
               rastramento: novoCodigo // Incluindo o novo valor do rastramento no corpo da requisição
             });
             alert("Código de rastreio atualizado com sucesso!");
             modalEditarRastreio.close();
-            //window.location.reload();
+            window.location.reload();
           } catch (error) {
             console.error('Erro ao atualizar código de rastreio:', error);
           }
