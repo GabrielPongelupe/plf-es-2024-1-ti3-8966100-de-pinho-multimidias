@@ -1,4 +1,3 @@
-const addPedido = document.getElementById('add-Pedido');
 const container = document.getElementById('add-Pedido');
 const userId = localStorage.getItem('userId');
 const urlUsuario = `http://127.0.0.1:8080/usuario/${userId}`;
@@ -23,16 +22,17 @@ async function getPedidos() {
 
         pedido.itens.forEach(item => {
           produtosHtml += `
-            <div class="d-flex flex-row align-items-center produto mb-5">
+            <div class="d-flex flex-row align-items-center produto me-5">
               <img src="${item.produto.imagemPrincipal}" alt="" />
               <div class="dados-produto">
                 <ul class="p-0 m-0">
-                  <li>Nome do produto: ${item.produto.nome}</li>
+                  <li>${item.produto.nome}</li>
                   <li>
                     Código de rastreio:
                     <span class="codigoRastreio fw-bold">${item.rastramento}</span>
+                    <i class="bi bi-copy" data-codigo="${item.rastramento}" title="Copiar código"></i>
                   </li>
-                  <li">Quantidade: ${item.quantidade}</li>
+                  <li>Quantidade: ${item.quantidade}</li>
                   <li class="fw-bold">R$${item.produto.preco.toFixed(2)}</li>
                 </ul>
               </div>
@@ -45,7 +45,7 @@ async function getPedidos() {
 
 
         container.innerHTML += `
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="pedido p-5 mt-4">
               <!-- Dados do pedido -->
               <div class="d-flex flex-row justify-content-between pb-4">
@@ -62,6 +62,16 @@ async function getPedidos() {
                     Status do pedido: <span id="statusPedido" class="fw-normal">${statusTexto}</span>
                   </li>
                 </ul>
+                <a href="https://rastreamento.correios.com.br/app/index.php" target="_blank">
+                  <button class="btn btn-primary">Rastrear itens <i class="bi bi-arrow-up-right-circle"></i></button>
+                </a>
+              </div>
+              
+              <hr class="w-100" />
+
+              <!-- Dados pessoais -->
+              <!-- Dados de entrega -->
+              <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
                 <ul class="p-0 me-5">
                   <li class="tituloLista">Contato</li>
                   <li id="nome">${pedido.dadosPedido.primeiroNome}</li>
@@ -69,10 +79,6 @@ async function getPedidos() {
                   <li id="telefone">${pedido.dadosPedido.telefone}</li>
                   <li id="email">${pedido.dadosPedido.email}</li>
                 </ul>
-              </div>
-              <hr class="w-100" />
-              <!-- Dados de entrega -->
-              <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
                 <ul class="p-0 me-6">
                   <li class="tituloLista">Endereço de entrega</li>
                   <li id="endereco">${pedido.dadosPedido.rua}, ${pedido.dadosPedido.numero} - ${pedido.dadosPedido.bairro}</li>
@@ -83,11 +89,10 @@ async function getPedidos() {
               </div>
               <hr class="w-100" />
               <!-- Produtos -->
-              <div class="pt-4 produtos">
+              <div class="d-flex flex-row align-items-center pt-4 produtos">
                 ${produtosHtml}
               </div>
               <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$${totalPedido.toFixed(2)}</p>
-              <button class="btn btn-primary">Rastrear itens <i class="bi bi-arrow-up-right-circle"></i></button>
             </div>
           </div>
         `;
@@ -99,5 +104,21 @@ async function getPedidos() {
       console.error('Erro ao obter produtos:', error);
     }
   }
+
+  function addEventListeners() {
+    const copyIcons = document.querySelectorAll('.bi-copy');
+    
+    copyIcons.forEach(icon => {
+      icon.addEventListener('click', () => {
+        const codigoRastreio = icon.getAttribute('data-codigo');
+        navigator.clipboard.writeText(codigoRastreio).then(() => {
+          alert('Código de rastreio copiado para a área de transferência!');
+        }).catch(err => {
+          console.error('Erro ao copiar o código de rastreio: ', err);
+        });
+      });
+    });
+  }
+  
 
 getPedidos();

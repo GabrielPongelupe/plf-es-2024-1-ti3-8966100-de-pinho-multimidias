@@ -14,7 +14,7 @@ ul {
 
 .produto img {
     max-width: 100px;
-    margin-right: 12px;
+    margin-right: 1em;
     border-radius: 10px;
 }
 
