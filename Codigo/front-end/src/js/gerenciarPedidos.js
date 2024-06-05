@@ -13,11 +13,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlDadosCompra = "http://127.0.0.1:8080/dados-pedido/{id}";
   const urlItensPedido = "http://127.0.0.1:8080/item-pedido/{id}";
 
+  // Mapeamento de status
+  const statusMap = {
+    0: "Aguardando Pagamento",
+    1: "Pago",
+    2: "Enviado",
+    3: "Cancelado"
+  };
+
   // Função para mostrar todos os produtos na tela
   async function getPedidos() {
     const params = {
-        page: 0,
-        size: 20
+      page: 0,
+      size: 20
     };
 
     try {
@@ -39,9 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
                   <li>
                     Código de rastreio:
                     <span class="codigoRastreio fw-bold">${item.rastramento}</span>
-                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-pedido-id="${pedido.id}" data-pedido-preco="${item.produto.preco} data-codigo="${item.rastramento}"></i>
+                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-pedido-id="${pedido.id}" data-pedido-preco="${item.produto.preco}" data-codigo="${item.rastramento}"></i>
                   </li>
-                  <li">Quantidade: ${item.quantidade}</li>
+                  <li>Quantidade: ${item.quantidade}</li>
                   <li class="fw-bold">R$${item.produto.preco.toFixed(2)}</li>
                 </ul>
               </div>
@@ -49,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
           totalPedido += item.produto.preco * item.quantidade;
         });
+
+        const statusTexto = statusMap[pedido.status] || "Status Desconhecido";
 
         container.innerHTML += `
           <div class="col-md-6">
@@ -65,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </li>
                   <li>
                   <li class="tituloLista">
-                    Status do pedido: <span id="statusPedido" class="fw-normal">${pedido.status}</span>
+                    Status do pedido: <span id="statusPedido" class="fw-normal">${statusTexto}</span>
                     <i class="bi bi-pencil-square edit-status-btn" data-pedido-id="${pedido.id}" data-status="${pedido.status}"></i>
                   </li>
                 </ul>

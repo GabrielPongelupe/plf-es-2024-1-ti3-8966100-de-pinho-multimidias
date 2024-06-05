@@ -3,6 +3,14 @@ const container = document.getElementById('add-Pedido');
 const userId = localStorage.getItem('userId');
 const urlUsuario = `http://127.0.0.1:8080/usuario/${userId}`;
 
+  // Mapeamento de status
+  const statusMap = {
+    0: "Aguardando Pagamento",
+    1: "Pago",
+    2: "Enviado",
+    3: "Cancelado"
+  };
+
 async function getPedidos() {
 
     try {
@@ -33,6 +41,9 @@ async function getPedidos() {
           totalPedido += item.produto.preco * item.quantidade;
         });
 
+        const statusTexto = statusMap[pedido.status] || "Status Desconhecido";
+
+
         container.innerHTML += `
           <div class="col-md-6">
             <div class="pedido p-5 mt-4">
@@ -48,7 +59,7 @@ async function getPedidos() {
                   </li>
                   <li>
                   <li class="tituloLista">
-                    Status do pedido: <span id="statusPedido" class="fw-normal">${pedido.status}</span>
+                    Status do pedido: <span id="statusPedido" class="fw-normal">${statusTexto}</span>
                   </li>
                 </ul>
                 <ul class="p-0 me-5">
