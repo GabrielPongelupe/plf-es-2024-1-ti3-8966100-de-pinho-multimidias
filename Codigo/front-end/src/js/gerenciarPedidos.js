@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       pedidos.forEach(pedido => {
         let produtosHtml = '';
+        let totalPedido = 0;
 
         pedido.itens.forEach(item => {
           produtosHtml += `
@@ -37,15 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
                   <li>Nome do produto: ${item.produto.nome}</li>
                   <li>
                     Código de rastreio:
-                    <span class="codigoRastreio fw-bold">${item.codigoRastreio}</span>
-                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-codigo="${item.codigoRastreio}"></i>
+                    <span class="codigoRastreio fw-bold">${item.rastramento}</span>
+                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-codigo="${item.rastramento}"></i>
                   </li>
+                  <li">Quantidade: ${item.quantidade}</li>
                   <li class="fw-bold">R$${item.produto.preco.toFixed(2)}</li>
-                  <li class="fw-bold">Quantidade: ${item.quantidade}</li>
                 </ul>
               </div>
             </div>
           `;
+          totalPedido += item.produto.preco * item.quantidade;
         });
 
         container.innerHTML += `
@@ -62,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     <span id="dataPedido" class="fw-normal">${pedido.momento}</span>
                   </li>
                   <li>
-                  <label for="tipoProduto">Status</label>
                   <li class="tituloLista">
                     Status do pedido: <span id="statusPedido" class="fw-normal">${pedido.status}</span>
                     <i class="bi bi-pencil-square edit-status-btn" data-pedido-id="${pedido.id}" data-status="${pedido.status}"></i>
@@ -92,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <div class="pt-4 produtos">
                 ${produtosHtml}
               </div>
-              <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$${pedido.total}</p>
+              <p class="mt-5 fw-bold">TOTAL DO PEDIDO: R$${totalPedido.toFixed(2)}</p>
             </div>
           </div>
         `;
@@ -120,11 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await axios.put(`http://127.0.0.1:8080/item-pedido/${itemId}`, {
               codigoRastreio: novoCodigo
             });
-            if (response.status === 200) {
               alert("Código de rastreio atualizado com sucesso!");
               modalEditarRastreio.close();
               window.location.reload();
-            }
           } catch (error) {
             console.error('Erro ao atualizar código de rastreio:', error);
           }
@@ -145,9 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const response = await axios.put(`http://127.0.0.1:8080/pedido/${pedidoId}`, {
               status: novoStatus
             });
+
               alert("Status do pedido atualizado com sucesso!");
               modalEditarStatus.close();
               window.location.reload();
+
           } catch (error) {
             console.error('Erro ao atualizar status do pedido:', error);
           }

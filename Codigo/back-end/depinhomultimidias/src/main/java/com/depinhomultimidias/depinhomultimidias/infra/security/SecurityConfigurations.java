@@ -54,8 +54,13 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.POST, "/dados-pedido").permitAll()
                     .requestMatchers(HttpMethod.PUT, "/dados-pedido/{id}").permitAll()
                     .requestMatchers(HttpMethod.DELETE, "/dados-pedido/delete/{id}").permitAll()
+                
                     .requestMatchers(HttpMethod.GET, "/pedido").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/pedido/{id}").permitAll()
+
                     .requestMatchers(HttpMethod.POST, "/item-pedido").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/item-pedido").permitAll()
+
 
                     .anyRequest().authenticated()
                 )
