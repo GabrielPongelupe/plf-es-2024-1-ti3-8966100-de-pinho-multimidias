@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.depinhomultimidias.depinhomultimidias.infra.security.TokenService;
 import com.depinhomultimidias.depinhomultimidias.models.Usuario;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.UserTipeDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
 
@@ -74,17 +75,21 @@ public class UsuarioService implements UserDetailsService{
         usuarioRepository.delete(usuario);
     }
 
-    public String getUserTypeByToken(String token) {
+    public UserTipeDTO getUserTypeByToken(String token) {
         String email = tokenService.validateToken(token);
         if (email.isEmpty()) {
-            return "none";
+            return null;
         }
 
         Usuario usuario = usuarioRepository.findByEmail(email);
         if (usuario == null) {
-            return "none";
+            return null;
         }
 
-        return usuario.getId().toString();
+        if (usuario.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            return new UserTipeDTO("ADMINISTRADOR", usuario.getId());
+        } else {
+            return new UserTipeDTO("CLIENTE", usuario.getId());
+        }
     }
 }

@@ -13,7 +13,7 @@ var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 function atualizarQuantidadeCarrinho() {
   qntdCarrinho = 0;
   carrinho.forEach(item => {
-    qntdCarrinho ++;
+    qntdCarrinho++;
   });
   document.getElementById('qntd-carrinho').textContent = qntdCarrinho;
 
@@ -29,43 +29,64 @@ class Header extends HTMLElement {
     this.renderHeader();
   }
 
-  async renderHeader() {
+  renderHeader() {
     let userType = 'default';
     const token = localStorage.getItem('token');
 
-    if (token) {
-      try {
-        const response = await axios.get("http://127.0.0.1:8080/usuario/tipoUser", {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        });
 
-        if (response.status === 200) {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const raw = JSON.stringify({
+      "token": `${token}`
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch("http://127.0.0.1:8080/usuario/tipoUser", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        const { tipo, id } = result;
+        localStorage.setItem('userId', id);
+
+        if (tipo === 'ADMINISTRADOR') {
           userType = 'admin';
-        } else if (response.status === 403) {
+        } else if (tipo === 'CLIENTE') {
           userType = 'client';
         }
-      } catch (error) {
-        userType = 'client';
-      }
-    }
 
-    switch (userType) {
-      case 'admin':
-        this.renderAdminHeader();
-        break;
-      case 'client':
-        this.renderClientHeader();
-        break;
-      default:
-        this.renderDefaultHeader();
-        break;
-    }
+        this.updateHeader(userType);
+      })
+      .catch(error => {
+        console.error(error);
+        this.updateHeader(userType); 
+      });
+  
   }
 
-  renderDefaultHeader() {
-    this.innerHTML = `
+updateHeader(userType) {
+  switch (userType) {
+    case 'admin':
+      this.renderAdminHeader();
+      break;
+    case 'client':
+      this.renderClientHeader();
+      break;
+    default:
+      this.renderDefaultHeader();
+      break;
+  }
+}
+
+
+renderDefaultHeader() {
+  this.innerHTML = `
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <!-- Container wrapper -->
@@ -138,10 +159,10 @@ class Header extends HTMLElement {
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->`;
-  }
+}
 
-  renderAdminHeader() {
-    this.innerHTML = `
+renderAdminHeader() {
+  this.innerHTML = `
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <!-- Container wrapper -->
@@ -193,10 +214,10 @@ class Header extends HTMLElement {
   <!-- Container wrapper -->
 </nav>
 <!-- Navbar -->`;
-  }
+}
 
-  renderClientHeader() {
-    this.innerHTML = `
+renderClientHeader() {
+  this.innerHTML = `
         <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <!-- Container wrapper -->
@@ -251,7 +272,7 @@ class Header extends HTMLElement {
             aria-labelledby="navbarDropdownMenuAvatar"
           >
             <li>
-              <a class="dropdown-item" href="edicaoPefil.html">Meu Perfil</a>
+              <a class="dropdown-item" href="perfil.html">Meu Perfil</a>
             </li>
             <li>
               <a class="dropdown-item" href="index.html" onclick="logout()">Sair</a>
@@ -267,7 +288,7 @@ class Header extends HTMLElement {
 </nav>
 <!-- Navbar -->
         `
-  }
+}
 
 
 
@@ -277,7 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
   customElements.define('header-component', Header);
   const headerComponent = document.querySelector('header-component');
   headerComponent.renderHeader();
-  atualizarQuantidadeCarrinho();
+  //atualizarQuantidadeCarrinho();
 
 });
 
