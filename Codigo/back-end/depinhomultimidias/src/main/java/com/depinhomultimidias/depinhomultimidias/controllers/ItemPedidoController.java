@@ -33,10 +33,10 @@ public class ItemPedidoController {
         
     }
     @PostMapping
-    public ResponseEntity<ItemPedido> create( @RequestBody ItemPedido itemPedido) {
-        this.itemPedidoService.create(itemPedido);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(itemPedido.getProduto()).toUri();
-        return ResponseEntity.created(uri).build();
+    public ResponseEntity<ItemPedido> create(@RequestBody ItemPedido itemPedido) {
+        ItemPedido createdItemPedido = this.itemPedidoService.create(itemPedido);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdItemPedido.getId()).toUri();
+        return ResponseEntity.created(uri).body(createdItemPedido);
     }
 
     @PutMapping("/{id}")

@@ -32,7 +32,6 @@ public class ItemPedido {
     private Long id;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 

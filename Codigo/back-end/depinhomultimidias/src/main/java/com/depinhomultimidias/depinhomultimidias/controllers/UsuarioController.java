@@ -9,6 +9,7 @@ import com.depinhomultimidias.depinhomultimidias.models.DTOs.AuthenticationDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.LoginResponseDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.RegisterDTO;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.TokenDTO;
+import com.depinhomultimidias.depinhomultimidias.models.DTOs.UserTipeDTO;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
 import com.depinhomultimidias.depinhomultimidias.services.UsuarioService;
 import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
@@ -114,13 +115,20 @@ public class UsuarioController {
     }
 
     @PostMapping("/tipoUser")
-    public ResponseEntity<String> getUserType(@RequestBody @Valid TokenDTO token1) {
+    public ResponseEntity<UserTipeDTO> getUserType(@RequestBody @Valid TokenDTO token1) {
+        if(token1.token().isEmpty()){
+            throw new RuntimeException("Token inválida, faça login novamente");
+        }
         String authHeader = token1.token();
         if (authHeader == null || authHeader.isEmpty()) {
-            return ResponseEntity.ok("none");
+            return ResponseEntity.ok(null);
         }
+
         String token = authHeader.replace("Bearer ", "");
-        String userType = usuarioService.getUserTypeByToken(token);
+        UserTipeDTO userType = usuarioService.getUserTypeByToken(token);
+        if(userType.tipo().isEmpty()){
+            throw new RuntimeException("Token inválida, faça login novamente");
+        }
         return ResponseEntity.ok(userType);
     }
 
