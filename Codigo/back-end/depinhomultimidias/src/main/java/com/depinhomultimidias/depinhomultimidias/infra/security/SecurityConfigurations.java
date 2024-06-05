@@ -59,7 +59,7 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.PUT, "/pedido/{id}").permitAll()
 
                     .requestMatchers(HttpMethod.POST, "/item-pedido").permitAll()
-                    .requestMatchers(HttpMethod.PUT, "/item-pedido").permitAll()
+                    .requestMatchers(HttpMethod.PUT, "/item-pedido/{id}").permitAll()
 
 
                     .anyRequest().authenticated()

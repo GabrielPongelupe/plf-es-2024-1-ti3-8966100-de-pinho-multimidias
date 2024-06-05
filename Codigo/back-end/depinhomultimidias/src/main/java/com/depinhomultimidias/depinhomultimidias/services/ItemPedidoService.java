@@ -34,6 +34,7 @@ public class ItemPedidoService {
         newItemPedido.setProduto(itemPedido.getProduto());
         newItemPedido.setQuantidade(itemPedido.getQuantidade());
         newItemPedido.setPreco(itemPedido.getPreco());
+        newItemPedido.setRastramento(itemPedido.getRastramento());
         return itemPedidoRepository.save(newItemPedido);
     }
     @Transactional

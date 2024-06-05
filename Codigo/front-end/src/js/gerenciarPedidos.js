@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <li>
                     Código de rastreio:
                     <span class="codigoRastreio fw-bold">${item.rastramento}</span>
-                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-codigo="${item.rastramento}"></i>
+                    <i class="bi bi-pencil-square edit-rastreio-btn" data-item-id="${item.id}" data-pedido-id="${pedido.id}" data-pedido-preco="${item.produto.preco} data-codigo="${item.rastramento}"></i>
                   </li>
                   <li">Quantidade: ${item.quantidade}</li>
                   <li class="fw-bold">R$${item.produto.preco.toFixed(2)}</li>
@@ -111,23 +111,26 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".edit-rastreio-btn").forEach((btn) => {
       btn.addEventListener("click", (event) => {
         const itemId = btn.getAttribute("data-item-id");
+        const pedidoId = btn.getAttribute("data-pedido-id");
+        const pedidoPreco = btn.getAttribute("data-pedido-preco");
         const codigo = btn.getAttribute("data-codigo");
-        document.getElementById("rastreio-editar").value = codigo;
+        document.getElementById("rastreio-editar").textContent = codigo;
         modalEditarRastreio.showModal();
 
         concluirEdicaoRastreio.onclick = async () => {
-          const novoCodigo = document.getElementById("rastreio-editar").value;
+          const novoCodigo = document.getElementById("rastreio-editar").textContent;
           try {
             const response = await axios.put(`http://127.0.0.1:8080/item-pedido/${itemId}`, {
-              codigoRastreio: novoCodigo
+              rastramento: novoCodigo // Incluindo o novo valor do rastramento no corpo da requisição
             });
-              alert("Código de rastreio atualizado com sucesso!");
-              modalEditarRastreio.close();
-              window.location.reload();
+            alert("Código de rastreio atualizado com sucesso!");
+            modalEditarRastreio.close();
+            //window.location.reload();
           } catch (error) {
             console.error('Erro ao atualizar código de rastreio:', error);
           }
         };
+        
       });
     });
 
