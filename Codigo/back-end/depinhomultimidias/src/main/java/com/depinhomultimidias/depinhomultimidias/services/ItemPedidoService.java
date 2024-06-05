@@ -31,10 +31,18 @@ public class ItemPedidoService {
     @Transactional
     public ItemPedido update(@NonNull ItemPedido itemPedido) {
         ItemPedido newItemPedido = findById(itemPedido.getId());
-        newItemPedido.setProduto(itemPedido.getProduto());
-        newItemPedido.setQuantidade(itemPedido.getQuantidade());
-        newItemPedido.setPreco(itemPedido.getPreco());
-        newItemPedido.setRastramento(itemPedido.getRastramento());
+        if(itemPedido.getProduto() != null)
+            newItemPedido.setProduto(itemPedido.getProduto());
+
+        if(itemPedido.getQuantidade() !=null)
+            newItemPedido.setQuantidade(itemPedido.getQuantidade());
+
+        if(itemPedido.getPreco() != null)
+            newItemPedido.setPreco(itemPedido.getPreco());
+
+        if(itemPedido.getRastramento() != null)
+            newItemPedido.setRastramento(itemPedido.getRastramento());
+
         return itemPedidoRepository.save(newItemPedido);
     }
     @Transactional
