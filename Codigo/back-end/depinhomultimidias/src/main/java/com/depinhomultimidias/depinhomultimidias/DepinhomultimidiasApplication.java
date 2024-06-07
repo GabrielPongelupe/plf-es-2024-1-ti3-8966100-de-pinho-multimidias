@@ -10,8 +10,7 @@ public class DepinhomultimidiasApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(DepinhomultimidiasApplication.class, args);
-		MercadoPagoConfig.setAccessToken(System.getenv("MP_ACCESS_TOKEN"));
-		
+		MercadoPagoConfig.setAccessToken("TEST-1675758345647559-060622-5c0f98d6718d9cfd53d671531e847362-294124782"); // Acess Token
 	}
 
 }
