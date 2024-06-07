@@ -96,54 +96,44 @@ public class PagamentoController {
     }
 
     @PostMapping("/create")
-    
-    public ResponseEntity<String>  create(PreferenceItem preferenceItem) throws MPException {
+    public ResponseEntity<String> create(@RequestBody PreferenceItem preferenceItem) throws MPException {
         if (preferenceItem == null) {
-            throw new  ObjectNotFoundException("user not found");
+            throw new ObjectNotFoundException("Item não encontrado");
         }
-        try{
-
-        
-
-        PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-            .success("http://localhost:8080/pagamento/general")
-            .failure("http://localhost:8080/pagamento/general")
-            .pending("http://localhost:8080/pagamento/general")
-            .build();
-
-
-                
-        PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
-            .title(preferenceItem.getName())
-            .quantity(preferenceItem.getQuantity())
-            .unitPrice(new BigDecimal(preferenceItem.getPrice()))
-            .currencyId("BRL")
-            .build();
-
-        
-        List<PreferenceItemRequest> items = new ArrayList<>();
-        items.add(itemRequest);
-
-
-        PreferenceRequest preferenceRequest = PreferenceRequest.builder()
-            .backUrls(backUrls)
-            .items(items)
-            .build();
-
-
+        try {
+            PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
+                .success("http://localhost:8080/pagamento/general")
+                .failure("http://localhost:8080/pagamento/general")
+                .pending("http://localhost:8080/pagamento/general")
+                .build();
+    
+            PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
+                .title(preferenceItem.getName())
+                .quantity(preferenceItem.getQuantity())
+                .unitPrice(new BigDecimal(preferenceItem.getPrice()))
+                .currencyId("BRL")
+                .build();
+    
+            List<PreferenceItemRequest> items = new ArrayList<>();
+            items.add(itemRequest);
+    
+            PreferenceRequest preferenceRequest = PreferenceRequest.builder()
+                .backUrls(backUrls)
+                .items(items)
+                .build();
+    
+            PreferenceClient client = new PreferenceClient();
+            Preference preference = client.create(preferenceRequest);
             
-        PreferenceClient client = new PreferenceClient();
-        Preference preference = client.create(preferenceRequest);
-        if (StringUtils.isEmpty(preference.getId())) {
-            throw new ObjectNotFoundException("Preference not created. Check if Access Token is valid\"");
-            
+            if (StringUtils.isEmpty(preference.getId())) {
+                throw new ObjectNotFoundException("Preferência não criada. Verifique se o Token de Acesso é válido");
+            }
+    
+            // Retorne a URL de aprovação
+            return ResponseEntity.ok(gson.toJson(preference.getInitPoint()));
+        } catch (MPException | MPApiException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok(gson.toJson(preference));
-    } catch (MPException | MPApiException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
     }
-
-   
-
-}
+    
 }
