@@ -25,8 +25,6 @@ import com.depinhomultimidias.depinhomultimidias.models.Pagamento;
 import com.depinhomultimidias.depinhomultimidias.models.DTOs.PreferenceItem;
 import com.depinhomultimidias.depinhomultimidias.services.PagamentoService;
 import com.depinhomultimidias.depinhomultimidias.services.exceptions.ObjectNotFoundException;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.mercadopago.client.preference.PreferenceBackUrlsRequest;
 import com.mercadopago.client.preference.PreferenceClient;
 import com.mercadopago.client.preference.PreferenceItemRequest;
@@ -35,7 +33,6 @@ import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
 
-
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -43,7 +40,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/pagamento")
 @Validated
 public class PagamentoController {
- private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+ 
     @Autowired
     public PagamentoService pagamentoService;
 
@@ -53,7 +50,7 @@ public class PagamentoController {
         
     }
     @PostMapping
-    public ResponseEntity<Pagamento> create( @RequestBody Pagamento pagamento) {
+    public ResponseEntity<Pagamento> create(@RequestBody Pagamento pagamento) {
         this.pagamentoService.create(pagamento);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pagamento.getId()).toUri();
         return ResponseEntity.created(uri).build();
@@ -96,44 +93,49 @@ public class PagamentoController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<String> create(@RequestBody PreferenceItem preferenceItem) throws MPException {
+    
+   public ResponseEntity<String> create(@RequestBody PreferenceItem preferenceItem) throws MPException {
         if (preferenceItem == null) {
             throw new ObjectNotFoundException("Item não encontrado");
         }
         try {
+
             PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
                 .success("http://localhost:8080/pagamento/general")
                 .failure("http://localhost:8080/pagamento/general")
                 .pending("http://localhost:8080/pagamento/general")
-                .build();
-    
+                .build();       
+
             PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
-                .title(preferenceItem.getName())
+                .title(preferenceItem.getTitle())
                 .quantity(preferenceItem.getQuantity())
-                .unitPrice(new BigDecimal(preferenceItem.getPrice()))
+                .unitPrice(BigDecimal.valueOf(preferenceItem.getUnitPrice()))
                 .currencyId("BRL")
                 .build();
-    
+
             List<PreferenceItemRequest> items = new ArrayList<>();
             items.add(itemRequest);
-    
+
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
                 .backUrls(backUrls)
                 .items(items)
                 .build();
-    
+
             PreferenceClient client = new PreferenceClient();
             Preference preference = client.create(preferenceRequest);
-            
+
             if (StringUtils.isEmpty(preference.getId())) {
                 throw new ObjectNotFoundException("Preferência não criada. Verifique se o Token de Acesso é válido");
             }
-    
-            // Retorne a URL de aprovação
-            return ResponseEntity.ok(gson.toJson(preference.getInitPoint()));
+
+            // Retorne o ID da preferência
+            System.out.println("Preferência criada com sucesso, ID: " + preference.getId());
+            //return ResponseEntity.ok(preference.getId());
+            return ResponseEntity.ok(preference.getSandboxInitPoint());
+
         } catch (MPException | MPApiException e) {
+            System.err.println("Erro ao criar preferência: " + e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    
 }

@@ -1,4 +1,3 @@
-
 package com.depinhomultimidias.depinhomultimidias.models.DTOs;
 
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PreferenceItem implements Serializable {
-    private String name;
+    private String title;
     private Integer quantity;
-    private Float price;
+    private Float unitPrice;
 }

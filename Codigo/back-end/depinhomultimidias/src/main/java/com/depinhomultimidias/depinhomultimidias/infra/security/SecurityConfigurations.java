@@ -62,6 +62,8 @@ public class SecurityConfigurations {
                     .requestMatchers(HttpMethod.PUT, "/item-pedido/{id}").permitAll()
 
 
+                    .requestMatchers(HttpMethod.POST, "/pagamento/create").permitAll()
+
                     .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
