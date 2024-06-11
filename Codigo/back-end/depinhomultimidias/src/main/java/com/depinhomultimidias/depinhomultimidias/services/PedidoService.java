@@ -8,10 +8,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.depinhomultimidias.depinhomultimidias.models.DadosPedido;
 import com.depinhomultimidias.depinhomultimidias.models.ItemPedido;
 import com.depinhomultimidias.depinhomultimidias.models.Pedido;
 import com.depinhomultimidias.depinhomultimidias.models.Produto;
 import com.depinhomultimidias.depinhomultimidias.models.Usuario;
+import com.depinhomultimidias.depinhomultimidias.repositories.DadosPedidoRepository;
 import com.depinhomultimidias.depinhomultimidias.repositories.PedidoRepository;
 import com.depinhomultimidias.depinhomultimidias.repositories.ProdutoRepository;
 import com.depinhomultimidias.depinhomultimidias.repositories.UsuarioRepository;
@@ -24,6 +26,9 @@ import lombok.NonNull;
 public class PedidoService {
     @Autowired
     public PedidoRepository pedidoRepository;
+
+    @Autowired
+    public DadosPedidoRepository dadosPedidoRepository;
 
 
     public Pedido findById(@NonNull Long id) {
@@ -48,7 +53,9 @@ public class PedidoService {
             newPedido.setPagamentos(pedido.getPagamentos());
         }
         if(pedido.getDadosPedido() != null) {
-            newPedido.setDadosPedido(pedido.getDadosPedido());
+            DadosPedido dadosPedido = dadosPedidoRepository.findById(pedido.getDadosPedido().getId())
+                    .orElseThrow(() -> new ObjectNotFoundException("DadosPedido não encontrado"));
+            newPedido.setDadosPedido(dadosPedido);
         }
         newPedido.setStatus(pedido.getStatus());
         return pedidoRepository.save(newPedido);
