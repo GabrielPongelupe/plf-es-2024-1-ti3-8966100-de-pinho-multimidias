@@ -54,10 +54,7 @@ public class DadosPedidoService {
         }
         if(dadosPedido.getCep() != null){
             newDadosPedido.setCep(dadosPedido.getCep());
-        }/*
-        if(dadosPedido.getFormaPagamento()!= null){
-            newDadosPedido.setFormaPagamento(dadosPedido.getFormaPagamento());
-        } */
+        }
         if (dadosPedido.getPedido() != null) {
             newDadosPedido.setPedido(dadosPedido.getPedido());
         }
