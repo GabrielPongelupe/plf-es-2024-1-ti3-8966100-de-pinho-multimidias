@@ -1,6 +1,5 @@
 package com.depinhomultimidias.depinhomultimidias.models;
 
-import com.depinhomultimidias.depinhomultimidias.enums.TipoPagamento;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -10,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -70,8 +68,6 @@ public class DadosPedido {
     @NotNull(message = "O Campo é obrigatório")
     private String telefone;
 
-    @Column(name = "forma_pagamento", nullable = true)
-    private TipoPagamento formaPagamento = TipoPagamento.PIX;
     @Column(name = "cpf", nullable = false)
     private String cpf;
 
