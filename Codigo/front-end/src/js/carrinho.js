@@ -88,84 +88,84 @@ document.addEventListener('DOMContentLoaded', function () {
         exibirCarrinho();
     }
 
-    async function criarPedido() {
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Bearer ${token}`);
+    // async function criarPedido() {
+    //     const myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //     myHeaders.append("Authorization", `Bearer ${token}`);
 
-        const pedidoRaw = JSON.stringify({
-            "momento": new Date().toISOString(),
-            "status": 1,
-            "itens": [],
-            "usuario": {
-                "id": userId
-            },
-            "pagamentos": []
-        });
+    //     const pedidoRaw = JSON.stringify({
+    //         "momento": new Date().toISOString(),
+    //         "status": 1,
+    //         "itens": [],
+    //         "usuario": {
+    //             "id": userId
+    //         },
+    //         "pagamentos": []
+    //     });
 
-        const pedidoOptions = {
-            method: "POST",
-            headers: myHeaders,
-            body: pedidoRaw,
-            redirect: "follow"
-        };
+    //     const pedidoOptions = {
+    //         method: "POST",
+    //         headers: myHeaders,
+    //         body: pedidoRaw,
+    //         redirect: "follow"
+    //     };
 
-        const response = await fetch("http://127.0.0.1:8080/pedido", pedidoOptions);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const text = await response.text();
-        try {
-            return JSON.parse(text);
-        } catch (error) {
-            throw new Error('Failed to parse JSON: ' + text);
-        }
-    }
+    //     const response = await fetch("http://127.0.0.1:8080/pedido", pedidoOptions);
+    //     if (!response.ok) {
+    //         throw new Error('Network response was not ok');
+    //     }
+    //     const text = await response.text();
+    //     try {
+    //         return JSON.parse(text);
+    //     } catch (error) {
+    //         throw new Error('Failed to parse JSON: ' + text);
+    //     }
+    // }
 
-    function criarItemPedido(pedidoId) {
-        console.log('pedidoId:', pedidoId)
-        const myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        myHeaders.append("Authorization", `Bearer ${token}`);
+    // function criarItemPedido(pedidoId) {
+    //     console.log('pedidoId:', pedidoId)
+    //     const myHeaders = new Headers();
+    //     myHeaders.append("Content-Type", "application/json");
+    //     myHeaders.append("Authorization", `Bearer ${token}`);
 
 
-        const itemPromises = carrinho.map(produto => {
-            const itemRaw = JSON.stringify({
-                "pedido": {
-                    "id": `${pedidoId}`
-                },
-                "produto": {
-                    "codigoProduto": produto.codigoProduto
-                },
-                "quantidade": produto.quantidade,
-                "preco": produto.preco
-            });
+    //     const itemPromises = carrinho.map(produto => {
+    //         const itemRaw = JSON.stringify({
+    //             "pedido": {
+    //                 "id": `${pedidoId}`
+    //             },
+    //             "produto": {
+    //                 "codigoProduto": produto.codigoProduto
+    //             },
+    //             "quantidade": produto.quantidade,
+    //             "preco": produto.preco
+    //         });
 
-            const itemOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: itemRaw,
-                redirect: "follow"
-            };
+    //         const itemOptions = {
+    //             method: "POST",
+    //             headers: myHeaders,
+    //             body: itemRaw,
+    //             redirect: "follow"
+    //         };
 
-            return fetch("http://127.0.0.1:8080/item-pedido", itemOptions)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(text => {
-                    try {
-                        return JSON.parse(text);
-                    } catch (error) {
-                        throw new Error('Failed to parse JSON: ' + text);
-                    }
-                });
-        });
+    //         return fetch("http://127.0.0.1:8080/item-pedido", itemOptions)
+    //             .then(response => {
+    //                 if (!response.ok) {
+    //                     throw new Error('Network response was not ok');
+    //                 }
+    //                 return response.text();
+    //             })
+    //             .then(text => {
+    //                 try {
+    //                     return JSON.parse(text);
+    //                 } catch (error) {
+    //                     throw new Error('Failed to parse JSON: ' + text);
+    //                 }
+    //             });
+    //     });
 
-        return Promise.all(itemPromises);
-    }
+    //     return Promise.all(itemPromises);
+    // }
 
     function finalizarCompra() {
         if (!token) {
@@ -174,20 +174,30 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        criarPedido()
-            .then(pedidoData => {
-                console.log('Pedido criado:', pedidoData.id);
-                return criarItemPedido(pedidoData.id);
-            })
-            .then(itemData => {
-                console.log('Itens do pedido criados:', itemData);
-                alert('Pedido gerado com sucesso!');
-                window.location.href = 'insercaoDadosCompra.html';
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
-                alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
-            });
+        if (carrinho.length === 0) {
+            alert('Seu carrinho está vazio!');
+            return;
+        }
+
+
+        alert('Pedido gerado com sucesso!')
+        window.location.href = 'insercaoDadosCompra.html';
+
+
+        // criarPedido()
+        //     .then(pedidoData => {
+        //         console.log('Pedido criado:', pedidoData.id);
+        //         return criarItemPedido(pedidoData.id);
+        //     })
+        //     .then(itemData => {
+        //         console.log('Itens do pedido criados:', itemData);
+        //         alert('Pedido gerado com sucesso!');
+        //         window.location.href = 'insercaoDadosCompra.html';
+        //     })
+        //     .catch(error => {
+        //         console.error('There was a problem with the fetch operation:', error);
+        //         alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
+        //     });
     }
 
     // Evento de finalizar compra
