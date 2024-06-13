@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var cep = document.getElementById('cep').value;
         var telefone = document.getElementById('telefone').value;
 
-        var urlCadastroDadosCompra = "http://127.0.0.1:8080/dados-pedido";
         var urlPedido = "http://127.0.0.1:8080/pedido";
         var urlItemPedido = "http://127.0.0.1:8080/item-pedido";
         var token = localStorage.getItem("token");
@@ -35,13 +34,28 @@ document.addEventListener('DOMContentLoaded', function () {
             myHeaders.append("Authorization", `Bearer ${token}`);
 
             const pedidoRaw = JSON.stringify({
-                "momento": new Date().toISOString(),
-                "status": 1,
-                "itens": [],
-                "usuario": {
-                    "id": userId
+                "status": 0,
+                "usuarioId": userId,
+                "dadosPedido": {
+                    "primeiroNome": primeiroNome,
+                    "ultimoNome": ultimoNome,
+                    "email": email,
+                    "estado": estado,
+                    "cidade": cidade,
+                    "bairro": bairro,
+                    "rua": rua,
+                    "numero": numero,
+                    "complemento": complemento,
+                    "cep": cep,
+                    "telefone": telefone,
+                    "cpf": cpf
                 },
-                "pagamentos": []
+                "itens": carrinho.map(produto => ({
+                    "produtoId": produto.codigoProduto,
+                    "quantidade": produto.quantidade,
+                    "preco": produto.preco,
+                    "rastramento": "" 
+                }))
             });
 
             const pedidoOptions = {
@@ -65,112 +79,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
-        async function criarItemPedido(pedidoId) {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", `Bearer ${token}`);
-
-            const itemPromises = carrinho.map(produto => {
-                const itemRaw = JSON.stringify({
-                    "pedido": {
-                        "id": pedidoId
-                    },
-                    "produto": {
-                        "codigoProduto": produto.codigoProduto
-                    },
-                    "quantidade": produto.quantidade,
-                    "preco": produto.preco
-                });
-
-                const itemOptions = {
-                    method: "POST",
-                    headers: myHeaders,
-                    body: itemRaw,
-                    redirect: "follow"
-                };
-
-                return fetch(urlItemPedido, itemOptions)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.json();
-                    })
-                    .then(itemData => {
-                        console.log('Item do pedido criado:', itemData);
-                        return itemData;
-                    })
-                    .catch(error => {
-                        console.error('Error creating order item:', error);
-                        throw error;
-                    });
-            });
-
-            return Promise.all(itemPromises);
-        }
-
-        async function cadastrarDadosCompra(pedidoId) {
-            console.log('Pedido ID:', pedidoId)
-
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", `Bearer ${token}`);
-
-            const raw = JSON.stringify({
-                "primeiroNome": primeiroNome,
-                "ultimoNome": ultimoNome,
-                "email": email,
-                "cpf": cpf,
-                "rua": rua,
-                "bairro": bairro,
-                "numero": numero,
-                "complemento": complemento,
-                "estado": estado,
-                "cidade": cidade,
-                "cep": cep,
-                "telefone": telefone,
-                "pedido": {
-                    "id": pedidoId  
-                }
-            });
-
-            const requestOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: raw,
-                redirect: "follow"
-            };
-
-            try {
-                const response = await fetch(urlCadastroDadosCompra, requestOptions);
-                if (!response.ok) {
-                    throw new Error('Error registering purchase data');
-                }
-                const result = await response.json();
-                console.log('Purchase data registered:', result);
-            } catch (error) {
-                console.error('Error registering purchase data:', error);
-                throw error;
-            }
-        }
-
-        // Fluxo principal
         criarPedido()
             .then(pedidoData => {
-                console.log('Pedido criado:', pedidoData.id);
-                return Promise.all([
-                    cadastrarDadosCompra(pedidoData.id),  
-                    criarItemPedido(pedidoData.id)         
-                ]);
-            })
-            .then(() => {
-                console.log('Pedido finalizado com sucesso!');
-                alert('Pedido finalizado com sucesso!');
-                
+                console.log('Pedido criado com dados de compra:', pedidoData.id);
+                alert('Pedido criado com sucesso!');
             })
             .catch(error => {
-                console.error('Ocorreu um erro ao finalizar o pedido:', error);
-                alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
+                console.error('Ocorreu um erro ao criar o pedido:', error);
+                alert('Ocorreu um erro ao criar o pedido. Por favor, tente novamente.');
             });
     });
 });
