@@ -1,3 +1,5 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 const container = document.getElementById('add-Pedido');
 const userId = localStorage.getItem('userId');
 const urlUsuario = `http://127.0.0.1:8080/usuario/${userId}`;
@@ -74,7 +76,7 @@ async function getPedidos() {
               <div class="d-flex flex-row align-items-center py-4 dados-pessoais">
                 <ul class="p-0 me-5">
                   <li class="tituloLista">Contato</li>
-                  <li id="nome">${pedido.dadosPedido.primeiroNome}</li>
+                  <li id="nome">${pedido.dadosPedido.primeiroNome} ${pedido.dadosPedido.ultimoNome}</li>
                   <li id="cpf">${pedido.dadosPedido.cpf}</li>
                   <li id="telefone">${pedido.dadosPedido.telefone}</li>
                   <li id="email">${pedido.dadosPedido.email}</li>
@@ -105,7 +107,7 @@ async function getPedidos() {
     }
   }
 
-  function addEventListeners() {
+  async function addEventListeners() {
     const copyIcons = document.querySelectorAll('.bi-copy');
     
     copyIcons.forEach(icon => {
@@ -129,4 +131,6 @@ async function getPedidos() {
     return `${diaFormatado}/${mesFormatado}/${anoFormatado}`;
   }
   
-getPedidos();
+
+  getPedidos();
+});

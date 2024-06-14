@@ -180,7 +180,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        alert('Pedido gerado com sucesso!')
         window.location.href = 'insercaoDadosCompra.html';
 
 
