@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var telefone = document.getElementById('telefone').value;
 
         var urlPedido = "http://127.0.0.1:8080/pedido";
-        var urlItemPedido = "http://127.0.0.1:8080/item-pedido";
+        var urlPagamento = "http://localhost:8080/pagamento/create";
         var token = localStorage.getItem("token");
 
         async function criarPedido() {
@@ -51,10 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     "cpf": cpf
                 },
                 "itens": carrinho.map(produto => ({
-                    "produtoId": produto.codigoProduto,
+                    "produto": produto,
                     "quantidade": produto.quantidade,
                     "preco": produto.preco,
-                    "rastramento": "" 
+                    "rastramento": "" // Preencher conforme necessário
                 }))
             });
 
@@ -71,7 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     throw new Error('Network response was not ok');
                 }
                 const pedidoData = await response.json();
-                console.log('Pedido criado:', pedidoData.id);
+                //console.log('Pedido criado:', pedidoData.id);
+                //console.log("Pedido data: ", pedidoData);
                 return pedidoData;  
             } catch (error) {
                 console.error('Error creating order:', error);
@@ -79,14 +80,56 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
 
+        async function criarPreferenciaPagamento(pedidoData) {
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+            console.log("Pedido data dentro: ", pedidoData);
+
+            const itensPagamento = pedidoData.itens.map(item => ({
+                "title": `Produto ${item.produto.nome}`, // Adicionar título apropriado
+                "quantity": item.quantidade,
+                "unitPrice": item.preco,
+                "pictureUrl": "" // Adicionar URL da imagem, se necessário
+            }));
+
+            const pagamentoRaw = JSON.stringify(itensPagamento);
+
+            const pagamentoOptions = {
+                method: "POST",
+                headers: myHeaders,
+                body: pagamentoRaw,
+                redirect: "follow"
+            };
+
+            try {
+                const response = await fetch(urlPagamento, pagamentoOptions);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const sandboxInitPoint = await response.text();
+                if (sandboxInitPoint) {
+                    //console.log(sandboxInitPoint);
+                    window.location.href = sandboxInitPoint; // Redireciona o navegador para a URL do sandbox
+                } else {
+                    console.error("Erro ao criar a preferência de pagamento");
+                }
+            } catch (error) {
+                console.error('Erro ao criar a preferência de pagamento:', error);
+                throw error;
+            }
+        }
+
         criarPedido()
             .then(pedidoData => {
-                console.log('Pedido criado com dados de compra:', pedidoData.id);
-                alert('Pedido criado com sucesso!');
+                console.log('Pedido criado:', pedidoData.id);
+                return criarPreferenciaPagamento(pedidoData);         
+            })
+            .then(() => {
+                console.log('Preferência de pagamento criada com sucesso!');
             })
             .catch(error => {
-                console.error('Ocorreu um erro ao criar o pedido:', error);
-                alert('Ocorreu um erro ao criar o pedido. Por favor, tente novamente.');
+                console.error('Ocorreu um erro ao finalizar o pedido:', error);
+                alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
             });
     });
 });

@@ -93,49 +93,49 @@ public class PagamentoController {
     }
 
     @PostMapping("/create")
-    
-   public ResponseEntity<String> create(@RequestBody PreferenceItem preferenceItem) throws MPException {
-        if (preferenceItem == null) {
-            throw new ObjectNotFoundException("Item não encontrado");
+    public ResponseEntity<String> create(@RequestBody List<PreferenceItem> preferenceItems) throws MPException {
+        if (preferenceItems == null || preferenceItems.isEmpty()) {
+            throw new ObjectNotFoundException("Itens não encontrados");
         }
         try {
-
+    
             PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                .success("http://localhost:8080/pagamento/general")
-                .failure("http://localhost:8080/pagamento/general")
-                .pending("http://localhost:8080/pagamento/general")
+                .pending("http://127.0.0.1:8081/front-end/src/perfil.html")
+                .success("http://127.0.0.1:8081/front-end/src/perfil.html")
+                .failure("http://127.0.0.1:8081/front-end/src/perfil.html")
                 .build();       
-
-            PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
-                .title(preferenceItem.getTitle())
-                .quantity(preferenceItem.getQuantity())
-                .unitPrice(BigDecimal.valueOf(preferenceItem.getUnitPrice()))
-                .currencyId("BRL")
-                .build();
-
+    
             List<PreferenceItemRequest> items = new ArrayList<>();
-            items.add(itemRequest);
-
+            for (PreferenceItem preferenceItem : preferenceItems) {
+                PreferenceItemRequest itemRequest = PreferenceItemRequest.builder()
+                    .title(preferenceItem.getTitle())
+                    .pictureUrl(preferenceItem.getPictureUrl())
+                    .quantity(preferenceItem.getQuantity())
+                    .unitPrice(BigDecimal.valueOf(preferenceItem.getUnitPrice()))
+                    .currencyId("BRL")
+                    .build();
+                items.add(itemRequest);
+            }
+    
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
                 .backUrls(backUrls)
                 .items(items)
                 .build();
-
+    
             PreferenceClient client = new PreferenceClient();
             Preference preference = client.create(preferenceRequest);
-
+    
             if (StringUtils.isEmpty(preference.getId())) {
                 throw new ObjectNotFoundException("Preferência não criada. Verifique se o Token de Acesso é válido");
             }
-
-            // Retorne o ID da preferência
+    
             System.out.println("Preferência criada com sucesso, ID: " + preference.getId());
-            //return ResponseEntity.ok(preference.getId());
             return ResponseEntity.ok(preference.getSandboxInitPoint());
-
+    
         } catch (MPException | MPApiException e) {
             System.err.println("Erro ao criar preferência: " + e.getMessage());
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    
 }
