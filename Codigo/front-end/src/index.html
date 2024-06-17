@@ -30,34 +30,34 @@
 <body>
   <header-component></header-component>
 
-  <div class="bg-primary text-white py-5">
-    <div class="container py-5">
+  <div class="bg-primary text-white d-flex" id="main-container">
+    <div class="container">
       <h1 class="text-center">
-        Encontre a multimídia<br />
-        Certa para seu veículo
+        Encontre a <span style="font-weight: 600;">multimídia <br />
+        correta</span> para o seu veículo!
       </h1>
     </div>
   </div>
 
-  <div class="container mt-5">
+  <div class="container">
     <div class="row justify-content-center"> <!-- Centraliza o conteúdo -->
-      <div class="col-md-12"> <!-- Aumenta a largura do card para 8 colunas -->
+      <div class="col-md-10"> <!-- Aumenta a largura do card para 8 colunas -->
         <div class="card card-body p-5">
           <form id="filtroCarros" class="row">
             <!-- Marca do carro -->
             <div class="form-group col-md-4">
               <label for="marcaCarro">Marca do carro<span style="color: red;">*</span></label>
-              <input type="text" id="marcaCarro" class="form-control" required>
+              <input type="text" id="marcaCarro" class="form-control" placeholder="Toyota" required>
             </div>
             <!-- Modelo do carro -->
             <div class="form-group col-md-4">
               <label for="modeloCarro">Modelo do carro<span style="color: red;">*</span></label>
-              <input type="text" id="modeloCarro" class="form-control" required>
+              <input type="text" id="modeloCarro" class="form-control"  placeholder="Corolla" required>
             </div>
             <!-- Ano do modelo -->
             <div class="form-group col-md-4">
               <label for="anoModelo">Ano do modelo<span style="color: red;">*</span></label>
-              <input type="number" id="anoModelo" class="form-control" required>
+              <input type="number" id="anoModelo" class="form-control"  placeholder="2020" required>
             </div>
 
             <div class="row">
@@ -80,7 +80,9 @@
 
             <!-- Botão de pesquisa -->
             <div class="col-md-12 d-flex justify-content-center"> <!-- Centraliza o botão -->
-              <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">Pesquisar</button>
+              <button type="submit" id="botao-pesquisar-filtro" class="btn btn-primary">              <i class="bi bi-search"></i>
+                Pesquisar
+              </button>
             </div>
           </form>
         </div>
@@ -98,126 +100,72 @@
   <!-- Products -->
   <section>
     <div class="container my-5">
-      <div class="row" id="tela-produtos"></div>
+      <div class="row d-flex justify-content-center" id="tela-produtos"></div>
   </section>
   <!-- Products -->
 
-  <!-- Feature -->
-  <section class="mt-5" style="background-color: #f5f5f5;">
-    <div class="container text-dark pt-3">
-      <header class="pt-4 pb-3">
-        <h3>Porque escolher a gente</h3>
+  <!-- Vídeo YouTube -->
+  <section class="mb-5">
+    <div class="container text-dark">
+      <header class="mb-4">
+        <h2 class="text-center">Conheça nosso canal do YouTube!</h2>
       </header>
 
-      <div class="row mb-4">
-        <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-camera-retro fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Reasonable prices</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-          <!-- itemside // -->
+      <div class="row">
+        <div class="box-video">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/M9fcugW0lLc?si=3P9QWt9jwMfA0U_D"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
         </div>
-        <!-- col // -->
-        <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-star fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Best quality</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-          <!-- itemside // -->
-        </div>
-        <!-- col // -->
-        <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-plane fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Worldwide shipping</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-          <!-- itemside // -->
-        </div>
-        <!-- col // -->
-        <!-- <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-users fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Customer satisfaction</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-        </div> -->
-        <!-- col // -->
-        <!-- <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Happy customers</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-        </div> -->
-        <!-- col // -->
-        <!-- <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Thousand items</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-        </div> -->
-        <!-- col // -->
-        <!-- <div class="col-lg-4 col-md-6">
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-thumbs-up fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Happy customers</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-        </div> -->
-        <!-- col // -->
-        <!-- <div class="col-lg-4 col-md-6">
 
-          <figure class="d-flex align-items-center mb-4">
-            <span class="rounded-circle bg-white p-3 d-flex me-2 mb-2">
-              <i class="fas fa-box fa-2x fa-fw text-primary floating"></i>
-            </span>
-            <figcaption class="info">
-              <h6 class="title">Thousand items</h6>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmor</p>
-            </figcaption>
-          </figure>
-        </div> -->
-        <!-- col // -->
+        <div class="box-video">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/AIZH9gpwKjQ?si=CQ8XUUIiIECXvDBF"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="box-video">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/xobEHl9QRso?si=Kvnk98bG13TIZ-Jt"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="box-video">
+          <div class="video-container">
+            <iframe
+              src="https://www.youtube.com/embed/pSdoQ-Va5Eo?si=h1rpWTF2PMDCBfNv"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope;"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
       </div>
+      <a href="hhttps://www.youtube.com/@gabrieldepinho" class="d-flex justify-content-center pt-4" target="_blank" rel="noopener noreferrer">
+        <button class="btn" id="btn-yt">
+          <i class="bi bi-arrow-up-right-circle"></i>
+          Conhecer canal
+        </button>
+      </a>
+
+
     </div>
-    <!-- container end.// -->
   </section>
-  <!-- Feature -->
+  <!-- Vídeos YouTube -->
 
   <!-- FAQ -->
-
   <section class="mt-5 mb-4">
 
     <div class="container text-dark">
@@ -239,93 +187,7 @@
     </div>
 
   </section>
-  <!-- Blog -->
-  <section class="mt-5 mb-4">
-    <div class="container text-dark">
-      <header class="mb-4">
-        <h3>Blog posts</h3>
-      </header>
-
-      <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <article>
-            <a href="#" class="img-fluid">
-              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/1.webp"
-                style="object-fit: cover;" height="160" />
-            </a>
-            <div class="mt-2 text-muted small d-block mb-1">
-              <span>
-                <i class="fa fa-calendar-alt fa-sm"></i>
-                23.12.2022
-              </span>
-              <a href="#">
-                <h6 class="text-dark">How to promote brands</h6>
-              </a>
-              <p>When you enter into any new area of science, you almost reach</p>
-            </div>
-          </article>
-        </div>
-        <!-- col.// -->
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <article>
-            <a href="#" class="img-fluid">
-              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/2.webp"
-                style="object-fit: cover;" height="160" />
-            </a>
-            <div class="mt-2 text-muted small d-block mb-1">
-              <span>
-                <i class="fa fa-calendar-alt fa-sm"></i>
-                13.12.2022
-              </span>
-              <a href="#">
-                <h6 class="text-dark">How we handle shipping</h6>
-              </a>
-              <p>When you enter into any new area of science, you almost reach</p>
-            </div>
-          </article>
-        </div>
-        <!-- col.// -->
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <article>
-            <a href="#" class="img-fluid">
-              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/3.webp"
-                style="object-fit: cover;" height="160" />
-            </a>
-            <div class="mt-2 text-muted small d-block mb-1">
-              <span>
-                <i class="fa fa-calendar-alt fa-sm"></i>
-                25.11.2022
-              </span>
-              <a href="#">
-                <h6 class="text-dark">How to promote brands</h6>
-              </a>
-              <p>When you enter into any new area of science, you almost reach</p>
-            </div>
-          </article>
-        </div>
-        <!-- col.// -->
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-          <article>
-            <a href="#" class="img-fluid">
-              <img class="rounded w-100" src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/posts/4.webp"
-                style="object-fit: cover;" height="160" />
-            </a>
-            <div class="mt-2 text-muted small d-block mb-1">
-              <span>
-                <i class="fa fa-calendar-alt fa-sm"></i>
-                03.09.2022
-              </span>
-              <a href="#">
-                <h6 class="text-dark">Success story of sellers</h6>
-              </a>
-              <p>When you enter into any new area of science, you almost reach</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Blog -->
+  <!-- FAQ -->
 
   <!-- Footer -->
   <footer class="text-center text-lg-start text-muted mt-3" style="background-color: #f5f5f5;">
@@ -337,11 +199,11 @@
           <!-- Grid column -->
           <div class="col-12 col-lg-3 col-sm-12 mb-2">
             <!-- Content -->
-            <a href="https://mdbootstrap.com/" class="">
-              <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="35" />
+            <a href="./index.html" class="">
+              <img src="./images/LOGO-DEPINHO.png" height="35" />
             </a>
             <p class="mt-2 text-dark">
-              © 2024 Copyright: DePinho Multimídias
+              © 2024 Copyright
             </p>
           </div>
           <!-- Grid column -->
