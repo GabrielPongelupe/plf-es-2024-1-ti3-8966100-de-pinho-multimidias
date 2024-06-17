@@ -28,7 +28,7 @@ public class ProdutoSpecification {
 
     private static Specification<Produto> marcaLike(String marca) {
         return (root, query, builder) -> marca == null ? null
-                : builder.like(builder.lower(root.get("descricao")), "%" + marca.toLowerCase() + "%");
+                : builder.like(builder.lower(root.get("nome")), "%" + marca.toLowerCase() + "%");
     }
 
     private static Specification<Produto> anoBetween(Integer ano) {
@@ -47,7 +47,7 @@ public class ProdutoSpecification {
 
     private static Specification<Produto> modeloLike(String modelo) {
         return (root, query, builder) -> modelo == null ? null
-                : builder.like(builder.lower(root.get("descricao")), "%" + modelo.toLowerCase() + "%");
+                : builder.like(builder.lower(root.get("nome")), "%" + modelo.toLowerCase() + "%");
     }
 
     private static Specification<Produto> hasVolante(boolean possuiComandoVolante) {
