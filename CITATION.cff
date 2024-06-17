@@ -1,31 +1,29 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: DePinho Multimídias
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Ferreira
+    given-names: Arthur
+  - family-names: Ferreira
+    given-names: Gabriel
+  - family-names: Pongelupe
+    given-names: Gabriel
+  - family-names: Braga
+    given-names: Pedro
+  - family-names: Cazzoletti
+    given-names: Renato
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Alonso
+    given-names: Eveline
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Juliana
+    given-names: Amaral Baroni
 keywords:
-  - 
-  - 
-repository-code: 
+  - DePinho
+  - Multímidias
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti3-8966100-de-pinho-multimidias.git
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2024-07-19

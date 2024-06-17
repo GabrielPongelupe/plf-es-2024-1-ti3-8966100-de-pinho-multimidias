@@ -1,14 +1,31 @@
   /* Estilos personalizados para parecer com a imagem */
+  
+  :root{
+    --default-stroke-color: #E3E3E3;
+  }
+
   body {
     background-color: #f0f0f0;
     /* Cor de fundo cinza claro */
   }
 
+  /* Estilizando banner inicial */
+  #main-container{
+    min-height: 400px;
+    padding-top: 5em;
+  }
+
+  /* Estilizando filtro */
+
   .card {
     border: none;
     /* Sem bordas visíveis */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    /* Borda suave */
+    box-shadow: 0 10px 66px 0 rgba(0, 0, 0, 0.1);
     /* Sombra suave */
+    margin-top: -180px;
+    /* Margem negativa no card de filtro */
   }
 
   .form-control {
@@ -22,13 +39,47 @@
     /* Fundo transparente */
   }
 
-  .btn-primary {
+  .form-group label {
+    font-weight: 600;
+  }
+
+  .btn {
+    color: white;
+    /* Texto branco */
+    padding-right: 5em;
+    padding-left: 5em;
+  }
+
+  .form-control::placeholder {
+    color: #c4cede;
+    font-size: 0.75em;
+    font-weight: 400;
+  }
+
+  #botao-pesquisar-filtro{
     background-color: #007bff;
     /* Cor azul do botão */
     border-color: #007bff;
     /* Cor da borda do botão */
-    color: white;
-    /* Texto branco */
+  }
+
+  .form-check{
+    padding: 1em;
+    border: 1px solid var(--default-stroke-color);
+    border-radius: 12px;
+  }
+
+  .form-check-label {
+    margin-right: 5px;
+  }
+
+  .form-check-inline {
+    margin-top: 10px;
+    /* Adiciona margem na parte superior dos checkboxes */
+  }
+
+  .form-check .form-check-input {
+    margin-left: 0;
   }
 
   /* Estilos para o botão flutuante do WhatsApp */
@@ -50,30 +101,6 @@
     border-radius: 50%;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.062);
   }
-
-  /* Adicione isso ao seu CSS existente */
-  .form-check-label {
-    margin-left: 5px;
-    /* Espaçamento após o checkbox */
-  }
-
-  .form-check-input {
-    margin-top: 0.3rem;
-    /* Alinhamento vertical do checkbox */
-  }
-
-  /* Estilos para os checkboxes alinhados horizontalmente */
-  .form-check-inline .form-check-input {
-    position: relative;
-    margin-right: 0.75rem;
-    /* Espaçamento entre os checkboxes */
-  }
-
-  .form-check-inline {
-    margin-top: 10px;
-    /* Adiciona margem na parte superior dos checkboxes */
-  }
-
   
 /* FAQ */
 .faq {
@@ -102,6 +129,35 @@
     color: #3C3C43;
     padding: 1em;
     transition: all .5s;
+}
+
+/* Estilizando posicionamento dos vídeos */
+
+.box-video {
+  width: 50%;
+}
+
+.video-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding-bottom: 56.25%;
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75em;
+}
+
+#btn-yt {
+  color: #fff;
+  background-color: #e62117;
 }
 
 @media (max-width: 991.98px) { /* Adjust breakpoint as needed */

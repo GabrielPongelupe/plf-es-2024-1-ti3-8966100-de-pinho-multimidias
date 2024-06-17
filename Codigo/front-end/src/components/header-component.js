@@ -90,11 +90,11 @@ renderDefaultHeader() {
     <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
   <!-- Container wrapper -->
-  <div class="container-fluid">
+  <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
+    <a class="navbar-brand" href="index.html">
       <img
-        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        src="./images/LOGO-DEPINHO.png"
         height="50"
         alt="MDB Logo"
         loading="lazy"

@@ -61,18 +61,24 @@ async function getProdutosFiltrados() {
 
         const produtosCombinados = combinarProdutos(produtosFiltrados);
 
-        telaProdutos.innerHTML = "";
+        telaProdutos.innerHTML = `
+        <header class="mb-4">
+            <h2 class="text-center">Multimídias compatíveis com o seu veículo:</h2>
+         </header>
+         `;
         produtosCombinados.forEach(produto => {
             telaProdutos.innerHTML += `
-    <div class="col-lg-3 col-md-6 col-sm-6 d-flex">
+    <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
         <div class="card w-100 my-2 shadow-2-strong">
-          <img src="${produto.imagemPrincipal}" class="card-img-top" style="aspect-ratio: 1 / 1" />
-          <div class="card-body d-flex flex-column">
+          <img src="${produto.imagemPrincipal}" class="card-img-top" style="aspect-ratio: 1 / 1; border-radius: 12px 12px 0px 0px"/>
+          <div class="card-body d-flex flex-column p-4">
             <h5 class="card-title">${produto.nome}</h5>
             <p class="card-text">Ano: ${produto.anoInicio} - ${produto.anoFim}</p>
             <p class="card-text">Preço: R$${produto.preco}</p>
             <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-              <button id="btn-carrinho" class="btn btn-primary shadow-0 me-1" imagem-produto="${produto.imagemPrincipal}" codigo-produto="${produto.codigoProduto}" nome-produto="${produto.nome}" preco-produto="${produto.preco}" anoFim="${produto.anoFim}" anoInicio="${produto.anoInicio}">Adicionar ao Carrinho</button>
+              <button id="btn-carrinho" class="btn btn-primary shadow-0 me-1" imagem-produto="${produto.imagemPrincipal}" codigo-produto="${produto.codigoProduto}" nome-produto="${produto.nome}" preco-produto="${produto.preco}" anoFim="${produto.anoFim}" anoInicio="${produto.anoInicio}">
+                Adicionar ao carrinho
+              </button>
             </div>
           </div>
         </div>
