@@ -200,6 +200,9 @@ renderAdminHeader() {
             <a class="nav-link" href="gerenciaProdutos.html">Gerenciar Produtos</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="gerenciarPedidos.html">Pedidos</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="faq.html">Gerenciar FAQ</a>
           </li>
           <li class="nav-item">
