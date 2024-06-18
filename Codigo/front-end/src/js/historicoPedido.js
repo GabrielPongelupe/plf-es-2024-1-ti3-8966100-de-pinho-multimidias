@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-const container = document.getElementById('add-Pedido');
-const userId = localStorage.getItem('userId');
-const urlUsuario = `https://pinhomultimidias.azurewebsites.net/usuario/${userId}`;
+  const container = document.getElementById('add-Pedido');
+  const userId = localStorage.getItem('userId');
+  const urlUsuario = `https://pinhomultimidias.azurewebsites.net/usuario/${userId}`;
 
   // Mapeamento de status
   const statusMap = {
@@ -12,15 +12,19 @@ const urlUsuario = `https://pinhomultimidias.azurewebsites.net/usuario/${userId}
     3: "Cancelado"
   };
 
-async function getPedidos() {
+  async function getPedidos() {
 
     try {
-        const responseUser = await axios.get(urlUsuario);
-        const pedidosUser = responseUser.data.pedidos;
+      const responseUser = await axios.get(urlUsuario);
+      const pedidosUser = responseUser.data.pedidos;
+
+      console.log(pedidosUser, 'pedidosUser');
 
       pedidosUser.forEach(pedido => {
         let produtosHtml = '';
         let totalPedido = 0;
+
+        console.log(pedido, 'pedido');
 
         pedido.itens.forEach(item => {
           produtosHtml += `
@@ -109,7 +113,7 @@ async function getPedidos() {
 
   async function addEventListeners() {
     const copyIcons = document.querySelectorAll('.bi-copy');
-    
+
     copyIcons.forEach(icon => {
       icon.addEventListener('click', () => {
         const codigoRastreio = icon.getAttribute('data-codigo');
@@ -130,7 +134,7 @@ async function getPedidos() {
     const anoFormatado = data.getFullYear();
     return `${diaFormatado}/${mesFormatado}/${anoFormatado}`;
   }
-  
+
 
   getPedidos();
 });
