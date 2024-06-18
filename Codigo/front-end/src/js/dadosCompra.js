@@ -1,15 +1,42 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Pegar local storage
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    let userId = "";
 
-    // Pegar a token para fazer verificação se usuário está logado ou não
-    const userId = localStorage.getItem('userId');
+    function pegarIdUsuario(){
+    const token = localStorage.getItem('token');
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const raw = JSON.stringify({
+      "token": `${token}`
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow"
+    };
+
+    fetch("https://pinhomultimidias.azurewebsites.net/usuario/tipoUser", requestOptions)
+      .then(response => response.json())
+      .then(result => {
+        const { id } = result;
+        userId = id;
+    })
+
 
     // Formulário
     var formulario = document.getElementById("form-dados-compra");
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
+
+        pegarIdUsuario();
+
+        console.log("userId: ", userId)
 
         var primeiroNome = document.getElementById('primeiroNome').value;
         var ultimoNome = document.getElementById('ultimoNome').value;
@@ -132,4 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
             });
     });
-});
+}})
+
+
