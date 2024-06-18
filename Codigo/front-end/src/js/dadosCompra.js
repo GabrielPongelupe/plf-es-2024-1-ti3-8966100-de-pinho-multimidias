@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const pedidoRaw = JSON.stringify({
                 "status": 0,
-                "usuarioId": userId,
+                "usuario": {
+                    "id": userId
+                },
                 "dadosPedido": {
                     "primeiroNome": primeiroNome,
                     "ultimoNome": ultimoNome,
