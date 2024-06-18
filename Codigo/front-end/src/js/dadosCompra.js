@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(result => {
             const { id } = result;
             userId = id;
-            console.log("userId: ", userId )
+            console.log("userId: ", userId)
         })
 
 
-        async function criarPedido() {
+    async function criarPedido() {
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         myHeaders.append("Authorization", `Bearer ${token}`);
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //             throw new Error('Network response was not ok');
         //         }
         //         const pedidoData = await response.json();
-    
+
         //         return pedidoData;
         //     } catch (error) {
         //         console.error('Error creating order:', error);
@@ -188,8 +188,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         criarPedido()
             .then(pedidoData => {
-                console.log('Pedido criado:', pedidoData.id);
                 return criarItemPedido(pedidoData.id);
+            })
+            .then(pedidoData => {
+                console.log('Pedido criado:', pedidoData.id);
+                return criarPreferenciaPagamento(pedidoData);
             })
             .then(itemData => {
                 console.log('Itens do pedido criados:', itemData);
@@ -199,58 +202,58 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('There was a problem with the fetch operation:', error);
                 //alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
             });
-        });
-
-        async function criarPreferenciaPagamento(pedidoData) {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            console.log("Pedido data dentro: ", pedidoData);
-
-            const itensPagamento = pedidoData.itens.map(item => ({
-                "title": `Produto ${item.produto.nome}`, // Adicionar título apropriado
-                "quantity": item.quantidade,
-                "unitPrice": item.preco,
-                "pictureUrl": "" // Adicionar URL da imagem, se necessário
-            }));
-
-            const pagamentoRaw = JSON.stringify(itensPagamento);
-
-            const pagamentoOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: pagamentoRaw,
-                redirect: "follow"
-            };
-
-            try {
-                const response = await fetch(urlPagamento, pagamentoOptions);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const sandboxInitPoint = await response.text();
-                if (sandboxInitPoint) {
-                    //console.log(sandboxInitPoint);
-                    window.location.href = sandboxInitPoint; // Redireciona o navegador para a URL do sandbox
-                } else {
-                    console.error("Erro ao criar a preferência de pagamento");
-                }
-            } catch (error) {
-                console.error('Erro ao criar a preferência de pagamento:', error);
-                throw error;
-            }
-        }
-
-        criarPedido()
-            .then(pedidoData => {
-                console.log('Pedido criado:', pedidoData.id);
-                return criarPreferenciaPagamento(pedidoData);
-            })
-            .then(() => {
-                console.log('Preferência de pagamento criada com sucesso!');
-            })
-            .catch(error => {
-                console.error('Ocorreu um erro ao finalizar o pedido:', error);
-                alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
-            });
     });
+
+    async function criarPreferenciaPagamento(pedidoData) {
+        const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        console.log("Pedido data dentro: ", pedidoData);
+
+        const itensPagamento = pedidoData.itens.map(item => ({
+            "title": `Produto ${item.produto.nome}`, // Adicionar título apropriado
+            "quantity": item.quantidade,
+            "unitPrice": item.preco,
+            "pictureUrl": "" // Adicionar URL da imagem, se necessário
+        }));
+
+        const pagamentoRaw = JSON.stringify(itensPagamento);
+
+        const pagamentoOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: pagamentoRaw,
+            redirect: "follow"
+        };
+
+        try {
+            const response = await fetch(urlPagamento, pagamentoOptions);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const sandboxInitPoint = await response.text();
+            if (sandboxInitPoint) {
+                //console.log(sandboxInitPoint);
+                window.location.href = sandboxInitPoint; // Redireciona o navegador para a URL do sandbox
+            } else {
+                console.error("Erro ao criar a preferência de pagamento");
+            }
+        } catch (error) {
+            console.error('Erro ao criar a preferência de pagamento:', error);
+            throw error;
+        }
+    }
+    // criarPedido()
+    //     .then(pedidoData => {
+    //         console.log('Pedido criado:', pedidoData.id);
+    //         return criarPreferenciaPagamento(pedidoData);
+    //     })
+    //     .then(() => {
+    //         console.log('Preferência de pagamento criada com sucesso!');
+    //     })
+    //     .catch(error => {
+    //         console.error('Ocorreu um erro ao finalizar o pedido:', error);
+    //         alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
+    //     });
+
+});
 
