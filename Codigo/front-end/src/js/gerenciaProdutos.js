@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var imagemProduto4 = document.getElementById("imagemAddProduto4").value;
 
         // url 
-        var urlCadastroProduto = "http://127.0.0.1:8080/produto";
+        var urlCadastroProduto = "https://pinhomultimidias.azurewebsites.net/produto";
 
         // token da localstorage
         var token = localStorage.getItem("token");
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
             size: 30
         };
 
-        const url = 'http://127.0.0.1:8080/produto';
+        const url = 'https://pinhomultimidias.azurewebsites.net/produto';
 
         try {
             const response = await axios.get(url, { params });
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imagem3: imagem3
                 };
 
-                axios.put(`http://127.0.0.1:8080/produto/${produtoIdAtual}`, dadosAtualizados)
+                axios.put(`https://pinhomultimidias.azurewebsites.net/produto/${produtoIdAtual}`, dadosAtualizados)
                     .then(response => {
                         alert("Produto atualizado com sucesso!");
                         window.location.reload();
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function () {
             concluirExclusao.addEventListener('click', function () {
                 if (!produtoIdAtual) return;  // Verifica se há um produto a ser excluído
 
-                axios.delete(`http://127.0.0.1:8080/produto/delete/${produtoIdAtual}`)
+                axios.delete(`https://pinhomultimidias.azurewebsites.net/produto/delete/${produtoIdAtual}`)
                     .then(response => {
                         alert("Produto excluído com sucesso!");
                         window.location.reload();

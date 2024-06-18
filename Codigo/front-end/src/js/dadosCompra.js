@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
         var cep = document.getElementById('cep').value;
         var telefone = document.getElementById('telefone').value;
 
-        var urlPedido = "http://127.0.0.1:8080/pedido";
-        var urlPagamento = "http://localhost:8080/pagamento/create";
+        var urlPedido = "https://pinhomultimidias.azurewebsites.net/pedido";
+        var urlPagamento = "https://pinhomultimidias.azurewebsites.net/pagamento/create";
         var token = localStorage.getItem("token");
 
         async function criarPedido() {

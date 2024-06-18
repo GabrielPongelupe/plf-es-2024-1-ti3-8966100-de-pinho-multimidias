@@ -49,7 +49,7 @@ class Header extends HTMLElement {
       redirect: "follow"
     };
 
-    fetch("http://127.0.0.1:8080/usuario/tipoUser", requestOptions)
+    fetch("https://pinhomultimidias.azurewebsites.net/usuario/tipoUser", requestOptions)
       .then(response => response.json())
       .then(result => {
         const { tipo, id } = result;
@@ -170,7 +170,7 @@ renderAdminHeader() {
     <!-- Navbar brand -->
     <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
       <img
-        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        src="./images/LOGO-DEPINHO.png"
         height="50"
         alt="MDB Logo"
         loading="lazy"
@@ -225,7 +225,7 @@ renderClientHeader() {
     <!-- Navbar brand -->
     <a class="navbar-brand mt-2 mt-lg-0" href="index.html">
       <img
-        src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+        src="./images/LOGO-DEPINHO.png"
         height="50"
         alt="MDB Logo"
         loading="lazy"

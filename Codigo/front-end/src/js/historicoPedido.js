@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const container = document.getElementById('add-Pedido');
 const userId = localStorage.getItem('userId');
-const urlUsuario = `http://127.0.0.1:8080/usuario/${userId}`;
+const urlUsuario = `https://pinhomultimidias.azurewebsites.net/usuario/${userId}`;
 
   // Mapeamento de status
   const statusMap = {

@@ -10,7 +10,7 @@ var usuarioErrado = document.getElementById("usuario-errado");
 var pedido = JSON.parse(localStorage.getItem('pedido')) || [];
 
 // Endpoint
-var urlLogin = "http://127.0.0.1:8080/usuario/login";
+var urlLogin = "https://pinhomultimidias.azurewebsites.net/usuario/login";
 
 btnLogin.addEventListener("click", function (e) {
   e.preventDefault();
