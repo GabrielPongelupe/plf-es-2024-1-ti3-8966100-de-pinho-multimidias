@@ -45,6 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }))
         });
 
+        console.log("Pedido raw: ", pedidoRaw)
+        console.log(pedidoRaw.itens);
+
         const pedidoOptions = {
             method: "POST",
             headers: myHeaders,
@@ -137,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         criarPedido(dadosFormulario)
             .then(pedidoData => {
                 console.log('Pedido criado:', pedidoData.id);
-                return criarPreferenciaPagamento(pedidoData);
+                //return criarPreferenciaPagamento(pedidoData);
             })
             .then(() => {
                 console.log('Preferência de pagamento criada com sucesso!');
