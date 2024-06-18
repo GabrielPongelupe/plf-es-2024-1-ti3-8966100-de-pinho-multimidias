@@ -111,7 +111,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 "pedido": { "id": pedidoId },
                 "produto": { "codigoProduto": produto.codigoProduto },
                 "quantidade": produto.quantidade,
-                "preco": produto.preco
+                "preco": produto.preco,
+                "rastramento": "-" // Preencher conforme necessário
             };
 
             const itemOptions = {
