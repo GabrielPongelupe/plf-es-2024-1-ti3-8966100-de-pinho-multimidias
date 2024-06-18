@@ -3,29 +3,29 @@ document.addEventListener('DOMContentLoaded', function () {
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
     let userId = "";
 
-    function pegarIdUsuario(){
     const token = localStorage.getItem('token');
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     const raw = JSON.stringify({
-      "token": `${token}`
+        "token": `${token}`
     });
 
     const requestOptions = {
-      method: "POST",
-      headers: myHeaders,
-      body: raw,
-      redirect: "follow"
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
     };
 
     fetch("https://pinhomultimidias.azurewebsites.net/usuario/tipoUser", requestOptions)
-      .then(response => response.json())
-      .then(result => {
-        const { id } = result;
-        userId = id;
-    })
+        .then(response => response.json())
+        .then(result => {
+            const { id } = result;
+            userId = id;
+            console.log("userId: ", userId )
+        })
 
 
     // Formulário
@@ -33,8 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
-
-        pegarIdUsuario();
 
         console.log("userId: ", userId)
 
@@ -100,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const pedidoData = await response.json();
                 //console.log('Pedido criado:', pedidoData.id);
                 //console.log("Pedido data: ", pedidoData);
-                return pedidoData;  
+                return pedidoData;
             } catch (error) {
                 console.error('Error creating order:', error);
                 throw error;
@@ -149,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
         criarPedido()
             .then(pedidoData => {
                 console.log('Pedido criado:', pedidoData.id);
-                return criarPreferenciaPagamento(pedidoData);         
+                return criarPreferenciaPagamento(pedidoData);
             })
             .then(() => {
                 console.log('Preferência de pagamento criada com sucesso!');
@@ -159,6 +157,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
             });
     });
-}})
+})
 
 
