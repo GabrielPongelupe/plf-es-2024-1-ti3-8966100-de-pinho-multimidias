@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 redirect: "follow"
             };
 
-            return fetch("http://127.0.0.1:8080/item-pedido", itemOptions)
+            return fetch("https://pinhomultimidias.azurewebsites.net/item-pedido", itemOptions)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
