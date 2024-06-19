@@ -7,7 +7,7 @@ const addHome = document.getElementById('faq-home');
 
 async function getPerguntas() {
 
-    const url = 'http://127.0.0.1:8080/duvida';
+    const url = 'https://pinhomultimidias.azurewebsites.net/duvida';
     
     try {
         const response = await axios.get(url);

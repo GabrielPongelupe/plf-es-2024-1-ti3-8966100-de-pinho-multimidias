@@ -9,9 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const concluirEdicaoStatus = document.getElementById("concluir-edicao-status");
   const concluirEdicaoRastreio = document.getElementById("concluir-edicao-rastreio");
 
-  const urlPedidos = "http://127.0.0.1:8080/pedido";
-  const urlDadosCompra = "http://127.0.0.1:8080/dados-pedido/{id}";
-  const urlItensPedido = "http://127.0.0.1:8080/item-pedido/{id}";
+  const urlPedidos = "https://pinhomultimidias.azurewebsites.net/pedido";
+  const urlDadosCompra = "https://pinhomultimidias.azurewebsites.net/dados-pedido/{id}";
+  const urlItensPedido = "https://pinhomultimidias.azurewebsites.net/item-pedido/{id}";
 
   // Mapeamento de status
   const statusMap = {
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
         concluirEdicaoRastreio.onclick = async () => {
           const novoCodigo = document.getElementById("rastreio-editar").value;
           try {
-            const response = await axios.put(`http://127.0.0.1:8080/item-pedido/${itemId}`, {
+            const response = await axios.put(`https://pinhomultimidias.azurewebsites.net/item-pedido/${itemId}`, {
               rastramento: novoCodigo // Incluindo o novo valor do rastramento no corpo da requisição
             });
             alert("Código de rastreio atualizado com sucesso!");
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
         concluirEdicaoStatus.onclick = async () => {
           const novoStatus = document.getElementById("status-editar").value;
           try {
-            const response = await axios.put(`http://127.0.0.1:8080/pedido/${pedidoId}`, {
+            const response = await axios.put(`https://pinhomultimidias.azurewebsites.net/pedido/${pedidoId}`, {
               status: novoStatus
             });
 

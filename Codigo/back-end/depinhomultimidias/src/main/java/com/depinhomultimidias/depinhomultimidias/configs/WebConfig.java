@@ -11,7 +11,7 @@ public class WebConfig implements WebMvcConfigurer{
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:8081")
+                .allowedOrigins("https://plf-es-2024-1-ti3-8966100-de-pinho-multimidias-aqdntbz8i.vercel.app/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);

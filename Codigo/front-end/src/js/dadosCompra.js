@@ -1,135 +1,169 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Pegar local storage
     let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    let userId = "";
 
-    // Pegar a token para fazer verificação se usuário está logado ou não
-    const userId = localStorage.getItem('userId');
+    const token = localStorage.getItem('token');
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
-    // Formulário
-    var formulario = document.getElementById("form-dados-compra");
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify({ "token": token }),
+        redirect: "follow"
+    };
 
-    formulario.addEventListener('submit', function (event) {
-        event.preventDefault();
+    fetch("https://pinhomultimidias.azurewebsites.net/usuario/tipoUser", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            const { id } = result;
+            userId = id;
+            console.log("userId: ", userId);
 
-        var primeiroNome = document.getElementById('primeiroNome').value;
-        var ultimoNome = document.getElementById('ultimoNome').value;
-        var email = document.getElementById('email').value;
-        var rua = document.getElementById('rua').value;
-        var bairro = document.getElementById('bairro').value;
-        var numero = document.getElementById('numero').value;
-        var complemento = document.getElementById('complemento').value || null;
-        var cpf = document.getElementById('cpf').value;
-        var estado = document.getElementById('estado').value;
-        var cidade = document.getElementById('cidade').value;
-        var cep = document.getElementById('cep').value;
-        var telefone = document.getElementById('telefone').value;
+            // Formulário
+            var formulario = document.getElementById("form-dados-compra");
 
-        var urlPedido = "http://127.0.0.1:8080/pedido";
-        var urlPagamento = "http://localhost:8080/pagamento/create";
-        var token = localStorage.getItem("token");
+            formulario.addEventListener('submit', function (event) {
+                event.preventDefault();
 
-        async function criarPedido() {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            myHeaders.append("Authorization", `Bearer ${token}`);
+                var primeiroNome = document.getElementById('primeiroNome').value;
+                var ultimoNome = document.getElementById('ultimoNome').value;
+                var email = document.getElementById('email').value;
+                var rua = document.getElementById('rua').value;
+                var bairro = document.getElementById('bairro').value;
+                var numero = document.getElementById('numero').value;
+                var complemento = document.getElementById('complemento').value || null;
+                var cpf = document.getElementById('cpf').value;
+                var estado = document.getElementById('estado').value;
+                var cidade = document.getElementById('cidade').value;
+                var cep = document.getElementById('cep').value;
+                var telefone = document.getElementById('telefone').value;
 
-            const pedidoRaw = JSON.stringify({
-                "status": 0,
-                "usuarioId": userId,
-                "dadosPedido": {
-                    "primeiroNome": primeiroNome,
-                    "ultimoNome": ultimoNome,
-                    "email": email,
-                    "estado": estado,
-                    "cidade": cidade,
-                    "bairro": bairro,
-                    "rua": rua,
-                    "numero": numero,
-                    "complemento": complemento,
-                    "cep": cep,
-                    "telefone": telefone,
-                    "cpf": cpf
-                },
-                "itens": carrinho.map(produto => ({
-                    "produto": produto,
-                    "quantidade": produto.quantidade,
-                    "preco": produto.preco,
-                    "rastramento": "" // Preencher conforme necessário
-                }))
+                var dadosFormulario = {
+                    primeiroNome,
+                    ultimoNome,
+                    email,
+                    estado,
+                    cidade,
+                    bairro,
+                    rua,
+                    numero,
+                    complemento,
+                    cep,
+                    telefone,
+                    cpf
+                };
+
+                criarPedido(dadosFormulario)
+                    .then(pedidoData => {
+                        console.log('Pedido criado:', pedidoData.id);
+                        return criarItemPedido(pedidoData.id);
+                    })
+                    .then(itemData => {
+                        console.log('Itens do pedido criados:', itemData);
+                        return criarPreferenciaPagamento(itemData);
+                    })
+                    .then(() => {
+                        console.log('Preferência de pagamento criada com sucesso!');
+                    })
+                    .catch(error => {
+                        console.error('Ocorreu um erro ao finalizar o pedido:', error);
+                        alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
+                    });
             });
+        })
+        .catch(error => console.error('Erro ao obter userId:', error));
 
-            const pedidoOptions = {
+    async function criarPedido(dadosFormulario) {
+        const pedidoRaw = {
+            "status": 0,
+            "usuario": { "id": userId },
+            "dadosPedido": dadosFormulario,
+            "itens": carrinho.map(produto => ({
+                "produto": { "codigoProduto": produto.codigoProduto },
+                "quantidade": produto.quantidade,
+                "preco": produto.preco,
+                "rastramento": "-" // Preencher conforme necessário
+            }))
+        };
+
+        const pedidoOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(pedidoRaw),
+            redirect: "follow"
+        };
+
+        try {
+            const response = await fetch("https://pinhomultimidias.azurewebsites.net/pedido", pedidoOptions);
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        } catch (error) {
+            throw new Error('Failed to create pedido: ' + error.message);
+        }
+    }
+
+    async function criarItemPedido(pedidoId) {
+        const itemPromises = carrinho.map(produto => {
+            const itemRaw = {
+                "pedido": { "id": pedidoId },
+                "produto": { "codigoProduto": produto.codigoProduto },
+                "quantidade": produto.quantidade,
+                "preco": produto.preco,
+                "rastramento": "-" // Preencher conforme necessário
+            };
+
+            const itemOptions = {
                 method: "POST",
                 headers: myHeaders,
-                body: pedidoRaw,
+                body: JSON.stringify(itemRaw),
                 redirect: "follow"
             };
 
-            try {
-                const response = await fetch(urlPedido, pedidoOptions);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const pedidoData = await response.json();
-                //console.log('Pedido criado:', pedidoData.id);
-                //console.log("Pedido data: ", pedidoData);
-                return pedidoData;  
-            } catch (error) {
-                console.error('Error creating order:', error);
-                throw error;
+            return fetch("https://pinhomultimidias.azurewebsites.net/item-pedido", itemOptions)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .catch(error => {
+                    throw new Error('Failed to create item pedido: ' + error.message);
+                });
+        });
+
+        return Promise.all(itemPromises);
+    }
+
+    async function criarPreferenciaPagamento(pedidoData) {
+        const itensPagamento = pedidoData.map(item => ({
+            "title": `Produto ${item.produto.codigoProduto}`,
+            "quantity": item.quantidade,
+            "unitPrice": item.preco,
+            "pictureUrl": "" // Adicionar URL da imagem, se necessário
+        }));
+
+        const pagamentoOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify(itensPagamento),
+            redirect: "follow"
+        };
+
+        try {
+            const response = await fetch("https://pinhomultimidias.azurewebsites.net/pagamento/create", pagamentoOptions);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const sandboxInitPoint = await response.text();
+            if (sandboxInitPoint) {
+                window.location.href = sandboxInitPoint; // Redireciona o navegador para a URL do sandbox
+            } else {
+                console.error("Erro ao criar a preferência de pagamento");
             }
+        } catch (error) {
+            console.error('Erro ao criar a preferência de pagamento:', error);
+            throw error;
         }
-
-        async function criarPreferenciaPagamento(pedidoData) {
-            const myHeaders = new Headers();
-            myHeaders.append("Content-Type", "application/json");
-            console.log("Pedido data dentro: ", pedidoData);
-
-            const itensPagamento = pedidoData.itens.map(item => ({
-                "title": `Produto ${item.produto.nome}`, // Adicionar título apropriado
-                "quantity": item.quantidade,
-                "unitPrice": item.preco,
-                "pictureUrl": "" // Adicionar URL da imagem, se necessário
-            }));
-
-            const pagamentoRaw = JSON.stringify(itensPagamento);
-
-            const pagamentoOptions = {
-                method: "POST",
-                headers: myHeaders,
-                body: pagamentoRaw,
-                redirect: "follow"
-            };
-
-            try {
-                const response = await fetch(urlPagamento, pagamentoOptions);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const sandboxInitPoint = await response.text();
-                if (sandboxInitPoint) {
-                    //console.log(sandboxInitPoint);
-                    window.location.href = sandboxInitPoint; // Redireciona o navegador para a URL do sandbox
-                } else {
-                    console.error("Erro ao criar a preferência de pagamento");
-                }
-            } catch (error) {
-                console.error('Erro ao criar a preferência de pagamento:', error);
-                throw error;
-            }
-        }
-
-        criarPedido()
-            .then(pedidoData => {
-                console.log('Pedido criado:', pedidoData.id);
-                return criarPreferenciaPagamento(pedidoData);         
-            })
-            .then(() => {
-                console.log('Preferência de pagamento criada com sucesso!');
-            })
-            .catch(error => {
-                console.error('Ocorreu um erro ao finalizar o pedido:', error);
-                alert('Ocorreu um erro ao finalizar o pedido. Por favor, tente novamente.');
-            });
-    });
+    }
 });

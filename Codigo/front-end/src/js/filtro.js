@@ -12,7 +12,7 @@ var telaProdutos = document.getElementById('tela-produtos');
 var carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
 
 // Endpoint
-var urledicaoFiltrocarros = "http://127.0.0.1:8080/produto/filtro";
+var urledicaoFiltrocarros = "https://pinhomultimidias.azurewebsites.net/produto/filtro";
 
 async function getProdutosFiltrados() {
     try {

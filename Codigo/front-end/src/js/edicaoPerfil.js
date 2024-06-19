@@ -7,13 +7,55 @@ var primeiroNome = document.getElementById('primeiro-nome-perfil');
 var contato = document.getElementById('contato-perfil');
 
 // endpoint
-var urledicaoPerfil = "http://127.0.0.1:8080/usuario/2";
+const userId = localStorage.getItem('userId');
+var token = localStorage.getItem("token");
+var urledicaoPerfil  = `https://pinhomultimidias.azurewebsites.net/usuario/${userId}`;
 
 
-btnSalvar.addEventListener("click", function (e) {
+
+
+
+async function editarPerfil() {
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    const raw = JSON.stringify({
+        "email": emailPerfil.value,
+        "primeiroNome": primeiroNome.value,
+        "ultimoNome": ultimoNome.value,
+        "contato": contato.value
+    });
+
+    console.log(raw,"raw")
+
+    const requestOptions = {
+        method: "PUT",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+    };
+
+
+    try {
+        const response = await fetch(urledicaoPerfil, requestOptions);
+        const result = await response.text();
+        console.log(response)
+        console.log(result);
+        alert("Perfil atualizado com sucesso");
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+btnSalvar.addEventListener("click", async function (e) {
     e.preventDefault();
 
-
+/*
 
     var data = {
         email: emailPerfil.value,
@@ -39,6 +81,8 @@ btnSalvar.addEventListener("click", function (e) {
                 console.log("Error:", error.message);
             }
             console.log("Config:", error.config);
-        })
-
+      
+            })
+*/
+await editarPerfil();
 })

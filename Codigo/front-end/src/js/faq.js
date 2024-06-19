@@ -22,7 +22,7 @@ const perguntaCadastro = document.getElementById('pergunta-cadastrar');
 const respostaCadastro = document.getElementById('resposta-cadastrar');
 
 //endpoint
-const urlCadastro = "http://127.0.0.1:8080/duvida";
+const urlCadastro = "https://pinhomultimidias.azurewebsites.net/duvida";
 //token
 const token = localStorage.getItem("token");
 
@@ -82,7 +82,7 @@ buttonCadastro.addEventListener("click", function (e) {
 
 async function getPerguntas() {
 
-    const url = 'http://127.0.0.1:8080/duvida';
+    const url = 'https://pinhomultimidias.azurewebsites.net/duvida';
     
 
     try {
@@ -132,7 +132,7 @@ async function getPerguntas() {
                 resposta: resposta
             };
 
-            axios.put(`http://127.0.0.1:8080/duvida/${perguntaId}`, dadosAtualizados)
+            axios.put(`https://pinhomultimidias.azurewebsites.net/duvida/${perguntaId}`, dadosAtualizados)
                 .then(response => {
                     console.log(response.data);
                     alert("Pergunta atualizada com sucesso!");
@@ -150,7 +150,7 @@ async function getPerguntas() {
                 modalExcluir.showModal();
 
                 buttonExclusao.addEventListener('click', function () {
-                    axios.delete(`http://127.0.0.1:8080/duvida/delete/${perguntaId}`)
+                    axios.delete(`https://pinhomultimidias.azurewebsites.net/duvida/delete/${perguntaId}`)
                         .then(response => {
                             console.log(response.data);
                             alert("Pergunta excluída com sucesso!");

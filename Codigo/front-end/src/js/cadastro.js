@@ -8,7 +8,7 @@ var primeiroNome = document.getElementById('primeiro_nome');
 var contato = document.getElementById('contato');
 
 // endpoint
-var urlCadastro = "http://127.0.0.1:8080/usuario/register";
+var urlCadastro = "https://pinhomultimidias.azurewebsites.net/usuario/register";
 
 // enviar dados do cadastro
 btnCadastro.addEventListener("click", function (e) {
