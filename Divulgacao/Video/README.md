@@ -1,4 +1,4 @@
 # Divulgação: Vídeo do Projeto
 
-Nesta pasta inclua arquivos de vídeo produzidos para divulgação do projeto e seus resutados.
+Link para acesso à pasta dos vídeos. Clique [aqui](https://drive.google.com/drive/folders/1J-ROlE0VXOdOvXNyaRuAV00tOdxsO1rs).
 
