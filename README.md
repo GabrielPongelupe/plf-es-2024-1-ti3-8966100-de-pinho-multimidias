@@ -1,6 +1,9 @@
-# De Pinho Multimídias
 
-Um site para facilitar a compra de novas multimídias para os clientes do De Pinho. O site apresentará a opção de filtragem dos produtos por meio do carro do cliente, mostrando apenas os modelos de multimídia compatíveis com o modelo do veículo.
+![dePinhoLP](https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti3-8966100-de-pinho-multimidias/assets/119077937/657b04df-43b5-4973-8d3c-63e1c01cd9dd)
+
+# DePinho Multimídias
+
+DePinho multimídias é um site para facilitar a compra de novas multimídias para os clientes do YouTuber Gabriel De Pinho. O site apresentará a opção de filtragem dos produtos por meio do carro do cliente, mostrando apenas os modelos de multimídia compatíveis com o modelo do veículo.
 
 ## Alunos integrantes da equipe
 
