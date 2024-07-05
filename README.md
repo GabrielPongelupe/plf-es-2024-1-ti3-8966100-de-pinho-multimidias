@@ -5,6 +5,14 @@
 
 DePinho multimídias é um site para facilitar a compra de novas multimídias para os clientes do YouTuber Gabriel De Pinho. O site apresentará a opção de filtragem dos produtos por meio do carro do cliente, mostrando apenas os modelos de multimídia compatíveis com o modelo do veículo.
 
+# Acesso ao teste online do site
+Para acessar a versão de teste do site você pode seguir o seguinte link: https://plf-es-2024-1-ti3-8966100-de-pinho-multimidias.vercel.app/
+Para testar o pagamento na API do mercado pago utilizar cartões ficticios de teste disponibilidados por eles em: https://www.mercadopago.com.br/developers/pt/docs/checkout-api/integration-test/test-cards
+Login de administrador para testes:
+login: 1@1.com
+senha: 1234
+
+
 ## Alunos integrantes da equipe
 
 * Arthur Ferreira Costa
